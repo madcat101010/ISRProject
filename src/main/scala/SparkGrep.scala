@@ -18,6 +18,7 @@ object SparkGrep {
 
   def main(args: Array[String]) {
     if (args.length == 2){
+      println("Training HERE")
       val conf = new SparkConf()
         .setMaster("local[*]")
         .setAppName("HBaseProductExperiments")
@@ -51,6 +52,7 @@ object SparkGrep {
   }
 
   def HBaseExperiment(trainFile: String, testFile: String, sc: SparkContext): Unit = {
+    println("HBaseExperiment ")
     var labelMap = scala.collection.mutable.Map[String,Double]()
     val training_partitions = 8
     val testing_partitions = 8

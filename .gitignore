@@ -18,3 +18,7 @@ project/plugins/project/
 .worksheet
 
 .idea
+
+
+#ignore the massive jar files for the core nlp model and rdd for scala
+jarlib/
