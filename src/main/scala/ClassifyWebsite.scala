@@ -19,7 +19,7 @@ import org.apache.spark.mllib.linalg.Word2VecClassifier
 
 import scala.collection.JavaConversions._
 
-case class Website(id: String, cleanText: String, label: Option[Double] = None)
+case class Website(id: String, url:string, cleanText: String, label: Option[Double] = None)
 
 object ClassifyWebsite {
   val _websiteModelURL = "data/website/"
@@ -62,6 +62,7 @@ object ClassifyWebsite {
     println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
     println("Scanning results now.")
 
+		//begin loop to clean blocks of websites and classify them
     var continueLoop = true
     var totalRecordCount: Long = 0
     while (continueLoop) {
@@ -118,20 +119,11 @@ object ClassifyWebsite {
 
     return null
 
-
-
-    /*val scanner = new Scan(Bytes.toBytes(collectionID), Bytes.toBytes(collectionID + '0'))
-    val cols = Map(
-      _colFam -> Set(_col)
-    )*/
-    //val rdd = sc.hbase[String](_tableName,cols,scanner)
-    //val result  = interactor.getRowsBetweenPrefix(collectionID, _colFam, _col)
-    //sc.parallelize(result.iterator().map(r => rowToTweetConverter(r)).toList)
-    //rdd.map(v => Tweet(v._1, v._2.getOrElse(_colFam, Map()).getOrElse(_col, ""))).foreach(println)
-    //rdd.map(v => Tweet(v._1, v._2.getOrElse(_colFam, Map()).getOrElse(_col, "")))/*.repartition(sc.defaultParallelism)*/.filter(tweet => tweet.tweetText.trim.isEmpty)
   }
 
-  def rowToTweetConverter(result : Result): Tweet ={
+
+	//TODO
+  def rowToWebsiteConverter(result : Result): Tweet ={
     val cell = result.getColumnLatestCell(Bytes.toBytes(_columnFamily), Bytes.toBytes(_Column))
     val key = Bytes.toString(cell.getRowArray, cell.getRowOffset, cell.getRowLength)
     val words = Bytes.toString(cell.getValueArray, cell.getValueOffset, cell.getValueLength)
@@ -139,12 +131,14 @@ object ClassifyWebsite {
     null
   }
 
-  def retrieveTrainingTweetsFromFile(fileName:String, sc : SparkContext) : RDD[Tweet] = {
+	//TODO	
+  def retrieveTrainingWebsitesFromFile(fileName:String, sc : SparkContext) : RDD[Tweet] = {
     val lines = sc.textFile(fileName)
     lines.map(line=> Tweet(line.split('|')(1), line.split('|')(2), Option(line.split('|')(0).toDouble))).filter(tweet => tweet.label.isDefined)
   }
 
-  def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
+	//TODO
+  def getTrainingWebsites(sc:SparkContext): RDD[Website] = {
     val _tableName: String = "cs5604-f16-cla-training"
     val _textColFam: String = "training-tweet"
     val _labelCol: String = "label"

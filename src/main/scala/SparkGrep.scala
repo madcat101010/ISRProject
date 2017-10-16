@@ -1,3 +1,8 @@
+/*
+
+
+*/
+
 package isr.project
 
 import org.apache.log4j.{Level, Logger}
@@ -35,9 +40,11 @@ object SparkGrep {
 
 
     val start = System.currentTimeMillis()
-    //Word2VecClassifier.run(args, '|')
     val sc = new SparkContext()
     val readTweets = DataRetriever.retrieveTweets(args, sc)
+    val end = System.currentTimeMillis()
+    println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
+
     //val cleanTweets = CleanTweet.clean(readTweets,sc)
     //val predictedTweets = Word2VecClassifier.predict(cleanTweets,sc)
     //DataWriter.writeTweets(predictedTweets)
@@ -47,8 +54,6 @@ object SparkGrep {
     //SparkUtilities.countWords(args)
     //WordVectorGenerator.generateWordVector("data/issac.txt", args)
     //CleanTweet.clean(args,"data/multi_class_lem")
-    val end = System.currentTimeMillis()
-    println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
   }
 
   def HBaseExperiment(trainFile: String, testFile: String, sc: SparkContext): Unit = {
@@ -140,3 +145,5 @@ object SparkGrep {
     (idfModel, hashingModel, logisticRegressionModel, (trainend - trainstart) / 1000.0)
   }
 }
+
+//

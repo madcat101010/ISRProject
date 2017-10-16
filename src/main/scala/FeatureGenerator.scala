@@ -1,9 +1,12 @@
+/*
+
+
+*/
+
 package isr.project
 
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.rdd.RDD
-
-//import scala.collection.mutable
 
 
 /**
@@ -34,14 +37,6 @@ class FeatureGenerator(tweets: RDD[Tweet]) {
     val wordT = flatTweets map (x => (x.toLowerCase,1))
     //sum up the counts for each word
     val classMapWithCounts = wordT reduceByKey((a, b) => a + b)
-    //wordMap.cache()
-    //Create a map. Add a new word if it doesn't exist. Else increment the count.
-//    var wordMap = collection.Map.empty[String, Double]
-//    for(rawWord <- flatTweets) {
-//      val word = rawWord.toLowerCase()
-//      val oldCount = if (wordMap.contains(word)) wordMap(word) else 0
-//      wordMap += (word -> (oldCount + 1))
-//    }
 
     //Generate the word probabilities for each term
     val classVocabularySize = flatTweets.count()
