@@ -63,6 +63,9 @@ object SparkGrep {
     val testing_partitions = 8
     val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
     val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
+		//TODO:
+		//val trainWebsites = getWebsitesFromFile()
+		//val testWebsites = getWebsitesFromFile()
 		
     DataStatistics(trainTweets, testTweets)
     SetupWord2VecField(trainFile, getTweetsFromFile(trainFile, labelMap, sc))

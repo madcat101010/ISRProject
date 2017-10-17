@@ -5,7 +5,7 @@ we will need to add the the sparkcontext broadcast for those along with the trai
 
 */
 
-package isr.project
+//package isr.project
 
 
 import org.apache.hadoop.hbase.{HBaseConfiguration, TableName}
@@ -19,7 +19,7 @@ import org.apache.spark.mllib.linalg.Word2VecClassifier
 
 import scala.collection.JavaConversions._
 
-case class Website(id: String, url:string, cleanText: String, label: Option[Double] = None)
+case class Website(id: String, url:String, cleanText: String, label: Option[Double] = None)
 
 object ClassifyWebsite {
   val _websiteModelURL = "data/website/"
@@ -44,13 +44,14 @@ object ClassifyWebsite {
 
     //Perform a cold start of the model pipeline so that this loading doesn't disrupt the read later.
     val coldWebsite = sc.parallelize(Array[Website]{ Website("id", "Some tweet")})
-    val (predictedWebsite,_) = Word2VecClassifier.predict(coldWebsite, sc, word2vecModel, logisticRegressionModel)
-    predictedWebsite.count
+    //$val (predictedWebsite,_) = Paragraph2VecClassifier.predict(coldWebsite, sc, word2vecModel, logisticRegressionModel)
+    //$predictedWebsite.count
+		//$ == uncomment after implemented due to compile error
 
     // scan over only the collection
     val scan = new Scan(Bytes.toBytes(collectionID), Bytes.toBytes(collectionID + '0'))
     val hbaseConf = HBaseConfiguration.create()
-    val table = new HTable(hbaseConf,_tableName)
+    val table = new HTable(hbaseConf, _webTableName)
 
     // add the specific column to scan
     scan.addColumn(Bytes.toBytes(_columnFamily), Bytes.toBytes(_Column))
@@ -88,14 +89,14 @@ object ClassifyWebsite {
           
 					println("*********** Predicting the website data now. *****************")
 					//TODO: Run model code here...
-          val (predictedWebsites,_) = Word2VecClassifier.predict(cleanWebsites, sc, word2vecModel, logisticRegressionModel)
+          //$val (predictedWebsites,_) = Word2VecClassifier.predict(cleanWebsites, sc, word2vecModel, logisticRegressionModel)
 
           println("*********** Persisting the websites now. *****************")
-          val repartitionedPredictions = predictedWEbsites.repartition(12)
+          //$val repartitionedPredictions = predictedWebsites.repartition(12)
           DataWriter.writeTweets(repartitionedPredictions)
 
-          predictedTweets.cache()
-          val batchTweetCount = predictedTweets.count()
+          //$predictedWebsites.cache()
+          //$val batchWebsiteCount = predictedWebsites.count()
           println(s"The amount of tweets to be written is $batchTweetCount")
           val end = System.currentTimeMillis()
           totalRecordCount += batchTweetCount
@@ -148,17 +149,20 @@ object ClassifyWebsite {
     val scanner = new Scan()
     scanner.addColumn(Bytes.toBytes(_textColFam), Bytes.toBytes(_labelCol))
     scanner.addColumn(Bytes.toBytes(_textColFam), Bytes.toBytes(_textCol))
-    sc.parallelize(table.getScanner(scanner).map(result => {
+		/*    
+		sc.parallelize(table.getScanner(scanner).map(result => {
       val labcell = result.getColumnLatestCell(Bytes.toBytes(_textColFam), Bytes.toBytes(_labelCol))
       val textcell = result.getColumnLatestCell(Bytes.toBytes(_textColFam), Bytes.toBytes(_textCol))
       val key = Bytes.toString(labcell.getRowArray, labcell.getRowOffset, labcell.getRowLength)
       val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
       val label = Bytes.toString(labcell.getValueArray, labcell.getValueOffset, labcell.getValueLength).toDouble
       Tweet(key,words,Option(label))
-    }).toList)
+    }).toList) */
   }
 
 
 
 }
+
+//*/
 

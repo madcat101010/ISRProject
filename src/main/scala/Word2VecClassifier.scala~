@@ -1,6 +1,4 @@
-/*
 
-*/
 //package isr.project
 package org.apache.spark.mllib.linalg
 

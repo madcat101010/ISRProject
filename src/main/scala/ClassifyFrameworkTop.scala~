@@ -1,7 +1,7 @@
-/*
-
-
-*/
+// ClassifyFrameworkTop.scala
+// CLA - FALL 2017
+// This is the top level framework of the classification scala code. It is based upon the deprecated SparkGrep.scala which is not synced with the Fall 2016 CLA final report.
+// 
 
 package isr.project
 
@@ -12,7 +12,7 @@ import org.apache.spark.mllib.linalg.Word2VecClassifier
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object SparkGrep {
+object ClassifyFrameworkTop {
   def tweetchange(tweet: Tweet): Tweet = {
     if (tweet.label.get == 0.0) {
       return Tweet(tweet.id, tweet.tweetText, Option(9.0))
@@ -21,21 +21,27 @@ object SparkGrep {
   }
 
 
-  def main(args: Array[String]) {
-		println(args.length)
-    if (args.length == 4){
+	def main(args: Array[String]) {
+		//question: DO we want to just call sparkgrep with the right args? or rewrite to new spark grep?
+		if (args.length == 4){
       val conf = new SparkConf()
         .setMaster("local[*]")
-        .setAppName("CLA-ModelTraining")
+        .setAppName("ClassifyFrameworkTop")
       val sc = new SparkContext(conf)
-//      TrainWebsiteModels(args(2),args(3),sc)
-			TrainWebsiteModels("./data/website_shooting_data/", "./data/website_shooting_data/", sc) 
-      System.exit(0)
+      //HBaseExperiment(args(0),args(1),sc)
+      //System.exit(0)
+		println("Loading website classification models")
+		//this uses hadoop to check for file at "path"		
+		val conf = sc.hadoopConfiguration
+		val fs = org.apache.hadoopfs.FileSystem.get(conf)
+		val exists = fs.exists(new org.paache.hadoop.fs.Path("path"))
+		//TODO: Load website class models
+		
+		println("Loading Tweet classificiation models")
+		//TODO: Load Tweet class models
     }
-    if (args.length != 4 || args.length != 3) {
-      System.err.println("Classify Usage: SparkGrep <collection number to process> <number of classes> <blockCount>")
-      System.err.println("Training Usage: SparkGrep <training tweet file name> <testing tweet file name> <training website file name> <testing website file name>")
-			System.err.println("Usage Note: files should be in the ./data/ directory i.e. use 'data/trainingfile'")
+    else (args.length < 3) {
+      System.err.println("Usage: SparkGrep <tweet collection file path> <webside collection file path> <number of classes?> <blockCount?>")
       System.exit(1)
     }
     Logger.getLogger("org").setLevel(Level.OFF)
@@ -43,49 +49,35 @@ object SparkGrep {
 
 
     val start = System.currentTimeMillis()
-		//		
-		val conf = new SparkConf()
-        .setMaster("local[*]")
-        .setAppName("CLA-Classifying")
-    val sc = new SparkContext(conf)
-    //val sc = new SparkContext()
+    //Word2VecClassifier.run(args, '|')
+    val sc = new SparkContext()
     val readTweets = DataRetriever.retrieveTweets(args, sc)
     val end = System.currentTimeMillis()
     println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
   }
 
-  def TrainTweetModels(trainFile: String, testFile: String, sc: SparkContext): Unit = {
-    println("Training models")
-
-		//load training files
+  def HBaseExperiment(trainFile: String, testFile: String, sc: SparkContext): Unit = {
+    println("HBaseExperiment ")
     var labelMap = scala.collection.mutable.Map[String,Double]()
     val training_partitions = 8
     val testing_partitions = 8
     val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
     val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
-		
+
     DataStatistics(trainTweets, testTweets)
     SetupWord2VecField(trainFile, getTweetsFromFile(trainFile, labelMap, sc))
 
     val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
-
-		//test that RDD map has the expected text file data
-		//println("Get here")    
-		//println("#############################################################")
-		//for ((k,v) <- trainTweets) printf("key: %s, value: %s", k, v)
-		//println(trainTweets.mkString(" "))
-		//println(trainTweetsRDD)
-		
-		//val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
+    //val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
 
     val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainTweetsRDD)
-		val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
+
+    val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
     //val cleaned_testTweetsRDD = sc.parallelize(CleanTweet.clean(testTweetsRDD,sc).collect(),testing_partitions).cache()
 
     PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
 
   }
-
 
   def getTweetsFromFile(fileName:String,labelMap:scala.collection.mutable.Map[String,Double], sc: SparkContext): RDD[Tweet] = {
     val file = sc.textFile(fileName)
@@ -153,5 +145,3 @@ object SparkGrep {
     (idfModel, hashingModel, logisticRegressionModel, (trainend - trainstart) / 1000.0)
   }
 }
-
-//
