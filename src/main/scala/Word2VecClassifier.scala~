@@ -1,4 +1,6 @@
+/*
 
+*/
 //package isr.project
 package org.apache.spark.mllib.linalg
 
@@ -24,7 +26,7 @@ object Word2VecClassifier{
 
   val _threshold = 0.25
   var _lrModelFilename = "data/lrclassifier.model"
-  var _numberOfClasses = 9
+  var _numberOfClasses = 2
   var _word2VecModelFilename = "data/word2vec.model"
 
 
@@ -32,6 +34,10 @@ object Word2VecClassifier{
 
 
   def train(tweets: RDD[Tweet], sc:SparkContext): (Word2VecModel,LogisticRegressionModel) = {
+		val _threshold = 0.25
+  	val _lrModelFilename = "data/lrclassifier.model"
+  	val _numberOfClasses = 2
+  	val _word2VecModelFilename = "data/word2vec.model"
     val bcNumberOfClasses = sc.broadcast(_numberOfClasses)
     val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
@@ -51,6 +57,8 @@ object Word2VecClassifier{
 
     // Word2Vec
     val samplePairs = wordOnlyTrainSample.map(s => s.id -> s)
+		println("@@@@@@@@@@@@@@@@@")
+		wordOnlyTrainSample.foreach(println)
     val reviewWordsPairs: RDD[(String, Iterable[String])] = samplePairs.mapValues(_.tweetText.split(" ").toIterable)
 
     val word2vecModel = new Word2Vec().fit(reviewWordsPairs.values)
@@ -76,6 +84,9 @@ object Word2VecClassifier{
 
     // Classification
     println("String Learning and evaluating models")
+		//val tempForPrint = bcNumberOfClasses.value
+		println(_numberOfClasses)
+		println(bcNumberOfClasses.value)
 
     val logisticRegressionModel = GenerateOptimizedModel(trainingSet,bcNumberOfClasses.value)
     // commented out to run on our machines
@@ -453,6 +464,9 @@ object Word2VecClassifier{
     val lrClassifier = new LogisticRegressionWithLBFGS()
     lrClassifier.optimizer.setConvergenceTol(0.01)
     //lrClassifier.optimizer.setNumIterations(75)
+		println("#########")
+		println(bcNumberOfClasses)
+		//trainingData.foreach(println)
 
     lrClassifier
       .setNumClasses(bcNumberOfClasses)

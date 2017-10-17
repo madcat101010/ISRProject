@@ -62,7 +62,7 @@ Object TrainWebsiteModel{
 
   }
 
-
+	//Gets webwsite input train/test data stats
   private def DataStatisticsW(train: Array[Website], test: Array[Website]) = {
     //place a debug point or prints to see the statistics
     val trainCount = train.length

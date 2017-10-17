@@ -3,7 +3,7 @@ Adaption of the tweet training code to support websites with the provided .csv f
 */
 
 
-package isr.project
+//package isr.project
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.mllib.classification.LogisticRegressionModel

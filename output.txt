@@ -3,17 +3,14 @@ building the project
 [0m[[0m[0minfo[0m] [0m[0mLoading settings from build.sbt ...[0m
 [0m[[0m[0minfo[0m] [0m[0mSet current project to sparkGrep (in build file:/home/cloudera/Project/ISRProject/)[0m
 [0m[[0m[0minfo[0m] [0m[0mCompiling 1 Scala source to /home/cloudera/Project/ISRProject/target/scala-2.10/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cloudera/Project/ISRProject/src/main/scala/SparkGrep.scala:75:8: constructor cannot be instantiated to expected type;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : (T1, T2)[0m
-[0m[[0m[31merror[0m] [0m[0m required: isr.project.Tweet[0m
-[0m[[0m[31merror[0m] [0m[0m		for ((k,v) <- trainTweets) printf("key: %s, value: %s\n", k, v)[0m
-[0m[[0m[31merror[0m] [0m[0m		     ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
-[0m[[0m[31merror[0m] [0m[0m(compile:[31mcompileIncremental[0m) Compilation failed[0m
-[0m[[0m[31merror[0m] [0m[0mTotal time: 19 s, completed Oct 15, 2017 10:07:48 PM[0m
+[0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
+[0m[[0m[33mwarn[0m] [0m[0mMultiple main classes detected.  Run 'show discoveredMainClasses' to see the list[0m
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/cloudera/Project/ISRProject/target/scala-2.10/sparkgrep_2.10-1.0.jar ...[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 30 s, completed Oct 17, 2017 2:14:58 AM[0m
 running the script on collection  with block size 
 4
-Training models
+Training website models using tweet methodology
 Histogram begin
 1	0
 2	0
@@ -29,10 +26,10 @@ Histogram begin
 12	0
 13	0
 14	0
-15	1
+15	0
 16	0
 17	0
-18	0
+18	1
 19	0
 20	0
 21	0
@@ -44,7 +41,7 @@ Histogram begin
 27	0
 28	0
 29	0
-30	1
+30	0
 31	0
 32	0
 33	0
@@ -88,7 +85,7 @@ Histogram begin
 71	0
 72	0
 73	0
-74	1
+74	0
 75	0
 76	0
 77	0
@@ -186,6 +183,126 @@ Histogram begin
 169	0
 170	0
 171	0
-172	1
+172	0
+173	0
+174	0
+175	0
+176	0
+177	0
+178	0
+179	0
+180	0
+181	0
+182	0
+183	0
+184	0
+185	0
+186	0
+187	0
+188	0
+189	0
+190	0
+191	0
+192	0
+193	0
+194	0
+195	0
+196	0
+197	0
+198	0
+199	0
+200	0
+201	0
+202	0
+203	0
+204	0
+205	0
+206	0
+207	0
+208	0
+209	0
+210	0
+211	0
+212	0
+213	0
+214	0
+215	0
+216	0
+217	0
+218	0
+219	0
+220	0
+221	0
+222	0
+223	0
+224	0
+225	0
+226	0
+227	0
+228	0
+229	0
+230	0
+231	0
+232	0
+233	0
+234	0
+235	0
+236	0
+237	0
+238	0
+239	0
+240	0
+241	0
+242	0
+243	0
+244	0
+245	0
+246	0
+247	0
+248	0
+249	0
+250	0
+251	0
+252	0
+253	0
+254	0
+255	0
+256	0
+257	1
 the stats have been generated
-[Lisr.project.Tweet;@3962ec84
+String Learning and evaluating models
+2
+2
+#########
+2
+Took 22.595 seconds for the training.
+<---- done
+Took 0.022 seconds for Prediction.
+
+***********   Class:0.0   *************
+F1 Score:0.9692307692307692
+True Positive:0.9545454545454546
+False Positive:0.2857142857142857
+Precision:0.984375
+Recall:0.9545454545454546
+
+***********   Class:1.0   *************
+F1 Score:0.5555555555555556
+True Positive:0.7142857142857143
+False Positive:0.045454545454545456
+Precision:0.45454545454545453
+Recall:0.7142857142857143
+
+Confusion Matrix 
+126.0  6.0  
+2.0    5.0  
+
+***********   Classifier Results for LRW2VClassifier   *************
+Weighted F1-Measure = 0.9483982045133124
+Weighted Precision = 0.957692936559843
+Weighted Recall = 0.9424460431654677
+Macro F1 = 0.7623931623931623
+Micro F1 = 0.9424460431654677
+
+***********   End of Classifier Results for LRW2VClassifier   *************
+Took 5.295 seconds for the prediction.

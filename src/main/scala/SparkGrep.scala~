@@ -29,7 +29,7 @@ object SparkGrep {
         .setAppName("CLA-ModelTraining")
       val sc = new SparkContext(conf)
 //      TrainWebsiteModels(args(2),args(3),sc)
-			TrainWebsiteModels("./data/website_shooting_data/", "./data/website_shooting_data/", sc) 
+			TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc) 
       System.exit(0)
     }
     if (args.length != 4 || args.length != 3) {
@@ -63,9 +63,6 @@ object SparkGrep {
     val testing_partitions = 8
     val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
     val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
-		//TODO:
-		//val trainWebsites = getWebsitesFromFile()
-		//val testWebsites = getWebsitesFromFile()
 		
     DataStatistics(trainTweets, testTweets)
     SetupWord2VecField(trainFile, getTweetsFromFile(trainFile, labelMap, sc))
@@ -89,7 +86,66 @@ object SparkGrep {
 
   }
 
+	//based on above traintweetmodels which works. Just hack in the website into Tweet data format.
+	def TrainWebsiteModelsBasedTweet( web1:String, web2:String, sc:SparkContext):Unit = {
+    println("Training website models using tweet methodology")
 
+		//load training files... labelMap is for string to double mapping which is weirdish
+    var labelMap = scala.collection.mutable.Map[String,Double]()
+    val training_partitions = 8
+    val testing_partitions = 8
+
+    //load website data from .csv provided by CMW team.
+    val websites_1 = getWebsitesFromRawCsv(web1, 1.0, sc).collect() //DunbarHighSchoolShooting
+    val websites_2 = getWebsitesFromRawCsv(web2, 2.0, sc).collect() //NorthIllinoisUniversityShooting
+		//combine odds of both website sets for training, and evens of both website sets for testing
+		//websites_1.foreach(println)
+		//websites_2.foreach(println)
+		val web1_even = (websites_1.filter(f => f.id.toInt % 2 == 0))
+		val web1_odd = (websites_1.filter(f => f.id.toInt % 2 != 0))
+		val web2_even = (websites_2.filter(f => f.id.toInt % 2 == 0))
+		val web2_odd = (websites_2.filter(f => f.id.toInt % 2 != 0))
+		val trainTweets = web1_odd.union(web2_odd)
+		val testTweets = web1_even.union(web2_even)
+		
+		//println("$$$$$$$$$TRAIN TWEETS$$$$$")
+		//trainTweets.foreach(println)
+		//println("######TEST TWEEETS####")
+		//testTweets.foreach(println)
+
+    DataStatistics(trainTweets, testTweets)
+    SetupWord2VecField("website_tweethack_", sc.parallelize(trainTweets))
+
+    val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
+
+		//test that RDD map has the expected text file data
+		//println("Get here")    
+		//println("#############################################################")
+		//for ((k,v) <- trainTweets) printf("key: %s, value: %s", k, v)
+		//println(trainTweets.mkString(" "))
+		//println(trainTweetsRDD)
+		
+		//val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
+
+    val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainTweetsRDD)
+		val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
+    //val cleaned_testTweetsRDD = sc.parallelize(CleanTweet.clean(testTweetsRDD,sc).collect(),testing_partitions).cache()
+
+    PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
+	}
+
+	//initial get website data from SMW .csv file. each file is its own topic already, so provide the desired label ID!
+	def getWebsitesFromRawCsv(fileName:String, labelDouble: Double, sc: SparkContext): RDD[Tweet] = {
+		//load file of rwa website data
+    val file = sc.textFile(fileName)
+
+		//map websites
+    file.map(x => x.split(",", 5)).filter( y => (y.length == 5 && y(0) != "id")).map(x => Tweet(x(0),x(4), Option(labelDouble)))
+  }
+
+
+
+/////////////////////////////////////
   def getTweetsFromFile(fileName:String,labelMap:scala.collection.mutable.Map[String,Double], sc: SparkContext): RDD[Tweet] = {
     val file = sc.textFile(fileName)
     val allProductNum = file.map(x => x.split("; ")).filter(_.length == 3).map(x => x(0)).distinct().collect() ++
