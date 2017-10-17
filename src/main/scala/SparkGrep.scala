@@ -95,7 +95,7 @@ object SparkGrep {
     val (predictionTweets,predictionLabel) = Word2VecClassifier.predict(cleaned_testTweetsRDD, sc, word2VecModel, logisticRegressionModel)
     // Writetweet to Hbase
     println("========Predicted Tweets============")
-    println(predictionTweets.mkString(" "))
+    println(predictionTweets)
     DataWriter.writeTweets(predictionTweets)
     //val metricBasedPrediction = cleaned_testTweetsRDD.map(x => x.label.get).zip(predictions.map(x => x.label.get)).map(x => (x._2, x._1))
     Word2VecClassifier.GenerateClassifierMetrics(predictionLabel, "LRW2VClassifier", Word2VecClassifier._numberOfClasses)
