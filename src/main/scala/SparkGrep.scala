@@ -18,7 +18,6 @@ object SparkGrep {
 
   def main(args: Array[String]) {
     if (args.length == 2){
-      println("Training HERE")
       val conf = new SparkConf()
         .setMaster("local[*]")
         .setAppName("HBaseProductExperiments")
@@ -52,7 +51,6 @@ object SparkGrep {
   }
 
   def HBaseExperiment(trainFile: String, testFile: String, sc: SparkContext): Unit = {
-    println("HBaseExperiment ")
     var labelMap = scala.collection.mutable.Map[String,Double]()
     val training_partitions = 8
     val testing_partitions = 8
@@ -95,6 +93,10 @@ object SparkGrep {
    def PerformPrediction(sc: SparkContext, word2VecModel: Word2VecModel, logisticRegressionModel: LogisticRegressionModel, cleaned_testTweetsRDD: RDD[Tweet]) = {
     val teststart = System.currentTimeMillis()
     val (predictionTweets,predictionLabel) = Word2VecClassifier.predict(cleaned_testTweetsRDD, sc, word2VecModel, logisticRegressionModel)
+    // Writetweet to Hbase
+    println("========Predicted Tweets============")
+    println(predictionTweets.mkString(" "))
+    DataWriter.writeTweets(predictionTweets)
     //val metricBasedPrediction = cleaned_testTweetsRDD.map(x => x.label.get).zip(predictions.map(x => x.label.get)).map(x => (x._2, x._1))
     Word2VecClassifier.GenerateClassifierMetrics(predictionLabel, "LRW2VClassifier", Word2VecClassifier._numberOfClasses)
     val testEnd = System.currentTimeMillis()
