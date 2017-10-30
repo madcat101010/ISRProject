@@ -34,10 +34,10 @@ object Word2VecClassifier{
 
 
   def train(tweets: RDD[Tweet], sc:SparkContext): (Word2VecModel,LogisticRegressionModel) = {
-		val _threshold = 0.25
-  	val _lrModelFilename = "data/lrclassifier.model"
-  	val _numberOfClasses = 2
-  	val _word2VecModelFilename = "data/word2vec.model"
+		//val _threshold = 0.25
+  	//val _lrModelFilename = "data/lrclassifier.model"
+  	//val _numberOfClasses = 2
+  	//val _word2VecModelFilename = "data/word2vec.model"
     val bcNumberOfClasses = sc.broadcast(_numberOfClasses)
     val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
@@ -195,7 +195,7 @@ object Word2VecClassifier{
     }
     val logisticRegressionPredLabel = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
-      (prediction, label.getOrElse(9999999999.0))
+      (prediction, label.getOrElse(0.0))
     }
     println("<---- done")
     val end = System.currentTimeMillis()

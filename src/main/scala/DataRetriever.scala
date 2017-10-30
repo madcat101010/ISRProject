@@ -20,7 +20,7 @@ import scala.collection.JavaConversions._
 /**
   * Created by Eric on 11/8/2016.
   */
-case class Tweet(id: String, tweetText: String, label: Option[Double] = None)
+case class Tweet(id: String, tweetText: String, label: Option[Double] = None) //ID is the hbase table row key!
 
 object DataRetriever {
 
@@ -114,14 +114,14 @@ object DataRetriever {
           val rddT = sc.parallelize(resultTweets)
           rddT.cache()
           rddT.repartition(12)
-          println("*********** Cleaning the tweets now. *****************")
-          val cleanTweets = CleanTweet.clean(rddT, sc)
+          //println("*********** Cleaning the tweets now. *****************")
+          //val cleanTweets = CleanTweet.clean(rddT, sc)
           println("*********** Predicting the tweets now. *****************")
-          val (predictedTweets,_) = Word2VecClassifier.predict(cleanTweets, sc, word2vecModel, logisticRegressionModel)
+          val (predictedTweets,_) = Word2VecClassifier.predict(rddT, sc, word2vecModel, logisticRegressionModel)
           println("*********** Persisting the tweets now. *****************")
 
           val repartitionedPredictions = predictedTweets.repartition(12)
-          DataWriter.writeTweets(repartitionedPredictions)
+          DataWriter.writeTweets(repartitionedPredictions, _tabelName)
 
           predictedTweets.cache()
           val batchTweetCount = predictedTweets.count()
