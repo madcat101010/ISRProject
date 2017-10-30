@@ -6,6 +6,8 @@ package isr.project
 
 
 import org.apache.hadoop.hbase.{HBaseConfiguration, TableName}
+import org.apache.hadoop.hbase.filter.{FilterList, SingleColumnValueFilter}
+import org.apache.hadoop.hbase.CompareOperator
 import org.apache.hadoop.hbase.client.{ConnectionFactory, HTable, Result, Scan}
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.spark.rdd.RDD
@@ -23,6 +25,7 @@ case class Tweet(id: String, tweetText: String, label: Option[Double] = None)
 object DataRetriever {
 
 	var _metaDataColFam : String = "metadata"
+	var _metaDataTypeCol : String = "doc-type"
 	var _metaDataCollectionNameCol : String = "collection-name"
 	var _tweetColFam : String = "tweet"
 	var _tweetUniqueIdCol : String = "tweet-id"
@@ -52,15 +55,45 @@ object DataRetriever {
     predictedTweets.count
 
     // scan over only the collection
-    val scan = new Scan(Bytes.toBytes(collectionName), Bytes.toBytes(collectionName + '0'))
+    val scan = new Scan()
+
     val hbaseConf = HBaseConfiguration.create()
     val table = new HTable(hbaseConf,_tableName)
+
     // add the specific column to scan
-    scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
+		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
+		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
+    scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
+		//scan.addColumn(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol));
+
+
+		//filter for only same collection, is tweet, has clean text, and not classified
+		val filterList = new FilterList();
+
+		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOperator.EQUAL , Bytes.toBytes(collectionName));
+		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+		filterList.addFilter(filterCollect);
+
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOperator.EQUAL , Bytes.toBytes("tweet"));
+		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+		filterList.addFilter(filterTweet);
+
+		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOperator.NOT_EQUAL , Bytes.toBytes(""));
+		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
+		filterList.addFilter(filterNoClean);
+
+		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOperator.EQUAL , Bytes.toBytes(""));
+		filterUnclass.setFilterIfMissing(false);	//keep only unclassified data
+		filterList.addFilter(filterUnclass);
+		
+		scan.setFilter(filterList);
+
+
     // add caching to increase speed
     scan.setCaching(_cachedRecordCount)
     scan.setBatch(100)
     val resultScanner = table.getScanner(scan)
+
     println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
     println("Scanning results now.")
 
