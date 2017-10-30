@@ -111,11 +111,11 @@ object SparkGrep {
     val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
 
 		//test that RDD map has the expected text file data
-		//println("Get here")    
-		//println("#############################################################")
+		println("Get here")    
+		println("#############################################################")
 		//for ((k,v) <- trainTweets) printf("key: %s, value: %s", k, v)
-		//println(trainTweets.mkString(" "))
-		//println(trainTweetsRDD)
+		println(trainTweets.mkString(" "))
+		println(trainTweetsRDD)
 		
 		//val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
 
@@ -191,8 +191,7 @@ object SparkGrep {
 /////////////////////////////////////
   def getTweetsFromFile(fileName:String,labelMap:scala.collection.mutable.Map[String,Double], sc: SparkContext): RDD[Tweet] = {
     val file = sc.textFile(fileName)
-    val allProductNum = file.map(x => x.split(", ")).filter(_.length == 3).map(x => x(0)).distinct().collect() ++
-      file.map(x => x.split('|')).filter(_.length == 2).map(x => x(0)).collect()
+    val allProductNum = file.map(x => x.split(",", 4)).filter( y => (y.length == 4 && y(0) != "id")).map(x => x(2)).distinct().collect()
     var maxLab = 0.0
     if (labelMap.nonEmpty ){
       maxLab = labelMap.valuesIterator.max + 1
@@ -203,8 +202,7 @@ object SparkGrep {
         maxLab = maxLab + 1
       }
     })
-    file.map(x => x.split(", ")).filter(_.length == 3).map(x => Tweet(x(1),x(2), labelMap.get(x(0)))).union(
-        file.map(x => x.split('|')).filter(_.length == 2).zipWithUniqueId().map(x => Tweet(x._2.toString,x._1(1),labelMap.get(x._1(0)))))
+    file.map(x => x.split(",", 4)).map(x => Tweet(x(0),x(3), labelMap.get(x(2))))
   }
 
    def PerformPrediction(sc: SparkContext, word2VecModel: Word2VecModel, logisticRegressionModel: LogisticRegressionModel, cleaned_testTweetsRDD: RDD[Tweet]) = {
