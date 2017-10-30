@@ -24,7 +24,7 @@ object Word2VecClassifier{
 
 
 
-  val _threshold = 0.25
+  var _threshold = 0.25
   var _lrModelFilename = "data/lrclassifier.model"
   var _numberOfClasses = 2
   var _word2VecModelFilename = "data/word2vec.model"
@@ -195,7 +195,7 @@ object Word2VecClassifier{
     }
     val logisticRegressionPredLabel = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
-      (prediction, label.getOrElse(0.0))
+      (prediction, label.getOrElse(-1.0))
     }
     println("<---- done")
     val end = System.currentTimeMillis()
@@ -245,7 +245,7 @@ object Word2VecClassifier{
     }
     val logisticRegressionPredLabel = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
-      (prediction, label.getOrElse(9999999999.0))
+      (prediction, label.getOrElse(-1.0))
     }
     println("<---- done")
     val end = System.currentTimeMillis()

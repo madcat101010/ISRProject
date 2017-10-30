@@ -38,11 +38,12 @@ object SparkGrep {
 
 			//load collection name and class mapping for that collection
 			val collectionName = args(2);
-			for( var x <- 3 to args.length-1 ){
-				DataWriter.mapLabel( (x-2).toDouble, args(x) );
+			var x = 3;
+			for( x <- 3 to (args.length-1) ){
+				DataWriter.mapLabel( (x-3).toDouble, args(x) );
 			}
 			Word2VecClassifier._numberOfClasses = (x-2); 
-			String tableName = "getar-cs5604f17-eclipse-collection_shard1_replica1";
+			var tableName = "getar-cs5604f17-eclipse-collection_shard1_replica1";
 
 			//train or classify
 			if(args(0) == "train"){
@@ -51,15 +52,15 @@ object SparkGrep {
 				    .setAppName("CLA-ModelTraining")
 				val sc = new SparkContext(conf);
 				if(args(1) == "tweet"){
-					String tweetTrainingFile = ("./data/training/" + collectionName + "_tweet_training.csv");	//TODO:ensure file ending is good
-					String tweetTestingFile = ("./data/testing/" + collectionName + "_tweet_testing.csv");	//TODO:ensure file ending is good
+					var tweetTrainingFile = ("./data/training/" + collectionName + "_tweet_training.csv");	//TODO:ensure file ending is good
+					var tweetTestingFile = ("./data/testing/" + collectionName + "_tweet_testing.csv");	//TODO:ensure file ending is good
 					Word2VecClassifier._lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
 					Word2VecClassifier._word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
 				  TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
 				else if(args(1) == "website"){
-					String websiteTrainingFile = ("./data/training/" + collectionName + "_website_training.csv");	//TODO:ensure file ending is good
-					String websiteTestingFile = ("./data/testing/" + collectionName + "_website_testing.csv");	
+					var websiteTrainingFile = ("./data/training/" + collectionName + "_website_training.csv");	//TODO:ensure file ending is good
+					var websiteTestingFile = ("./data/testing/" + collectionName + "_website_testing.csv");	
 					//TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 				System.exit(0)
@@ -85,7 +86,7 @@ object SparkGrep {
 			}
 		}
     else{
-      System.err.println("Usage: SparkGrep <train/classify> <website/tweet> <YAML Config File>)
+      System.err.println("Usage: SparkGrep <train/classify> <website/tweet> <YAML Config File>")
 			System.err.println("Usage Note: files should be in the ./data/ directory i.e. 'data/collection1_trainingfile'")
       System.exit(1)
     }
@@ -172,6 +173,7 @@ object SparkGrep {
     PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
 	}
 
+///////////////////////////////////////
 	//initial get website data from SMW .csv file. each file is its own topic already, so provide the desired label ID!
 	def getWebsitesFromRawCsv(fileName:String, labelDouble: Double, sc: SparkContext): RDD[Tweet] = {
 		//load file of rwa website data
@@ -186,7 +188,7 @@ object SparkGrep {
 /////////////////////////////////////
   def getTweetsFromFile(fileName:String,labelMap:scala.collection.mutable.Map[String,Double], sc: SparkContext): RDD[Tweet] = {
     val file = sc.textFile(fileName)
-    val allProductNum = file.map(x => x.split("; ")).filter(_.length == 3).map(x => x(0)).distinct().collect() ++
+    val allProductNum = file.map(x => x.split(", ")).filter(_.length == 3).map(x => x(0)).distinct().collect() ++
       file.map(x => x.split('|')).filter(_.length == 2).map(x => x(0)).collect()
     var maxLab = 0.0
     if (labelMap.nonEmpty ){
@@ -198,7 +200,7 @@ object SparkGrep {
         maxLab = maxLab + 1
       }
     })
-    file.map(x => x.split("; ")).filter(_.length == 3).map(x => Tweet(x(1),x(2), labelMap.get(x(0)))).union(
+    file.map(x => x.split(", ")).filter(_.length == 3).map(x => Tweet(x(1),x(2), labelMap.get(x(0)))).union(
         file.map(x => x.split('|')).filter(_.length == 2).zipWithUniqueId().map(x => Tweet(x._2.toString,x._1(1),labelMap.get(x._1(0)))))
   }
 
@@ -210,7 +212,7 @@ object SparkGrep {
     val testEnd = System.currentTimeMillis()
     println(s"Took ${(testEnd - teststart) / 1000.0} seconds for the prediction.")
   }
-
+/////////////////////
   def PerformTraining(sc: SparkContext, cleaned_trainingTweetsRDD: RDD[Tweet]) = {
     val trainstart = System.currentTimeMillis()
     val (word2VecModel, logisticRegressionModel) = Word2VecClassifier.train(cleaned_trainingTweetsRDD, sc)
@@ -218,7 +220,7 @@ object SparkGrep {
     println(s"Took ${(trainend - trainstart) / 1000.0} seconds for the training.")
     (word2VecModel, logisticRegressionModel, (trainend-trainstart)/1000.0)
   }
-
+///////////////////////
   def SetupWord2VecField(trainFile: String, trainTweets: RDD[Tweet]): Unit = {
     Word2VecClassifier._lrModelFilename = trainFile + "lrModel"
     Word2VecClassifier._word2VecModelFilename = trainFile + "w2vModel"

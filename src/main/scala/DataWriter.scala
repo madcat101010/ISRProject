@@ -11,19 +11,20 @@ import org.apache.spark.rdd.RDD
 object DataWriter {
 
 
-	Map labelIdMap = Map(0.0 -> "CouldNotClassify");
+	var labelIdMap = Map(-1.0 -> "CouldNotClassify");
 
 
   def writeTweets(tweetRDD: RDD[Tweet], _tableName:String): Unit = {
 		val _colFam = DataRetriever._classificationColFam;
 		val _col = DataRetriever._classCol;
     val interactor = new HBaseInteraction(_tableName);
-		collectedTweet = tweetRDD.collect();
-    collectedTweet.foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(0.0))))
+		val collectedTweet = tweetRDD.collect();
+    collectedTweet.foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0))))
     interactor.close()
  }
 
 
+//warning: rename table or consider inputting it via function call as this will modify a table!!
   def writeTrainingData(tweets: RDD[Tweet]): Unit = {
     val _tableName: String = "cs5604-f16-cla-training"
     val _textColFam: String = "training-tweet"
@@ -45,7 +46,7 @@ object DataWriter {
   }
 
   def writeTweetToDatabase(tweet: Tweet, colFam: String, col: String, table: HTable): Put = {
-    val putAction = putValueAt(colFam, col, tweet.id, labelMapper(tweet.label.getOrElse(0.0)), table)
+    val putAction = putValueAt(colFam, col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0)), table)
     putAction
   }
 
@@ -61,12 +62,12 @@ object DataWriter {
     put
   }
 
-	def mapLabel(labelId:doudble, label:String){
-		labalIdMap = labelIdMap + (labelId -> label);
+	def mapLabel(labelId:Double, label:String){
+		this.labelIdMap = this.labelIdMap + (labelId -> label);
 	}
 	
   def labelMapper(label:Double) : String= {
-    labelIdMap.getOrElse(label,"ClassLabelMapError");
+    this.labelIdMap.getOrElse(label,"ClassLabelMapError");
   }
 }
 

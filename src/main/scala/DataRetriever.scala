@@ -7,7 +7,8 @@ package isr.project
 
 import org.apache.hadoop.hbase.{HBaseConfiguration, TableName}
 import org.apache.hadoop.hbase.filter.{FilterList, SingleColumnValueFilter}
-import org.apache.hadoop.hbase.CompareOperator
+//import org.apache.hadoop.hbase.CompareOperator
+import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp
 import org.apache.hadoop.hbase.client.{ConnectionFactory, HTable, Result, Scan}
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.spark.rdd.RDD
@@ -37,10 +38,10 @@ object DataRetriever {
 	var _classProbCol : String = "probability-list"
 
 
-  def retrieveTweets(collectionName:String, _cachedRecordCount:Int, _tabelName:String, sc: SparkContext): RDD[Tweet] = {
+  def retrieveTweets(collectionName:String, _cachedRecordCount:Int, _tableName:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
-		String _lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
-		string _word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
+		var _lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
+		var _word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
 		
 
     val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
@@ -60,29 +61,29 @@ object DataRetriever {
     val hbaseConf = HBaseConfiguration.create()
     val table = new HTable(hbaseConf,_tableName)
 
-    // add the specific column to scan
-		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
-		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
+    // add the specific column to scan ... probably don't need the rest of the oclumns to retrieve that are commented out
+//		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
+//		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
     scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
 		//scan.addColumn(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol));
 
 
-		//filter for only same collection, is tweet, has clean text, and not classified
+		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
 		val filterList = new FilterList();
 
-		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOperator.EQUAL , Bytes.toBytes(collectionName));
-		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
-		filterList.addFilter(filterCollect);
+//		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOperator.EQUAL , Bytes.toBytes(collectionName));
+//		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+//		filterList.addFilter(filterCollect);
 
-		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOperator.EQUAL , Bytes.toBytes("tweet"));
-		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
-		filterList.addFilter(filterTweet);
+//		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOperator.EQUAL , Bytes.toBytes("tweet"));
+//		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+//		filterList.addFilter(filterTweet);
 
-		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOperator.NOT_EQUAL , Bytes.toBytes(""));
+		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
 		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
 		filterList.addFilter(filterNoClean);
 
-		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOperator.EQUAL , Bytes.toBytes(""));
+		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.EQUAL , Bytes.toBytes(""));
 		filterUnclass.setFilterIfMissing(false);	//keep only unclassified data
 		filterList.addFilter(filterUnclass);
 		
@@ -121,7 +122,7 @@ object DataRetriever {
           println("*********** Persisting the tweets now. *****************")
 
           val repartitionedPredictions = predictedTweets.repartition(12)
-          DataWriter.writeTweets(repartitionedPredictions, _tabelName)
+          DataWriter.writeTweets(repartitionedPredictions, _tableName)
 
           predictedTweets.cache()
           val batchTweetCount = predictedTweets.count()
