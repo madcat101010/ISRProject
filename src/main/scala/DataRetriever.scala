@@ -19,22 +19,26 @@ import scala.collection.JavaConversions._
   * Created by Eric on 11/8/2016.
   */
 case class Tweet(id: String, tweetText: String, label: Option[Double] = None)
+
 object DataRetriever {
-  val _lrModelFilename = "data/lrclassifier.model"
-  var _cachedRecordCount = 50
-  var _tableName: String = "ideal-cs5604f16" /*"ideal-cs5604f16-fake"*/
-  var _columnFamily : String = "tweet"
-  var _Column : String = "cleantext" /*"text"*/
-  var _word2VecModelFilename = "data/word2vec.model"
 
-  def retrieveTweets(args: Array[String], sc: SparkContext): RDD[Tweet] = {
+	var _metaDataColFam : String = "metadata"
+	var _metaDataCollectionNameCol : String = "collection-name"
+	var _tweetColFam : String = "tweet"
+	var _tweetUniqueIdCol : String = "tweet-id"
+  var _cleanTweetColFam : String = "clean-tweet"
+  var _cleanTweetTextCol : String = "clean-text-cla"
+
+	var _classificationColFam = "classification"
+	var _classCol : String = "classification-list"
+	var _classProbCol : String = "probability-list"
+
+
+  def retrieveTweets(collectionName:String, _cachedRecordCount:Int, _tabelName:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
-
-    // parse the collection ID from program arguments
-    val collectionID = args(0)
-    if (args.length >= 2)
-      _cachedRecordCount = args(2).toInt
-
+		String _lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
+		string _word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
+		
 
     val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
@@ -48,11 +52,11 @@ object DataRetriever {
     predictedTweets.count
 
     // scan over only the collection
-    val scan = new Scan(Bytes.toBytes(collectionID), Bytes.toBytes(collectionID + '0'))
+    val scan = new Scan(Bytes.toBytes(collectionName), Bytes.toBytes(collectionName + '0'))
     val hbaseConf = HBaseConfiguration.create()
     val table = new HTable(hbaseConf,_tableName)
     // add the specific column to scan
-    scan.addColumn(Bytes.toBytes(_columnFamily), Bytes.toBytes(_Column))
+    scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
     // add caching to increase speed
     scan.setCaching(_cachedRecordCount)
     scan.setBatch(100)
@@ -113,19 +117,19 @@ object DataRetriever {
 
 
 
-    /*val scanner = new Scan(Bytes.toBytes(collectionID), Bytes.toBytes(collectionID + '0'))
+    /*val scanner = new Scan(Bytes.toBytes(collectionName), Bytes.toBytes(collectionName + '0'))
     val cols = Map(
       _colFam -> Set(_col)
     )*/
     //val rdd = sc.hbase[String](_tableName,cols,scanner)
-    //val result  = interactor.getRowsBetweenPrefix(collectionID, _colFam, _col)
+    //val result  = interactor.getRowsBetweenPrefix(collectionName, _colFam, _col)
     //sc.parallelize(result.iterator().map(r => rowToTweetConverter(r)).toList)
     //rdd.map(v => Tweet(v._1, v._2.getOrElse(_colFam, Map()).getOrElse(_col, ""))).foreach(println)
     //rdd.map(v => Tweet(v._1, v._2.getOrElse(_colFam, Map()).getOrElse(_col, "")))/*.repartition(sc.defaultParallelism)*/.filter(tweet => tweet.tweetText.trim.isEmpty)
   }
 
   def rowToTweetConverter(result : Result): Tweet ={
-    val cell = result.getColumnLatestCell(Bytes.toBytes(_columnFamily), Bytes.toBytes(_Column))
+    val cell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
     val key = Bytes.toString(cell.getRowArray, cell.getRowOffset, cell.getRowLength)
     val words = Bytes.toString(cell.getValueArray, cell.getValueOffset, cell.getValueLength)
     Tweet(key,words)

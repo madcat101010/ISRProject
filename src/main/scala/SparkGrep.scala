@@ -20,38 +20,73 @@ object SparkGrep {
     return Tweet(tweet.id, tweet.tweetText, tweet.label)
   }
 
-
+//SparkGrep <train/classify> <website/tweet> [<YAML Config File>/collection name] [class1Name] [class2Name] [...]
   def main(args: Array[String]) {
-		println(args.length)
-    if (args.length == 4){
-      val conf = new SparkConf()
-        .setMaster("local[*]")
-        .setAppName("CLA-ModelTraining")
-      val sc = new SparkContext(conf)
-//      TrainWebsiteModels(args(2),args(3),sc)
-			TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc) 
-      System.exit(0)
-    }
-    if (args.length != 4 || args.length != 3) {
-      System.err.println("Classify Usage: SparkGrep <collection number to process> <number of classes> <blockCount>")
-      System.err.println("Training Usage: SparkGrep <training tweet file name> <testing tweet file name> <training website file name> <testing website file name>")
-			System.err.println("Usage Note: files should be in the ./data/ directory i.e. use 'data/trainingfile'")
+		if(args.length >= 3){
+			//ensure correct usage
+			if(args(0) != "train" || args(0) != "classify"){
+				System.err.println("Usage Error: args(0) != 'train' or 'classify'");
+      	System.exit(1);
+			}
+			if(args(1) != "website" || args(1) != "tweet"){
+				System.err.println("Usage Error: args(1) != 'tweet' or 'website'");
+      	System.exit(1);
+			}
+			//if(args(2)){
+
+			//}
+
+			//load collection name and class mapping for that collection
+			val collectionName = args(2);
+			for( var x <- 3 to args.length-1 ){
+				DataWriter.mapLabel( (x-2).toDouble, args(x) );
+			}
+			String tableName = "getar-cs5604f17-eclipse-collection_shard1_replica1";
+
+			//train or classify
+			if(args(0) == "train"){
+				val conf = new SparkConf()
+				    .setMaster("local[*]")
+				    .setAppName("CLA-ModelTraining")
+				val sc = new SparkContext(conf);
+				if(args(1) == "tweet"){
+					String tweetTrainingFile = ("./data/training/" + collectionName + "_tweet_training.csv");	//TODO:ensure file ending is good
+					String tweetTestingFile = ("./data/testing/" + collectionName + "_tweet_testing.csv");	//TODO:ensure file ending is good
+				  TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
+				}
+				else if(args(1) == "website"){
+					String websiteTrainingFile = ("./data/training/" + collectionName + "_website_training.csv");	//TODO:ensure file ending is good
+					String websiteTestingFile = ("./data/testing/" + collectionName + "_website_testing.csv");	
+					//TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
+				}
+				System.exit(0)
+			}
+			else if(args(0) == "classify"){
+		    Logger.getLogger("org").setLevel(Level.OFF)
+    		Logger.getLogger("akka").setLevel(Level.OFF)
+    		val start = System.currentTimeMillis()
+				val conf = new SparkConf()
+		        .setMaster("local[*]")
+		        .setAppName("CLA-Classifying")
+		    val sc = new SparkContext(conf)
+
+				if(args(1) == "tweet"){
+		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 100, tableName, sc)
+				}
+				else if(args(1) == "website"){
+					println("TODO: classify website");
+				}
+    		val end = System.currentTimeMillis()
+    		println("Took ${(end - start) / 1000.0} seconds for the whole process.")
+				System.exit(0)
+			}
+		}
+    else{
+      System.err.println("Usage: SparkGrep <train/classify> <website/tweet> <YAML Config File>)
+			System.err.println("Usage Note: files should be in the ./data/ directory i.e. 'data/collection1_trainingfile'")
       System.exit(1)
     }
-    Logger.getLogger("org").setLevel(Level.OFF)
-    Logger.getLogger("akka").setLevel(Level.OFF)
 
-
-    val start = System.currentTimeMillis()
-		//		
-		val conf = new SparkConf()
-        .setMaster("local[*]")
-        .setAppName("CLA-Classifying")
-    val sc = new SparkContext(conf)
-    //val sc = new SparkContext()
-    val readTweets = DataRetriever.retrieveTweets(args, sc)
-    val end = System.currentTimeMillis()
-    println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
   }
 
   def TrainTweetModels(trainFile: String, testFile: String, sc: SparkContext): Unit = {

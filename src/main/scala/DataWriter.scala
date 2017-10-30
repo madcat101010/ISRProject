@@ -7,10 +7,12 @@ import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.hadoop.hbase.client.{HTable, Put}
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.spark.rdd.RDD
-/**
-  * Created by Eric on 11/9/2016.
-  */
+
 object DataWriter {
+
+
+	Map labelIdMap = Map(0.0 -> "CouldNotClassify");
+
 
   def writeTweets(tweetRDD: RDD[Tweet]): Unit = {
 
@@ -25,7 +27,7 @@ object DataWriter {
     //val rdd: RDD[(String, Seq[String])] = tweets.map({tweet => tweet.id -> Seq(labelMapper(tweet.label.getOrElse(999999.0)))})
     //rdd.toHBase(_tableName, _colFam, headers)
     val interactor = new HBaseInteraction(_tableName)
-    tweetRDD.collect().foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(9999999.0))))
+    tweetRDD.collect().foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(0.0))))
     interactor.close()
 /*    tweetRDD.foreachPartition(tweet => {
       val hbaseConf = HBaseConfiguration.create()
@@ -78,7 +80,7 @@ object DataWriter {
   }
 
   def writeTweetToDatabase(tweet: Tweet, colFam: String, col: String, table: HTable): Put = {
-    val putAction = putValueAt(colFam, col, tweet.id, labelMapper(tweet.label.getOrElse(9999999.0)), table)
+    val putAction = putValueAt(colFam, col, tweet.id, labelMapper(tweet.label.getOrElse(0.0)), table)
     putAction
   }
 
@@ -94,16 +96,12 @@ object DataWriter {
     put
   }
 
-
+	def mapLabel(labelId:doudble, label:String){
+		labalIdMap = labelIdMap + (labelId -> label);
+	}
+	
   def labelMapper(label:Double) : String= {
-		/*
-    val map = Map(9.0 -> "NewYorkFirefighterShooting", 1.0->"ChinaFactoryExplosion", 2.0->"KentuckyAccidentalChildShooting",
-      3.0->"ManhattanBuildingExplosion", 4.0->"NewtownSchoolShooting", 5.0->"HurricaneSandy", 6.0->"HurricaneArthur",
-      7.0->"HurricaneIsaac", 8.0->"TexasFertilizerExplosion", 10.0->"QuebecTrainDerailment", 11.0->"FairdaleTornado",
-      12.0->"OklahomaTornado", 13.0->"MississippiTornado", 14.0->"AlabamaTornado")
-		//*/
-		val map = Map( 1.0 -> "DunbarHighSchoolShooting", 2.0 ->"NorthIllinoisUniversityShooting") //update numclasses in word2VecClassifier.scala.... make it a class object in future??? //*/
-    map.getOrElse(label,"CouldNotClassify")
+    labelIdMap.getOrElse(label,"ClassLabelMapError");
   }
 }
 
