@@ -1,5 +1,5 @@
 /*
-
+TODO: COnsider deleting since unused in rest of 	code.
 
 */
 
@@ -9,14 +9,12 @@ import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.rdd.RDD
 
 
-/**
- * Created by saur6410 on 10/2/16.
- */
-
 class Greeter(message: RDD[Array[String]]) {
     def SayHi() = println(message)
 }
 
+
+//Note used at all in the code....
 class FeatureGenerator(tweets: RDD[Tweet]) {
 
 
@@ -26,6 +24,7 @@ class FeatureGenerator(tweets: RDD[Tweet]) {
   var _wcpClassesDict:Array[collection.Map[String, Double]] = null
   var _totalVocabularySize = 5000
 
+	//unused. delete?
   def GenerateClassMaps(classLabel: Int, totalVocabularySize:Int): collection.Map[String, Double] = {
 
     //Get all the tweets for the class label
@@ -53,6 +52,7 @@ class FeatureGenerator(tweets: RDD[Tweet]) {
     return classTermProbabilities.collectAsMap()
   }
 
+	//unused. Delete?
   def InitializeFeatures(featureType: String, numberOfClasses: Int) = featureType match {
     case "wcp" => {
 
@@ -74,6 +74,8 @@ class FeatureGenerator(tweets: RDD[Tweet]) {
 
   }
 
+
+	//unused. Delete?
   def getFeatures(featureType: String, documentBody: String) = featureType match {
     case "fpm" => {
       //Load the FPM List of Lists
@@ -102,7 +104,7 @@ class FeatureGenerator(tweets: RDD[Tweet]) {
 
   }
 
-
+	//unused
   def PadFeatureArray(features: Array[Double]): Array[Double] = {
 
     val paddedFeatures = new Array[Double](tweetLength)

@@ -1,3 +1,5 @@
+//
+
 package isr.project
 import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.hadoop.hbase.client.{HTable,Put,Get,Scan,ResultScanner,ConnectionFactory}
