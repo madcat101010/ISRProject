@@ -38,9 +38,9 @@ object Word2VecClassifier{
   	//val _lrModelFilename = "data/lrclassifier.model"
   	//val _numberOfClasses = 2
   	//val _word2VecModelFilename = "data/word2vec.model"
-    val bcNumberOfClasses = sc.broadcast(_numberOfClasses)
-    val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
-    val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
+    var bcNumberOfClasses = sc.broadcast(this._numberOfClasses)
+    var bcWord2VecModelFilename = sc.broadcast(this._word2VecModelFilename)
+    var bcLRClassifierModelFilename = sc.broadcast(this._lrModelFilename)
 
     def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
 
@@ -63,7 +63,7 @@ object Word2VecClassifier{
 
     val word2vecModel = new Word2Vec().fit(reviewWordsPairs.values)
     // commented out to run on our system
-    //word2vecModel.save(sc, bcWord2VecModelFilename.value)
+    word2vecModel.save(sc, bcWord2VecModelFilename.value) //######
 
 
     def wordFeatures(words: Iterable[String]): Iterable[Vector] = words.map(w => Try(word2vecModel.transform(w))).filter(_.isSuccess).map(x => x.get)
@@ -85,19 +85,19 @@ object Word2VecClassifier{
     // Classification
     println("String Learning and evaluating models")
 		//val tempForPrint = bcNumberOfClasses.value
-		println(_numberOfClasses)
+		println(this._numberOfClasses)
 		println(bcNumberOfClasses.value)
 
     val logisticRegressionModel = GenerateOptimizedModel(trainingSet,bcNumberOfClasses.value)
-    // commented out to run on our machines
-    //logisticRegressionModel.save(sc, bcLRClassifierModelFilename.value)
+    // ####
+    logisticRegressionModel.save(sc, bcLRClassifierModelFilename.value)
     return (word2vecModel,logisticRegressionModel)
   }
 
   def trainIdfClassifer(tweets: RDD[Tweet], sc: SparkContext) = {
-    val bcNumberOfClasses = sc.broadcast(_numberOfClasses)
-    val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
-    val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
+    var bcNumberOfClasses = sc.broadcast(this._numberOfClasses)
+    var bcWord2VecModelFilename = sc.broadcast(this._word2VecModelFilename)
+    var bcLRClassifierModelFilename = sc.broadcast(this._lrModelFilename)
 
     def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
 

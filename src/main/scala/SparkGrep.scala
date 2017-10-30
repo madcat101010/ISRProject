@@ -24,11 +24,11 @@ object SparkGrep {
   def main(args: Array[String]) {
 		if(args.length >= 3){
 			//ensure correct usage
-			if(args(0) != "train" || args(0) != "classify"){
+			if(args(0) != "train" && args(0) != "classify"){
 				System.err.println("Usage Error: args(0) != 'train' or 'classify'");
       	System.exit(1);
 			}
-			if(args(1) != "website" || args(1) != "tweet"){
+			if(args(1) != "website" && args(1) != "tweet"){
 				System.err.println("Usage Error: args(1) != 'tweet' or 'website'");
       	System.exit(1);
 			}
@@ -38,11 +38,13 @@ object SparkGrep {
 
 			//load collection name and class mapping for that collection
 			val collectionName = args(2);
-			var x = 3;
+			var classCount = 0;
 			for( x <- 3 to (args.length-1) ){
 				DataWriter.mapLabel( (x-3).toDouble, args(x) );
+				classCount = classCount + 1;
 			}
-			Word2VecClassifier._numberOfClasses = (x-2); 
+			Word2VecClassifier._numberOfClasses = (classCount).toInt; 
+			println("Number of classes is: " + Word2VecClassifier._numberOfClasses.toInt);
 			var tableName = "getar-cs5604f17-eclipse-collection_shard1_replica1";
 
 			//train or classify
@@ -122,6 +124,7 @@ object SparkGrep {
     //val cleaned_testTweetsRDD = sc.parallelize(CleanTweet.clean(testTweetsRDD,sc).collect(),testing_partitions).cache()
 
     PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
+		//word2vecModel.save(sc, bcWord2VecModelFilename.value); //done in word2vecclassifier.scala .train()
 
   }
 
@@ -222,9 +225,9 @@ object SparkGrep {
   }
 ///////////////////////
   def SetupWord2VecField(trainFile: String, trainTweets: RDD[Tweet]): Unit = {
-    Word2VecClassifier._lrModelFilename = trainFile + "lrModel"
-    Word2VecClassifier._word2VecModelFilename = trainFile + "w2vModel"
-    Word2VecClassifier._numberOfClasses =  trainTweets.map(x => x.label).distinct.count().toInt
+    //Word2VecClassifier._lrModelFilename = trainFile + "lrModel"
+    //Word2VecClassifier._word2VecModelFilename = trainFile + "w2vModel"
+    //Word2VecClassifier._numberOfClasses =  trainTweets.map(x => x.label).distinct.count().toInt
   }
 
   private def DataStatistics(trainTweets: Array[Tweet], testTweets: Array[Tweet]) = {

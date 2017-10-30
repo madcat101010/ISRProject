@@ -2,15 +2,11 @@ building the project
 [0m[[0m[0minfo[0m] [0m[0mLoading project definition from /home/cloudera/Project/ISRProject/project[0m
 [0m[[0m[0minfo[0m] [0m[0mLoading settings from build.sbt ...[0m
 [0m[[0m[0minfo[0m] [0m[0mSet current project to sparkGrep (in build file:/home/cloudera/Project/ISRProject/)[0m
-[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Scala source to /home/cloudera/Project/ISRProject/target/scala-2.10/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
 [0m[[0m[33mwarn[0m] [0m[0mMultiple main classes detected.  Run 'show discoveredMainClasses' to see the list[0m
-[0m[[0m[0minfo[0m] [0m[0mPackaging /home/cloudera/Project/ISRProject/target/scala-2.10/sparkgrep_2.10-1.0.jar ...[0m
-[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
-[0m[[0m[32msuccess[0m] [0m[0mTotal time: 30 s, completed Oct 17, 2017 2:14:58 AM[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 8 s, completed Oct 30, 2017 10:10:22 AM[0m
 running the script on collection  with block size 
-4
-Training website models using tweet methodology
+Number of classes is: 2
+Training models
 Histogram begin
 1	0
 2	0
@@ -23,286 +19,41 @@ Histogram begin
 9	0
 10	0
 11	0
-12	0
-13	0
-14	0
-15	0
-16	0
-17	0
-18	1
-19	0
-20	0
-21	0
-22	0
-23	0
-24	0
-25	0
-26	0
-27	0
-28	0
-29	0
-30	0
-31	0
-32	0
-33	0
-34	0
-35	0
-36	0
-37	0
-38	0
-39	0
-40	0
-41	0
-42	0
-43	0
-44	0
-45	0
-46	0
-47	0
-48	0
-49	0
-50	0
-51	0
-52	0
-53	0
-54	0
-55	0
-56	0
-57	0
-58	0
-59	0
-60	0
-61	0
-62	0
-63	0
-64	0
-65	0
-66	0
-67	0
-68	0
-69	0
-70	0
-71	0
-72	0
-73	0
-74	0
-75	0
-76	0
-77	0
-78	0
-79	0
-80	0
-81	0
-82	0
-83	0
-84	0
-85	0
-86	0
-87	0
-88	0
-89	0
-90	0
-91	0
-92	0
-93	0
-94	0
-95	0
-96	0
-97	0
-98	0
-99	0
-100	0
-101	0
-102	0
-103	0
-104	0
-105	0
-106	0
-107	0
-108	0
-109	0
-110	0
-111	0
-112	0
-113	0
-114	0
-115	0
-116	0
-117	0
-118	0
-119	0
-120	0
-121	0
-122	0
-123	0
-124	0
-125	0
-126	0
-127	0
-128	0
-129	0
-130	0
-131	0
-132	0
-133	0
-134	0
-135	0
-136	0
-137	0
-138	0
-139	0
-140	0
-141	0
-142	0
-143	0
-144	0
-145	0
-146	0
-147	0
-148	0
-149	0
-150	0
-151	0
-152	0
-153	0
-154	0
-155	0
-156	0
-157	0
-158	0
-159	0
-160	0
-161	0
-162	0
-163	0
-164	0
-165	0
-166	0
-167	0
-168	0
-169	0
-170	0
-171	0
-172	0
-173	0
-174	0
-175	0
-176	0
-177	0
-178	0
-179	0
-180	0
-181	0
-182	0
-183	0
-184	0
-185	0
-186	0
-187	0
-188	0
-189	0
-190	0
-191	0
-192	0
-193	0
-194	0
-195	0
-196	0
-197	0
-198	0
-199	0
-200	0
-201	0
-202	0
-203	0
-204	0
-205	0
-206	0
-207	0
-208	0
-209	0
-210	0
-211	0
-212	0
-213	0
-214	0
-215	0
-216	0
-217	0
-218	0
-219	0
-220	0
-221	0
-222	0
-223	0
-224	0
-225	0
-226	0
-227	0
-228	0
-229	0
-230	0
-231	0
-232	0
-233	0
-234	0
-235	0
-236	0
-237	0
-238	0
-239	0
-240	0
-241	0
-242	0
-243	0
-244	0
-245	0
-246	0
-247	0
-248	0
-249	0
-250	0
-251	0
-252	0
-253	0
-254	0
-255	0
-256	0
-257	1
+12	2
 the stats have been generated
 String Learning and evaluating models
 2
 2
 #########
 2
-Took 22.595 seconds for the training.
+Took 26.792 seconds for the training.
 <---- done
 Took 0.022 seconds for Prediction.
 
 ***********   Class:0.0   *************
-F1 Score:0.9692307692307692
-True Positive:0.9545454545454546
-False Positive:0.2857142857142857
-Precision:0.984375
-Recall:0.9545454545454546
+F1 Score:0.8
+True Positive:1.0
+False Positive:0.16666666666666666
+Precision:0.6666666666666666
+Recall:1.0
 
 ***********   Class:1.0   *************
-F1 Score:0.5555555555555556
-True Positive:0.7142857142857143
-False Positive:0.045454545454545456
-Precision:0.45454545454545453
-Recall:0.7142857142857143
+F1 Score:0.9090909090909091
+True Positive:0.8333333333333334
+False Positive:0.0
+Precision:1.0
+Recall:0.8333333333333334
 
 Confusion Matrix 
-126.0  6.0  
-2.0    5.0  
+2.0  0.0  
+1.0  5.0  
 
 ***********   Classifier Results for LRW2VClassifier   *************
-Weighted F1-Measure = 0.9483982045133124
-Weighted Precision = 0.957692936559843
-Weighted Recall = 0.9424460431654677
-Macro F1 = 0.7623931623931623
-Micro F1 = 0.9424460431654677
+Weighted F1-Measure = 0.8818181818181818
+Weighted Precision = 0.9166666666666666
+Weighted Recall = 0.875
+Macro F1 = 0.8545454545454545
+Micro F1 = 0.875
 
 ***********   End of Classifier Results for LRW2VClassifier   *************
-Took 5.295 seconds for the prediction.
+Took 6.669 seconds for the prediction.
