@@ -53,6 +53,8 @@ object SparkGrep {
 				if(args(1) == "tweet"){
 					String tweetTrainingFile = ("./data/training/" + collectionName + "_tweet_training.csv");	//TODO:ensure file ending is good
 					String tweetTestingFile = ("./data/testing/" + collectionName + "_tweet_testing.csv");	//TODO:ensure file ending is good
+					Word2VecClassifier._lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
+					Word2VecClassifier._word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
 				  TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
 				else if(args(1) == "website"){

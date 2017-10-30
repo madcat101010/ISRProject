@@ -41,6 +41,7 @@ object SparkGrep {
 			for( var x <- 3 to args.length-1 ){
 				DataWriter.mapLabel( (x-2).toDouble, args(x) );
 			}
+			Word2VecClassifier._numberOfClasses = (x-2); 
 			String tableName = "getar-cs5604f17-eclipse-collection_shard1_replica1";
 
 			//train or classify
