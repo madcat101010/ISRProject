@@ -3,6 +3,7 @@ package isr.project
 
 import org.apache.hadoop.hbase.{HBaseConfiguration, TableName}
 import org.apache.hadoop.hbase.client.{ConnectionFactory, HTable, Result, Scan}
+import org.apache.hadoop.hbase.filter.RandomRowFilter
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext
@@ -19,8 +20,8 @@ object DataRetriever {
   val _lrModelFilename = "data/lrclassifier.model"
   var _cachedRecordCount = 50
   var _tableName: String = "ideal-cs5604f16" /*"ideal-cs5604f16-fake"*/
-  var _columnFamily : String = "tweet"
-  var _Column : String = "cleantext" /*"text"*/
+  var _columnFamily : String = "clean-tweet"
+  var _Column : String = "clean-text-cla" /*"text"*/
   var _word2VecModelFilename = "data/word2vec.model"
 
   def retrieveTweets(args: Array[String], sc: SparkContext): RDD[Tweet] = {
@@ -134,13 +135,14 @@ object DataRetriever {
   }
 
   def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
-    val _tableName: String = "training_table"
+    val _tableName: String = "eclipsedatasample1"
     val _cleanTweetColFam: String = "clean-tweet"
     val _cleanTweetCol : String = "clean-text-cla"
     val connection = ConnectionFactory.createConnection()
     val table = connection.getTable(TableName.valueOf(_tableName))
     val scanner = new Scan()
-    
+		scanner.setMaxResultSize(250)
+    val randomFilter = new RandomRowFilter(0.5f)
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
     sc.parallelize(table.getScanner(scanner).map(result => {
       val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
