@@ -136,24 +136,19 @@ object DataRetriever {
   def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
     val _tableName: String = "training_table"
     val _cleanTweetColFam: String = "clean-tweet"
-    //val _tweetColFam: String = "tweet"
-    val _labelCol: String = "label"
     val _cleanTweetCol : String = "clean-text-cla"
-    //val _idCol : String = "tweet-id"
     val connection = ConnectionFactory.createConnection()
     val table = connection.getTable(TableName.valueOf(_tableName))
     val scanner = new Scan()
-    scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_labelCol))
+    
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
-    //scanner.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_idCol))
     sc.parallelize(table.getScanner(scanner).map(result => {
-      val labcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_labelCol))
       val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
-      //val idcell = result.getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_cleanTweetCol))
-      val key = Bytes.toString(labcell.getRowArray, labcell.getRowOffset, labcell.getRowLength)
       val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
-      val label = Bytes.toString(labcell.getValueArray, labcell.getValueOffset, labcell.getValueLength).toDouble
-      Tweet(key,words,Option(label))
+      var key = Bytes.toString(result.getRow())
+      println("Label this tweet: "+words)
+      val label = Console.readInt().toDouble
+      Tweet(key, words, Option(label))
     }).toList)
   }
 

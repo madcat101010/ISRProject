@@ -18,7 +18,7 @@ object SparkGrep {
 
   def main(args: Array[String]) {
     if (args.length == 1){
-      print "Label HERE"
+      println ("Label HERE")
       val conf = new SparkConf()
         .setMaster("local[*]")
         .setAppName("HBaseProductExperiments")
@@ -152,8 +152,12 @@ object SparkGrep {
   def LabelTrainingData(sc: SparkContext) = {
     println("Labeling Training Data")
     val trainingTweets = DataRetriever.getTrainingTweets(sc)
-    trainingTweets.collect().foreach(println)
-    
+    trainingTweets.map(tweet => tweetToCVSLine(tweet)).saveAsTextFile("./data/training/solareclipse_tweet_training.csv")
+
+  }
+
+  def tweetToCVSLine(tweet:Tweet): String = {
+    return tweet.id + "," + tweet.tweetText + "," + tweet.label.get.toString
   }
 
 }
