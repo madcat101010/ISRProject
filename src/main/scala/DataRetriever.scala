@@ -134,18 +134,22 @@ object DataRetriever {
   }
 
   def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
-    val _tableName: String = "cs5604-f16-cla-training"
-    val _textColFam: String = "training-tweet"
+    val _tableName: String = "training_table"
+    val _cleanTweetColFam: String = "clean-tweet"
+    //val _tweetColFam: String = "tweet"
     val _labelCol: String = "label"
-    val _textCol : String = "text"
+    val _cleanTweetCol : String = "clean-text-cla"
+    //val _idCol : String = "tweet-id"
     val connection = ConnectionFactory.createConnection()
     val table = connection.getTable(TableName.valueOf(_tableName))
     val scanner = new Scan()
-    scanner.addColumn(Bytes.toBytes(_textColFam), Bytes.toBytes(_labelCol))
-    scanner.addColumn(Bytes.toBytes(_textColFam), Bytes.toBytes(_textCol))
+    scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_labelCol))
+    scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+    //scanner.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_idCol))
     sc.parallelize(table.getScanner(scanner).map(result => {
-      val labcell = result.getColumnLatestCell(Bytes.toBytes(_textColFam), Bytes.toBytes(_labelCol))
-      val textcell = result.getColumnLatestCell(Bytes.toBytes(_textColFam), Bytes.toBytes(_textCol))
+      val labcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_labelCol))
+      val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+      //val idcell = result.getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_cleanTweetCol))
       val key = Bytes.toString(labcell.getRowArray, labcell.getRowOffset, labcell.getRowLength)
       val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
       val label = Bytes.toString(labcell.getValueArray, labcell.getValueOffset, labcell.getValueLength).toDouble

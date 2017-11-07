@@ -1,13 +1,13 @@
 #!/bin/sh
 
-if [ "$#" -ne 2 ]
-then
-	  echo "Usage: buildAndRun.sh <collection number> <block size>"
-	    exit 1
-fi
+#if [ "$#" -ne 2 ]
+#then
+#	  echo "Usage: buildAndRun.sh <collection number> <block size>"
+#	    exit 1
+#fi
 
 
-echo building the project
+echo building the projekt
 sbt package
 
 echo running the script on collection "$1" with block size "$2"

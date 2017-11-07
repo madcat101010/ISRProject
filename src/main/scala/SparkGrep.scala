@@ -17,8 +17,16 @@ object SparkGrep {
 
 
   def main(args: Array[String]) {
+    if (args.length == 1){
+      print "Label HERE"
+      val conf = new SparkConf()
+        .setMaster("local[*]")
+        .setAppName("HBaseProductExperiments")
+      val sc = new SparkContext(conf)
+      LabelTrainingData(sc)
+      System.exit(0)
+    }
     if (args.length == 2){
-      println("Training HERE")
       val conf = new SparkConf()
         .setMaster("local[*]")
         .setAppName("HBaseProductExperiments")
@@ -139,4 +147,13 @@ object SparkGrep {
     println(s"Took ${(trainend - trainstart) / 1000.0} seconds for the IDF model training.")
     (idfModel, hashingModel, logisticRegressionModel, (trainend - trainstart) / 1000.0)
   }
+
+
+  def LabelTrainingData(sc: SparkContext) = {
+    println("Labeling Training Data")
+    val trainingTweets = DataRetriever.getTrainingTweets(sc)
+    trainingTweets.collect().foreach(println)
+    
+  }
+
 }
