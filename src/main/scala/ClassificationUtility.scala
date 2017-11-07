@@ -45,4 +45,5 @@ object ClassificationUtility {
 
     return (bestClass.toDouble, classProbabilities)
   }
+
 }

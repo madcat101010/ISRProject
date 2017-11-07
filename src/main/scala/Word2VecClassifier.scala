@@ -143,7 +143,7 @@ object Word2VecClassifier{
     return (tweetText, wordFeatures)
   }
 
-  def predict(tweets: RDD[Tweet], sc: SparkContext, w2vModel: Word2VecModel, lrModel: LogisticRegressionModel): (RDD[Tweet], RDD[(Double, Double)]) = {
+  def predict(tweets: RDD[Tweet], sc: SparkContext, w2vModel: Word2VecModel, lrModel: LogisticRegressionModel): RDD[(Tweet, Array[Double])]) = {
     //val sc = new SparkContext()
 
     //Broadcast the variables
@@ -187,7 +187,7 @@ object Word2VecClassifier{
 
     val logisticRegressionModel = lrModel //LogisticRegressionModel.load(sc, bcLRClassifierModelFilename.value)
     //println(s"Classifier Model file found:$bcLRClassifierModelFilename. Loading model.")
-
+/* old classify using normal predict
     val start = System.currentTimeMillis()
     val logisticRegressionPredictions = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
@@ -197,11 +197,16 @@ object Word2VecClassifier{
       val prediction = logisticRegressionModel.predict(features)
       (prediction, label.getOrElse(-1.0))
     }
+*/
+		val logisticRegressionPredictions = testSet.map { case (Tweet(id, tweetText, label), features) =>
+          val (prediction, probabilities) = ClassificationUtility.predictPoint(features, logisticRegressionModel)
+          (Tweet(id, tweetText, Option(prediction)), probabilities)
+        }
     println("<---- done")
     val end = System.currentTimeMillis()
     println(s"Took ${(end - start) / 1000.0} seconds for Prediction.")
 
-    return (logisticRegressionPredictions, logisticRegressionPredLabel)
+    return (logisticRegressionPredictions)
   }
 
   def predictForIDFClassifer(tweets: RDD[Tweet], sc: SparkContext, idfModel: IDFModel, hashingModel: HashingTF, lrModel: LogisticRegressionModel): (RDD[Tweet], RDD[(Double, Double)]) = {

@@ -38,7 +38,7 @@ object DataRetriever {
 	var _classProbCol : String = "probability-list"
 
 
-  def retrieveTweets(collectionName:String, _cachedRecordCount:Int, _tableName:String, sc: SparkContext): RDD[Tweet] = {
+  def retrieveTweets(collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
 		var _lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
 		var _word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
@@ -59,7 +59,9 @@ object DataRetriever {
     val scan = new Scan()
 
     val hbaseConf = HBaseConfiguration.create()
-    val table = new HTable(hbaseConf,_tableName)
+    val srcTable = new HTable(hbaseConf, tableNameSrc)
+
+		srcTable.getTableDescriptor().hasFamily();
 
     // add the specific column to scan ... probably don't need the rest of the oclumns to retrieve that are commented out
 //		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
@@ -71,13 +73,13 @@ object DataRetriever {
 		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
 		val filterList = new FilterList();
 
-//		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOperator.EQUAL , Bytes.toBytes(collectionName));
-//		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
-//		filterList.addFilter(filterCollect);
+		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOperator.EQUAL , Bytes.toBytes(collectionName));
+		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+		filterList.addFilter(filterCollect);
 
-//		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOperator.EQUAL , Bytes.toBytes("tweet"));
-//		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
-//		filterList.addFilter(filterTweet);
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOperator.EQUAL , Bytes.toBytes("tweet"));
+		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+		filterList.addFilter(filterTweet);
 
 		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
 		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
@@ -93,7 +95,7 @@ object DataRetriever {
     // add caching to increase speed
     scan.setCaching(_cachedRecordCount)
     scan.setBatch(100)
-    val resultScanner = table.getScanner(scan)
+    val resultScanner = srcTable.getScanner(scan)
 
     println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
     println("Scanning results now.")
@@ -118,11 +120,11 @@ object DataRetriever {
           //println("*********** Cleaning the tweets now. *****************")
           //val cleanTweets = CleanTweet.clean(rddT, sc)
           println("*********** Predicting the tweets now. *****************")
-          val (predictedTweets,_) = Word2VecClassifier.predict(rddT, sc, word2vecModel, logisticRegressionModel)
+          val (predictedTweets) = Word2VecClassifier.predict(rddT, sc, word2vecModel, logisticRegressionModel)
           println("*********** Persisting the tweets now. *****************")
 
           val repartitionedPredictions = predictedTweets.repartition(12)
-          DataWriter.writeTweets(repartitionedPredictions, _tableName)
+          DataWriter.writeTweets(repartitionedPredictions, tableNameDest)
 
           predictedTweets.cache()
           val batchTweetCount = predictedTweets.count()
@@ -175,13 +177,13 @@ object DataRetriever {
     lines.map(line=> Tweet(line.split('|')(1), line.split('|')(2), Option(line.split('|')(0).toDouble))).filter(tweet => tweet.label.isDefined)
   }
 
-  def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
-    val _tableName: String = "cs5604-f16-cla-training"
-    val _textColFam: String = "training-tweet"
-    val _labelCol: String = "label"
-    val _textCol : String = "text"
+	//not conform to schema
+  def getTrainingTweets(tableName:String, sc:SparkContext): RDD[Tweet] = {
+    val _textColFam: String = "clean-tweet"
+    val _labelCol: String = "classification-label"
+    val _textCol : String = "clean-text-cla"
     val connection = ConnectionFactory.createConnection()
-    val table = connection.getTable(TableName.valueOf(_tableName))
+    val table = connection.getTable(TableName.valueOf(tableName))
     val scanner = new Scan()
     scanner.addColumn(Bytes.toBytes(_textColFam), Bytes.toBytes(_labelCol))
     scanner.addColumn(Bytes.toBytes(_textColFam), Bytes.toBytes(_textCol))

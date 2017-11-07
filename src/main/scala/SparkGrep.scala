@@ -11,6 +11,8 @@ import org.apache.spark.mllib.feature.Word2VecModel
 import org.apache.spark.mllib.linalg.Word2VecClassifier
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.hadoop.hbase.client.HBaseAdmin
+
 
 object SparkGrep {
   def tweetchange(tweet: Tweet): Tweet = {
@@ -20,16 +22,16 @@ object SparkGrep {
     return Tweet(tweet.id, tweet.tweetText, tweet.label)
   }
 
-//SparkGrep <train/classify> <website/tweet> [<YAML Config File>/collection name] [class1Name] [class2Name] [...]
+//SparkGrep <train/classify> <webpage/tweet> <tableName> <collection name> <class1Name> [class2Name] [...]
   def main(args: Array[String]) {
-		if(args.length >= 3){
+		if(args.length >= 6){
 			//ensure correct usage
 			if(args(0) != "train" && args(0) != "classify"){
 				System.err.println("Usage Error: args(0) != 'train' or 'classify'");
       	System.exit(1);
 			}
-			if(args(1) != "website" && args(1) != "tweet"){
-				System.err.println("Usage Error: args(1) != 'tweet' or 'website'");
+			if(args(1) != "webpage" && args(1) != "tweet"){
+				System.err.println("Usage Error: args(1) != 'tweet' or 'webpage'");
       	System.exit(1);
 			}
 			//if(args(2)){
@@ -45,8 +47,11 @@ object SparkGrep {
 			}
 			Word2VecClassifier._numberOfClasses = (classCount).toInt; 
 			println("Number of classes is: " + Word2VecClassifier._numberOfClasses.toInt);
-			var tableName = "getar-cs5604f17-eclipse-collection_shard1_replica1";
-
+			var tableNameSrc = tableName;
+			//var tableNameSrc = tableName;
+			var tableNameDest = "";
+			var hbaseAdmin : HBaseAdmin;
+			if(!admin
 			//train or classify
 			if(args(0) == "train"){
 				val conf = new SparkConf()
@@ -77,7 +82,7 @@ object SparkGrep {
 		    val sc = new SparkContext(conf)
 
 				if(args(1) == "tweet"){
-		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 100, tableName, sc)
+		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 100, tableNameSrc, tableNameDest, sc)
 				}
 				else if(args(1) == "website"){
 					println("TODO: classify website");
@@ -88,8 +93,8 @@ object SparkGrep {
 			}
 		}
     else{
-      System.err.println("Usage: SparkGrep <train/classify> <website/tweet> <YAML Config File>")
-			System.err.println("Usage Note: files should be in the ./data/ directory i.e. 'data/collection1_trainingfile'")
+      System.err.println("Usage: SparkGrep <train/classify> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]")
+			System.err.println("Usage Note: files should be in the ./data/ directory i.e. './data/collection1_trainingfile'")
       System.exit(1)
     }
 
@@ -104,6 +109,8 @@ object SparkGrep {
     val testing_partitions = 8
     val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
     val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
+
+		//eclipsedatasample1
 		
     DataStatistics(trainTweets, testTweets)
     SetupWord2VecField(trainFile, getTweetsFromFile(trainFile, labelMap, sc))
@@ -111,11 +118,11 @@ object SparkGrep {
     val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
 
 		//test that RDD map has the expected text file data
-		println("Get here")    
-		println("#############################################################")
+		//println("Get here")    
+		//println("#############################################################")
 		//for ((k,v) <- trainTweets) printf("key: %s, value: %s", k, v)
-		println(trainTweets.mkString(" "))
-		println(trainTweetsRDD)
+		//println(trainTweets.mkString(" "))
+		//println(trainTweetsRDD)
 		
 		//val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
 
