@@ -138,17 +138,22 @@ object DataRetriever {
     val _tableName: String = "eclipsedatasample1"
     val _cleanTweetColFam: String = "clean-tweet"
     val _cleanTweetCol : String = "clean-text-cla"
+		val _tweetColFam : String = "tweet"
+		val _tweetCol : String = "text"
     val connection = ConnectionFactory.createConnection()
     val table = connection.getTable(TableName.valueOf(_tableName))
     val scanner = new Scan()
 		scanner.setMaxResultSize(250)
     val randomFilter = new RandomRowFilter(0.5f)
+		scanner.addColumn(Bytes.toBytes(_tweetColFam),Bytes.toBytes(_tweetCol))
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
     sc.parallelize(table.getScanner(scanner).map(result => {
       val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+      val rawcell = result.getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetCol))
       val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
+      val rawwords = Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength)
       var key = Bytes.toString(result.getRow())
-      println("Label this tweet: "+words)
+      println("Label this tweetID: " + key + " | RAW: "+rawwords+" | Cleaned: " +words)
       val label = Console.readInt().toDouble
       Tweet(key, words, Option(label))
     }).toList)
