@@ -14,12 +14,25 @@ object DataWriter {
 	var labelIdMap = Map(-1.0 -> "CouldNotClassify");
 
 
-  def writeTweets(tweetRDD: RDD[Tweet], _tableName:String): Unit = {
+  def writeTweets(tweetRDD: RDD[(Tweet, Array[Double])], _tableName:String): Unit = {
 		val _colFam = DataRetriever._classificationColFam;
 		val _col = DataRetriever._classCol;
+		var _colP = DataRetriever._classProbCol;
     val interactor = new HBaseInteraction(_tableName);
 		val collectedTweet = tweetRDD.collect();
-    collectedTweet.foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0))))
+		for((tweet,probs) <- collectedTweet){
+			val allProbs = probs.mkString(";")
+			var allClasses = ""
+			var classID = 1.0
+			for (prob <- probs){
+				allClasses = allClasses + labelMapper(classID) + ";"
+				classID = classID + 1.0
+			}
+			allClasses.dropRight(1)	//get rid of last ";"
+			interactor.putValueAt(_colFam, _col, tweet.id, allClasses)
+			interactor.putValueAt(_colFam, _colP, tweet.id, allProbs)
+		}
+    //collectedTweet.foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0))))
     interactor.close()
  }
 

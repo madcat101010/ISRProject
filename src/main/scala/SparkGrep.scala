@@ -12,6 +12,8 @@ import org.apache.spark.mllib.linalg.Word2VecClassifier
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.hadoop.hbase.client.HBaseAdmin
+import scala.util.Random
+import scala.collection.mutable.ArrayBuffer
 
 
 object SparkGrep {
@@ -22,7 +24,7 @@ object SparkGrep {
     return Tweet(tweet.id, tweet.tweetText, tweet.label)
   }
 
-//SparkGrep <train/classify> <webpage/tweet> <tableName> <collection name> <class1Name> [class2Name] [...]
+//SparkGrep <train/classify> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]
   def main(args: Array[String]) {
 		if(args.length >= 6){
 			//ensure correct usage
@@ -39,19 +41,17 @@ object SparkGrep {
 			//}
 
 			//load collection name and class mapping for that collection
-			val collectionName = args(2);
+			val collectionName = args(4);
 			var classCount = 0;
-			for( x <- 3 to (args.length-1) ){
-				DataWriter.mapLabel( (x-3).toDouble, args(x) );
+			for( x <- 5 to (args.length-1) ){
+				DataWriter.mapLabel( (x-5).toDouble, args(x) );
 				classCount = classCount + 1;
 			}
 			Word2VecClassifier._numberOfClasses = (classCount).toInt; 
 			println("Number of classes is: " + Word2VecClassifier._numberOfClasses.toInt);
-			var tableNameSrc = tableName;
+			var tableNameSrc = args(2);
 			//var tableNameSrc = tableName;
-			var tableNameDest = "";
-			var hbaseAdmin : HBaseAdmin;
-			if(!admin
+			var tableNameDest = args(3);
 			//train or classify
 			if(args(0) == "train"){
 				val conf = new SparkConf()
@@ -107,11 +107,37 @@ object SparkGrep {
     var labelMap = scala.collection.mutable.Map[String,Double]()
     val training_partitions = 8
     val testing_partitions = 8
-    val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
-    val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
 
+		//val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
+    //val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
 		//eclipsedatasample1
+
+		//randomly pick out tweets for testing and training
+		val allTweets = getTweetsFromFile(trainFile, labelMap, sc).collect().toBuffer
+		println("*********")
+		var trainTweetsB = ArrayBuffer[Tweet]()
+		var testTweetsB = ArrayBuffer[Tweet]()
+		for((k,v) <- labelMap){
+			val singleClassTweets = allTweets.filter(y => y.label != labelMap.get(k))
+			println(labelMap.get(k).toString)
+			println(singleClassTweets.size.toString)
+			
+			val shuffled = Random.shuffle(singleClassTweets)
+			val (trainTweetR, testTweetR) = shuffled.splitAt(shuffled.size/2)
+			trainTweetsB ++= trainTweetR
+			testTweetsB ++= testTweetR
+//			printf(trainTweetsB)
+		}
+
+		val trainTweets = trainTweetsB.toArray
+		val testTweets = testTweetsB.toArray
+		println(trainTweets.size.toString)
+		println(testTweets.size.toString)
+
+		//println("#############################################################")
+		//for (v <- trainTweets) printf("| Tweet: %s , %s, %s", v.id, v.tweetText, v.label.toString)
 		
+
     DataStatistics(trainTweets, testTweets)
     SetupWord2VecField(trainFile, getTweetsFromFile(trainFile, labelMap, sc))
 
@@ -198,7 +224,7 @@ object SparkGrep {
 /////////////////////////////////////
   def getTweetsFromFile(fileName:String,labelMap:scala.collection.mutable.Map[String,Double], sc: SparkContext): RDD[Tweet] = {
     val file = sc.textFile(fileName)
-    val allProductNum = file.map(x => x.split(",", 4)).filter( y => (y.length == 4 && y(0) != "id")).map(x => x(2)).distinct().collect()
+    val allProductNum = file.map(x => x.split(",", 3)).filter( y => (y.length == 3 && y(0) != "id")).map(x => x(2)).distinct().collect()
     var maxLab = 0.0
     if (labelMap.nonEmpty ){
       maxLab = labelMap.valuesIterator.max + 1
@@ -209,7 +235,7 @@ object SparkGrep {
         maxLab = maxLab + 1
       }
     })
-    file.map(x => x.split(",", 4)).map(x => Tweet(x(0),x(3), labelMap.get(x(2))))
+    file.map(x => x.split(",", 4)).map(x => Tweet(x(0),x(1), labelMap.get(x(2))))
   }
 
    def PerformPrediction(sc: SparkContext, word2VecModel: Word2VecModel, logisticRegressionModel: LogisticRegressionModel, cleaned_testTweetsRDD: RDD[Tweet]) = {

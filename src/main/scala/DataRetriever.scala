@@ -52,7 +52,7 @@ object DataRetriever {
     //Perform a cold start of the model pipeline so that this loading
     //doesn't disrupt the read later.
     val coldTweet = sc.parallelize(Array[Tweet]{ Tweet("id", "Some tweet")})
-    val (predictedTweets,_) = Word2VecClassifier.predict(coldTweet, sc, word2vecModel, logisticRegressionModel)
+    val predictedTweets = Word2VecClassifier.predictClass(coldTweet, sc, word2vecModel, logisticRegressionModel)
     predictedTweets.count
 
     // scan over only the collection
@@ -60,8 +60,17 @@ object DataRetriever {
 
     val hbaseConf = HBaseConfiguration.create()
     val srcTable = new HTable(hbaseConf, tableNameSrc)
+		val destTable = new HTable(hbaseConf, tableNameDest)
 
-		srcTable.getTableDescriptor().hasFamily();
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) || !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_tweetColFam)) ){
+			System.err.println("ERROR: Source tweet table missing required column family!");
+			return null;
+		}
+
+		if( !destTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){
+			System.err.println("ERROR: Destination tweet table missing required classification column family!");
+			return null;
+		}
 
     // add the specific column to scan ... probably don't need the rest of the oclumns to retrieve that are commented out
 //		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
@@ -71,30 +80,34 @@ object DataRetriever {
 
 
 		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
-		val filterList = new FilterList();
+		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ONE);
 
-		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOperator.EQUAL , Bytes.toBytes(collectionName));
+		println("Filter: Keeping Collection Name == " + collectionName)
+		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
 		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
 		filterList.addFilter(filterCollect);
 
-		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOperator.EQUAL , Bytes.toBytes("tweet"));
+		println("Filter: Keeping Doc Type == tweet")
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("tweet"));
 		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
 		filterList.addFilter(filterTweet);
-
+///*
+		println("Filter: Keeping Clean Text != ''")
 		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
 		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
 		filterList.addFilter(filterNoClean);
+//*/
 
-		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.EQUAL , Bytes.toBytes(""));
+		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));
 		filterUnclass.setFilterIfMissing(false);	//keep only unclassified data
 		filterList.addFilter(filterUnclass);
-		
+	
 		scan.setFilter(filterList);
 
 
     // add caching to increase speed
     scan.setCaching(_cachedRecordCount)
-    scan.setBatch(100)
+    //scan.setBatch(100)
     val resultScanner = srcTable.getScanner(scan)
 
     println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
@@ -116,14 +129,16 @@ object DataRetriever {
           val resultTweets = results.map(r => rowToTweetConverter(r))
           val rddT = sc.parallelize(resultTweets)
           rddT.cache()
-          rddT.repartition(12)
+          rddT.repartition(1)
           //println("*********** Cleaning the tweets now. *****************")
           //val cleanTweets = CleanTweet.clean(rddT, sc)
           println("*********** Predicting the tweets now. *****************")
-          val (predictedTweets) = Word2VecClassifier.predict(rddT, sc, word2vecModel, logisticRegressionModel)
+					println("IS EMPTY?: " + rddT.isEmpty().toString)
+					rddT.collect().foreach(println)
+          val predictedTweets = Word2VecClassifier.predictClass(rddT, sc, word2vecModel, logisticRegressionModel)
           println("*********** Persisting the tweets now. *****************")
 
-          val repartitionedPredictions = predictedTweets.repartition(12)
+          val repartitionedPredictions = predictedTweets.repartition(1)
           DataWriter.writeTweets(repartitionedPredictions, tableNameDest)
 
           predictedTweets.cache()
@@ -165,9 +180,12 @@ object DataRetriever {
   }
 
   def rowToTweetConverter(result : Result): Tweet ={
+		var _cleanTweetColFam : String = "clean-tweet"
+  	var _cleanTweetTextCol : String = "clean-text-cla"
     val cell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
-    val key = Bytes.toString(cell.getRowArray, cell.getRowOffset, cell.getRowLength)
+    val key = Bytes.toString(result.getRow())
     val words = Bytes.toString(cell.getValueArray, cell.getValueOffset, cell.getValueLength)
+		//println("T: " + words + " . key: " + key);
     Tweet(key,words)
     null
   }
