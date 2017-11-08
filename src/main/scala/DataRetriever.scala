@@ -132,16 +132,14 @@ object DataRetriever {
           val resultTweets = results.map(r => rowToTweetConverter(r))
           val rddT = sc.parallelize(resultTweets)
           rddT.cache()
-          rddT.repartition(1)
+          rddT.repartition(12)
           //println("*********** Cleaning the tweets now. *****************")
           //val cleanTweets = CleanTweet.clean(rddT, sc)
           println("*********** Predicting the tweets now. *****************")
-					println("IS EMPTY?: " + rddT.isEmpty().toString)
-					rddT.collect().foreach(println)
-          val predictedTweets = Word2VecClassifier.predictClass(rddT, sc, word2vecModel, logisticRegressionModel)
+					val predictedTweets = Word2VecClassifier.predictClass(rddT, sc, word2vecModel, logisticRegressionModel)
           println("*********** Persisting the tweets now. *****************")
 
-          val repartitionedPredictions = predictedTweets.repartition(1)
+          val repartitionedPredictions = predictedTweets.repartition(12)
           DataWriter.writeTweets(repartitionedPredictions, tableNameDest)
 
           predictedTweets.cache()
@@ -190,7 +188,6 @@ object DataRetriever {
     val words = Bytes.toString(cell.getValueArray, cell.getValueOffset, cell.getValueLength)
 		//println("T: " + words + " . key: " + key);
     Tweet(key,words)
-		
   }
 
   def retrieveTrainingTweetsFromFile(fileName:String, sc : SparkContext) : RDD[Tweet] = {

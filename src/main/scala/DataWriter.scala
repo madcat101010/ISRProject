@@ -21,15 +21,16 @@ object DataWriter {
     val interactor = new HBaseInteraction(_tableName);
 		val collectedTweet = tweetRDD.collect();
 		for((tweet,probs) <- collectedTweet){
+			//println(tweet)
+			//println(probs.mkString(","))
 			val allProbs = probs.mkString(";")
 			var allClasses = ""
-			var classID = 1.0
+			var classID = 0.0
 			for (prob <- probs){
 				allClasses = allClasses + labelMapper(classID) + ";"
 				classID = classID + 1.0
 			}
-			allClasses.dropRight(1)	//get rid of last ";"
-			interactor.putValueAt(_colFam, _col, tweet.id, allClasses)
+			interactor.putValueAt(_colFam, _col, tweet.id, allClasses.dropRight(1)) //get rid of last ";" via drop right
 			interactor.putValueAt(_colFam, _colP, tweet.id, allProbs)
 		}
     //collectedTweet.foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0))))

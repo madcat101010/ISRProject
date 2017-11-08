@@ -214,12 +214,12 @@ object Word2VecClassifier{
     //val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     //val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
 
-
     def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
 
     def cleanTweetHtmlC(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 
     val cleanTestTweets = tweets map cleanTweetHtmlC
+		//println(s"cleanTestTweets Length:${cleanTestTweets.count()}")
     val word2vecModel = w2vModel //Word2VecModel.load(sc, bcWord2VecModelFilename.value)
     //println(s"Model file found:${bcWord2VecModelFilename.value}. Loading model.")
     //println("Finished Training")
@@ -240,14 +240,12 @@ object Word2VecClassifier{
     val samplePairsTest = wordOnlyTestSample.map(s => s.id -> s)
     val reviewWordsPairsTest: RDD[(String, Iterable[String])] = samplePairsTest.mapValues(_.tweetText.split(" ").toIterable)
     val wordFeaturePairTest = reviewWordsPairsTest mapValues wordFeatures
-    val inter2Test = wordFeaturePairTest.filter(!_._2.isEmpty)
+    val inter2Test = wordFeaturePairTest.filter(!_._2.isEmpty)	//so this removes tweets without features...
     val avgWordFeaturesPairTest = inter2Test mapValues avgWordFeatures
     val featuresPairTest = avgWordFeaturesPairTest join samplePairsTest mapValues {
       case (features, Tweet(id, tweetText, label)) => (Tweet(id, tweetText, label), features)
     }
     val testSet = featuresPairTest.values
-
-
 
     val logisticRegressionModel = lrModel //LogisticRegressionModel.load(sc, bcLRClassifierModelFilename.value)
     //println(s"Classifier Model file found:$bcLRClassifierModelFilename. Loading model.")
@@ -270,8 +268,10 @@ object Word2VecClassifier{
     println("<---- done")
     val end = System.currentTimeMillis()
     println(s"Took ${(end - start) / 1000.0} seconds for Prediction.")
-
-    return (logisticRegressionPredictions)
+		//add back the tweets that cannot be classified due to all words not in w2v vocabulary
+		val retLogRegPred = logisticRegressionPredictions.union(wordFeaturePairTest.filter(_._2.isEmpty).map(x => (Tweet(x._1,"",Option(-1.0)), Array(1.0))))	
+		//logisticRegressionPredictions.collect().foreach(println)
+    return (retLogRegPred)
   }
 
 
