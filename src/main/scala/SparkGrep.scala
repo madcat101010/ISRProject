@@ -41,10 +41,11 @@ object SparkGrep {
 			//}
 
 			//load collection name and class mapping for that collection
+			//class 0.0 is "Can't Classify!" always, so start with class 1.0
 			val collectionName = args(4);
-			var classCount = 0;
+			var classCount = 1;
 			for( x <- 5 to (args.length-1) ){
-				DataWriter.mapLabel( (x-5).toDouble, args(x) );
+				DataWriter.mapLabel( (x-4).toDouble, args(x) );
 				classCount = classCount + 1;
 			}
 			Word2VecClassifier._numberOfClasses = (classCount).toInt; 
@@ -226,6 +227,7 @@ object SparkGrep {
     val file = sc.textFile(fileName)
     val allProductNum = file.map(x => x.split(",", 3)).filter( y => (y.length == 3 && y(0) != "id")).map(x => x(2)).distinct().collect()
     var maxLab = 0.0
+		labelMap += ("0.0" -> 0.0)
     if (labelMap.nonEmpty ){
       maxLab = labelMap.valuesIterator.max + 1
     }

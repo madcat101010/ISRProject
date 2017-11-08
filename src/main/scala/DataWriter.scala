@@ -11,30 +11,35 @@ import org.apache.spark.rdd.RDD
 object DataWriter {
 
 
-	var labelIdMap = Map(-1.0 -> "CouldNotClassify");
+	var labelIdMap = Map(0.0 -> "CouldNotClassify");
 
 
   def writeTweets(tweetRDD: RDD[(Tweet, Array[Double])], _tableName:String): Unit = {
 		val _colFam = DataRetriever._classificationColFam;
 		val _col = DataRetriever._classCol;
 		var _colP = DataRetriever._classProbCol;
-    val interactor = new HBaseInteraction(_tableName);
-		val collectedTweet = tweetRDD.collect();
-		for((tweet,probs) <- collectedTweet){
-			//println(tweet)
-			//println(probs.mkString(","))
-			val allProbs = probs.mkString(";")
+		val interactor = new HBaseInteraction(_tableName);
+		//println(tweet)
+		val collectedTweets = tweetRDD.collect() //collect only the partition rather than all partitions
+		for((tweet,probs) <- collectedTweets){
+			var allProbs = ""
 			var allClasses = ""
 			var classID = 0.0
 			for (prob <- probs){
-				allClasses = allClasses + labelMapper(classID) + ";"
+				if(prob > 0.0){
+					allClasses = allClasses + labelMapper(classID) + ";"
+					allProbs = allProbs + prob.toString + ";"
+				}
 				classID = classID + 1.0
 			}
+			if(allProbs == ""){
+				allClasses = labelMapper(0.0) + ";"
+				allProbs = "1.0;"
+			}
 			interactor.putValueAt(_colFam, _col, tweet.id, allClasses.dropRight(1)) //get rid of last ";" via drop right
-			interactor.putValueAt(_colFam, _colP, tweet.id, allProbs)
+			interactor.putValueAt(_colFam, _colP, tweet.id, allProbs.dropRight(1))
 		}
-    //collectedTweet.foreach(tweet => interactor.putValueAt(_colFam, _col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0))))
-    interactor.close()
+		interactor.close()
  }
 
 
@@ -60,7 +65,7 @@ object DataWriter {
   }
 
   def writeTweetToDatabase(tweet: Tweet, colFam: String, col: String, table: HTable): Put = {
-    val putAction = putValueAt(colFam, col, tweet.id, labelMapper(tweet.label.getOrElse(-1.0)), table)
+    val putAction = putValueAt(colFam, col, tweet.id, labelMapper(tweet.label.getOrElse(0.0)), table)
     putAction
   }
 
@@ -77,6 +82,9 @@ object DataWriter {
   }
 
 	def mapLabel(labelId:Double, label:String){
+		if(labelId == 0.0){
+			println("WARNING: Overwriting class 0.0. Ignore if intentional!")
+		}
 		this.labelIdMap = this.labelIdMap + (labelId -> label);
 	}
 	

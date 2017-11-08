@@ -26,7 +26,7 @@ object Word2VecClassifier{
 
   var _threshold = 0.25
   var _lrModelFilename = "data/lrclassifier.model"
-  var _numberOfClasses = 2
+  var _numberOfClasses = 3
   var _word2VecModelFilename = "data/word2vec.model"
 
 
@@ -195,7 +195,7 @@ object Word2VecClassifier{
     }
     val logisticRegressionPredLabel = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
-      (prediction, label.getOrElse(-1.0))
+      (prediction, label.getOrElse(0.0))
     }
 
     println("<---- done")
@@ -258,7 +258,7 @@ object Word2VecClassifier{
     }
     val logisticRegressionPredLabel = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
-      (prediction, label.getOrElse(-1.0))
+      (prediction, label.getOrElse(0.0))
     }
 */
 		val logisticRegressionPredictions = testSet.map { case (Tweet(id, tweetText, label), features) =>
@@ -269,7 +269,7 @@ object Word2VecClassifier{
     val end = System.currentTimeMillis()
     println(s"Took ${(end - start) / 1000.0} seconds for Prediction.")
 		//add back the tweets that cannot be classified due to all words not in w2v vocabulary
-		val retLogRegPred = logisticRegressionPredictions.union(wordFeaturePairTest.filter(_._2.isEmpty).map(x => (Tweet(x._1,"",Option(-1.0)), Array(1.0))))	
+		val retLogRegPred = logisticRegressionPredictions.union(wordFeaturePairTest.filter(_._2.isEmpty).map(x => (Tweet(x._1,"",Option(0.0)), Array(1.0))))	
 		//logisticRegressionPredictions.collect().foreach(println)
     return (retLogRegPred)
   }
@@ -319,7 +319,7 @@ object Word2VecClassifier{
     }
     val logisticRegressionPredLabel = testSet.map { case (Tweet(id, tweetText, label), features) =>
       val prediction = logisticRegressionModel.predict(features)
-      (prediction, label.getOrElse(-1.0))
+      (prediction, label.getOrElse(0.0))
     }
     println("<---- done")
     val end = System.currentTimeMillis()
@@ -356,9 +356,9 @@ object Word2VecClassifier{
     val sc = new SparkContext(conf)
 
     //Broadcast the variables
-    val bcNumberOfClasses = sc.broadcast(_numberOfClasses)
-    val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
-    val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
+    val bcNumberOfClasses = sc.broadcast(this._numberOfClasses)
+    val bcWord2VecModelFilename = sc.broadcast(this._word2VecModelFilename)
+    val bcLRClassifierModelFilename = sc.broadcast(this._lrModelFilename)
 
     // Load
     val trainPath =  trainFilename
@@ -560,6 +560,7 @@ object Word2VecClassifier{
     //for (i <- uniqueLabels) {
       val classLabel = i
       println(s"\n***********   Class:$classLabel   *************")
+			//println("Label: " + DataWriter.labelMapper(classLabel))
       println(s"F1 Score:${metrics.fMeasure(classLabel)}")
       println(s"True Positive:${metrics.truePositiveRate(classLabel)}")
       println(s"False Positive:${metrics.falsePositiveRate(classLabel)}")
