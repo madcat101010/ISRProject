@@ -72,15 +72,18 @@ object DataRetriever {
 			return null;
 		}
 
-    // add the specific column to scan ... probably don't need the rest of the oclumns to retrieve that are commented out
-//		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
-//		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
+    // MUST scan the column to filter using it... else it assumes column does not exist and will auto filter if setFilterIfMissing(true) is set.
+		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
+		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
+		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
     scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
-		//scan.addColumn(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol));
-
+		//will throw exception if table does not have classification family. If ommitted from scan, filter assumes unclassified and will keep the row
+		if( srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){	
+			scan.addColumn(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol));
+		}
 
 		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
-		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ONE);
+		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
 
 		println("Filter: Keeping Collection Name == " + collectionName)
 		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
@@ -91,14 +94,14 @@ object DataRetriever {
 		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("tweet"));
 		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
 		filterList.addFilter(filterTweet);
-///*
+
 		println("Filter: Keeping Clean Text != ''")
 		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
 		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
 		filterList.addFilter(filterNoClean);
-//*/
 
-		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));
+
+		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.EQUAL , Bytes.toBytes(""));
 		filterUnclass.setFilterIfMissing(false);	//keep only unclassified data
 		filterList.addFilter(filterUnclass);
 	
@@ -187,7 +190,7 @@ object DataRetriever {
     val words = Bytes.toString(cell.getValueArray, cell.getValueOffset, cell.getValueLength)
 		//println("T: " + words + " . key: " + key);
     Tweet(key,words)
-    null
+		
   }
 
   def retrieveTrainingTweetsFromFile(fileName:String, sc : SparkContext) : RDD[Tweet] = {
