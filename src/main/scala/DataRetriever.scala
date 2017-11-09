@@ -110,7 +110,7 @@ object DataRetriever {
 
     // add caching to increase speed
     scan.setCaching(_cachedRecordCount)
-    //scan.setBatch(100)
+    //scan.setBatch(-1)
     val resultScanner = srcTable.getScanner(scan)
 
     println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
@@ -125,8 +125,10 @@ object DataRetriever {
 
         val results = resultScanner.next(_cachedRecordCount)
 
-        if (results == null || results.isEmpty)
+        if (results == null || results.isEmpty){
+        	println("No more results from scan. Finishing...")
           continueLoop = false
+				}
         else {
           println(s"Result Length:${results.length}")
           val resultTweets = results.map(r => rowToTweetConverter(r))

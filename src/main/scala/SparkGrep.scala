@@ -83,13 +83,13 @@ object SparkGrep {
 		    val sc = new SparkContext(conf)
 
 				if(args(1) == "tweet"){
-		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 100, tableNameSrc, tableNameDest, sc)
+		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 1, tableNameSrc, tableNameDest, sc)
 				}
 				else if(args(1) == "website"){
 					println("TODO: classify website");
 				}
     		val end = System.currentTimeMillis()
-    		println("Took ${(end - start) / 1000.0} seconds for the whole process.")
+    		println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
 				System.exit(0)
 			}
 		}

@@ -267,7 +267,8 @@ object Word2VecClassifier{
         }
     println("<---- done")
     val end = System.currentTimeMillis()
-    println(s"Took ${(end - start) / 1000.0} seconds for Prediction.")
+		val time = (end - start) / 1000.0
+    println(s"Took ${time} seconds for Prediction.")
 		//add back the tweets that cannot be classified due to all words not in w2v vocabulary
 		val retLogRegPred = logisticRegressionPredictions.union(wordFeaturePairTest.filter(_._2.isEmpty).map(x => (Tweet(x._1,"",Option(0.0)), Array(1.0))))	
 		//logisticRegressionPredictions.collect().foreach(println)
