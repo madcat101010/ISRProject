@@ -25,17 +25,21 @@ case class Tweet(id: String, tweetText: String, label: Option[Double] = None) //
 
 object DataRetriever {
 
-	var _metaDataColFam : String = "metadata"
-	var _metaDataTypeCol : String = "doc-type"
-	var _metaDataCollectionNameCol : String = "collection-name"
-	var _tweetColFam : String = "tweet"
-	var _tweetUniqueIdCol : String = "tweet-id"
-  var _cleanTweetColFam : String = "clean-tweet"
-  var _cleanTweetTextCol : String = "clean-text-cla"
-
-	var _classificationColFam = "classification"
-	var _classCol : String = "classification-list"
-	var _classProbCol : String = "probability-list"
+	val _metaDataColFam : String = "metadata"
+	val _metaDataTypeCol : String = "doc-type"
+	val _metaDataCollectionNameCol : String = "collection-name"
+	val _tweetColFam : String = "tweet"
+	val _tweetUniqueIdCol : String = "tweet-id"
+	val _cleanTweetColFam : String = "clean-tweet"
+  	val _cleanTweetTextCol : String = "clean-text-cla"
+	val _cleanTweetSnerOrg : String = "sner-organizations"
+	val _cleanTweetSnerLoc : String = "sner-locations"
+	val _cleanTweetSnerPeople : String = "sner-people"
+	val _cleanTweetLongURL : String = "long-url"
+	val _cleanTweetHashtags : String = "hashtags"
+	val _classificationColFam = "classification"
+	val _classCol : String = "classification-list"
+	val _classProbCol : String = "probability-list"
 
 
   def retrieveTweets(collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
@@ -72,11 +76,17 @@ object DataRetriever {
 			return null;
 		}
 
-    // MUST scan the column to filter using it... else it assumes column does not exist and will auto filter if setFilterIfMissing(true) is set.
+	  	// MUST scan the column to filter using it... else it assumes column does not exist and will auto filter if setFilterIfMissing(true) is set.
 		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
 		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
 		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
-    scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
+	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
+	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags));
+	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg));
+	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetLongURL));
+	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople));
+	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc));
+	  	
 		//will throw exception if table does not have classification family. If ommitted from scan, filter assumes unclassified and will keep the row
 		if( srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){	
 			scan.addColumn(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol));
