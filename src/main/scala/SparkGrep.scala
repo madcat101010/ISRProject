@@ -83,7 +83,7 @@ object SparkGrep {
 		    val sc = new SparkContext(conf)
 
 				if(args(1) == "tweet"){
-		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 1, tableNameSrc, tableNameDest, sc)
+		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 150, tableNameSrc, tableNameDest, sc)
 				}
 				else if(args(1) == "website"){
 					println("TODO: classify website");
@@ -119,7 +119,7 @@ object SparkGrep {
 		var trainTweetsB = ArrayBuffer[Tweet]()
 		var testTweetsB = ArrayBuffer[Tweet]()
 		for((k,v) <- labelMap){
-			val singleClassTweets = allTweets.filter(y => y.label != labelMap.get(k))
+			val singleClassTweets = allTweets.filter(y => y.label == labelMap.get(k))
 			println(labelMap.get(k).toString)
 			println(singleClassTweets.size.toString)
 			

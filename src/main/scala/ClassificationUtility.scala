@@ -38,7 +38,6 @@ object ClassificationUtility {
     val sumProbabilities = classProbabilities.sum
     //Normalize probabilities
     (0 until model.numClasses - 1).foreach { i =>
-
       classProbabilities(i) = classProbabilities(i) / sumProbabilities
     }
 
