@@ -24,7 +24,7 @@ object SparkGrep {
         .setMaster("local[*]")
         .setAppName("HBaseProductExperiments")
       val sc = new SparkContext(conf)
-      LabelTrainingData(sc)
+      LabelTrainingData(args(0),sc)
       System.exit(0)
     }
     if (args.length == 2){
@@ -150,9 +150,9 @@ object SparkGrep {
   }
 
 
-  def LabelTrainingData(sc: SparkContext) = {
+  def LabelTrainingData(collectionID: String, sc: SparkContext) = {
     println("Labeling Training Data")
-    val trainingTweets = DataRetriever.getTrainingTweets(sc)
+    val trainingTweets = DataRetriever.getTrainingTweets(collectionID, sc)
     trainingTweets.map(tweet => tweetToCVSLine(tweet)).saveAsTextFile("./data/training/solareclipse_tweet_training.csv")
 
   }
