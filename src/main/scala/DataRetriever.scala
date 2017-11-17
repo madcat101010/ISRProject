@@ -1,9 +1,10 @@
 package isr.project
 
 
+import org.apache.hadoop.filter.CompareFilter.CompareOp
 import org.apache.hadoop.hbase.{HBaseConfiguration, TableName}
 import org.apache.hadoop.hbase.client.{ConnectionFactory, HTable, Result, Scan}
-import org.apache.hadoop.hbase.filter.RandomRowFilter
+import org.apache.hadoop.hbase.filter.{RandomRowFilter, FilterList, SingleColumnValueFilter}
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext
@@ -134,23 +135,27 @@ object DataRetriever {
     lines.map(line=> Tweet(line.split('|')(1), line.split('|')(2), Option(line.split('|')(0).toDouble))).filter(tweet => tweet.label.isDefined)
   }
 
-  def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
-    val _tableName: String =        "eclipsedatasample1"
+  def getTrainingTweets(collectionName:String, sc : SparkContext): RDD[Tweet] = {
+    val _tableName: String =        "training_table"
     val _cleanTweetColFam: String = "clean-tweet"
 	val _tweetColFam : String =     "tweet"
+    val _metaDataColFam : String =  "metadata"
 
     val _cleanTweetCol : String =   "clean-text-cla"
 	val _tweetCol : String =        "text"
     val _peopleCol : String =       "sner-people"
-    val _locationsCol : String =    "sner-location"
+    val _locationsCol : String =    "sner-locations"
     val _orgCol : String =          "sner-organizations"  
     val _hashtagsCol : String =     "hashtags"
     val _longurlCol : String =      "long-url"
+    val _collectionIDCol : String = "collection-id"
     
     val connection = ConnectionFactory.createConnection()
     val table = connection.getTable(TableName.valueOf(_tableName))
     val scanner = new Scan()
-	scanner.setMaxResultSize(20)
+    
+	//scanner.setMaxResultSize(250)
+
 	scanner.addColumn(Bytes.toBytes(_tweetColFam),Bytes.toBytes(_tweetCol))
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
@@ -158,6 +163,15 @@ object DataRetriever {
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+    scanner.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_collectionIDCol))
+    
+    
+    val filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL)
+    val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_collectionIDCol), CompareOp.EQUAL, Bytes.toBytes(collectionName))
+    filterCollect.setFilterIfMissing(true)
+    filterList.addFilter(filterCollect)
+    
+    scan.setFilter(filterList)
 
     sc.parallelize(table.getScanner(scanner).map(result => {
       val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
@@ -178,13 +192,18 @@ object DataRetriever {
       val longurl = Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength)
       
       val combinewords = words + " " + people + " " + locations + " " + orgs + " " + hashtags + " " + longurl
-      println ("Combinedwords: " + combinewords)
+
+      //Remove basic stuffs 
+      combinewords = combinewords.replaceAll("[@#]","")
+
+      //Remove html stuffs
+      combinewords = combinewords.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
 
       val rawwords = Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength)
       var key = Bytes.toString(result.getRow())
       println("Label this tweetID: " + key + " | RAW: "+rawwords)
       val label = Console.readInt().toDouble
-      Tweet(key, words, Option(label))
+      Tweet(key, combinewords, Option(label))
     }).toList)
   }
 }

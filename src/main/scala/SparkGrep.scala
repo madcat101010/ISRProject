@@ -19,7 +19,7 @@ object SparkGrep {
 
   def main(args: Array[String]) {
     if (args.length == 1){
-      println ("Label HERE")
+      println ("Start Labeling")
       val conf = new SparkConf()
         .setMaster("local[*]")
         .setAppName("HBaseProductExperiments")
