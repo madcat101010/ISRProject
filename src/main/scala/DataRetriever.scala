@@ -134,7 +134,7 @@ object DataRetriever {
     lines.map(line=> Tweet(line.split('|')(1), line.split('|')(2), Option(line.split('|')(0).toDouble))).filter(tweet => tweet.label.isDefined)
   }
 
-  def getTrainingTweets(scanner: Scan, sc:SparkContext): RDD[Tweet] = {
+  def getTrainingTweets(sc:SparkContext): RDD[Tweet] = {
     val _tableName: String =        "eclipsedatasample1"
     val _cleanTweetColFam: String = "clean-tweet"
 	val _tweetColFam : String =     "tweet"
@@ -149,6 +149,7 @@ object DataRetriever {
     
     val connection = ConnectionFactory.createConnection()
     val table = connection.getTable(TableName.valueOf(_tableName))
+    val scanner = new Scan()
 	scanner.setMaxResultSize(20)
 	scanner.addColumn(Bytes.toBytes(_tweetColFam),Bytes.toBytes(_tweetCol))
     scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
@@ -161,8 +162,24 @@ object DataRetriever {
     sc.parallelize(table.getScanner(scanner).map(result => {
       val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
       val rawcell = result.getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetCol))
+      val peoplecell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
+      val locationcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
+      val orgcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
+      val hashtagcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
+      val longurlcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+      
+      
 
       val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
+      val people = Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength)
+      val locations = Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength)
+      val orgs = Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength)
+      val hashtags = Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength)
+      val longurl = Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength)
+      
+      val combinewords = words + " " + people + " " + locations + " " + orgs + " " + hashtags + " " + longurl
+      println ("Combinedwords: " + combinewords)
+
       val rawwords = Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength)
       var key = Bytes.toString(result.getRow())
       println("Label this tweetID: " + key + " | RAW: "+rawwords)
