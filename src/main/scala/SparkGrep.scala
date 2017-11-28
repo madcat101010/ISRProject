@@ -69,7 +69,6 @@ object SparkGrep {
 					var websiteTestingFile = ("./data/testing/" + collectionName + "_website_testing.csv");	
 					//TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
-				System.exit(0)
 			}
 			else if(args(0) == "classify"){
 				Logger.getLogger("org").setLevel(Level.OFF)
@@ -85,6 +84,7 @@ object SparkGrep {
 				else if(args(1) == "website"){
 					println("TODO: classify website");
 				}
+			}
 			else if(args(0) == "label"){
 				val conf = new SparkConf()
 				.setMaster("local[*]")
@@ -96,13 +96,12 @@ object SparkGrep {
 				else{
 					println("Labeling Tweet Training Data")
 					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(3), args(5))
-					trainingTweets.map(tweet => tweetToCVSLine(tweet)).saveAsTextFile("./data/training/" + args(5) + "_tweet_training.csv")
+					trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/training/" + args(5) + "_tweet_training.csv")
 				}
 			}
-    		val end = System.currentTimeMillis()
-    		println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
+  		val end = System.currentTimeMillis()
+  		println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
 			System.exit(0)
-			}
 		}
     else{
       System.err.println("Usage: SparkGrep <train/classify> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]")
@@ -111,6 +110,10 @@ object SparkGrep {
     }
 
   }
+
+	def tweetToCSVLine(tweet:Tweet):String={
+		return tweet.id + "," + tweet.tweetText + "," + tweet.label.get.toString
+	}
   
   def TrainTweetModels(trainFile: String, testFile: String, sc: SparkContext): Unit = {
     println("Training models")

@@ -214,7 +214,7 @@ object DataRetriever {
 		val word4 = Bytes.toString(cell4.getValueArray, cell4.getValueOffset, cell4.getValueLength)
 		val word5 = Bytes.toString(cell5.getValueArray, cell5.getValueOffset, cell5.getValueLength)
 		val word6 = Bytes.toString(cell6.getValueArray, cell6.getValueOffset, cell6.getValueLength)
-		val word = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6
+		val words = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6
 		Tweet(key,words)
 	}
 
@@ -285,7 +285,7 @@ object DataRetriever {
 		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
 		filterList.addFilter(filterTweet);
 
-		scan.setFilter(filterList);
+		scanner.setFilter(filterList);
 
 		sc.parallelize(table.getScanner(scanner).map(result => {
 			val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
@@ -313,10 +313,7 @@ object DataRetriever {
 			println("Label this tweetID: " + key + " | RAW: "+rawwords)
 			val label = Console.readInt().toDouble
 			Tweet(key, words, Option(label))
-			}).toList)
-		}
+		}).toList)
 	}
-
-
 }
 
