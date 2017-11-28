@@ -24,9 +24,9 @@ object SparkGrep {
     return Tweet(tweet.id, tweet.tweetText, tweet.label)
   }
 
-//SparkGrep <train/classify/label> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]
+//SparkGrep <train/classify/label> <webpage/tweet> <srcTableName> <destTableName> <event name> <collection name> <class1Name> <class2Name> [class3Name] [...]
   def main(args: Array[String]) {
-		if(args.length >= 6){
+		if(args.length >= 7){
 			//ensure correct usage
 			if(args(0) != "train" && args(0) != "classify" && args(0) != "label"){
 				System.err.println("Usage Error: args(0) != 'train' or 'classify' or 'label'");
@@ -39,10 +39,11 @@ object SparkGrep {
 			
 			//load collection name and class mapping for that collection
 			//class 0.0 is "Can't Classify!" always, so start with class 1.0
-			val collectionName = args(4);
+			val eventName = args(4)
+			val collectionName = args(5);
 			var classCount = 1;
-			for( x <- 5 to (args.length-1) ){
-				DataWriter.mapLabel( (x-4).toDouble, args(x) );
+			for( x <- 6 to (args.length-1) ){
+				DataWriter.mapLabel( (x-5).toDouble, args(x) );
 				classCount = classCount + 1;
 			}
 			Word2VecClassifier._numberOfClasses = (classCount).toInt; 
@@ -58,15 +59,15 @@ object SparkGrep {
 				    .setAppName("CLA-ModelTraining")
 				val sc = new SparkContext(conf);
 				if(args(1) == "tweet"){
-					var tweetTrainingFile = ("./data/training/" + collectionName + "_tweet_training.csv");	//TODO:ensure file ending is good
-					var tweetTestingFile = ("./data/testing/" + collectionName + "_tweet_testing.csv");	//TODO:ensure file ending is good
-					Word2VecClassifier._lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
-					Word2VecClassifier._word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
+					var tweetTrainingFile = ("./data/training/" + eventName + "_tweet_training.csv");	//TODO:ensure file ending is good
+					var tweetTestingFile = ("./data/testing/" + eventName + "_tweet_testing.csv");	//TODO:ensure file ending is good
+					Word2VecClassifier._lrModelFilename = "./data/" + eventName + "_tweet_lr.model";
+					Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
 					TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
 				else if(args(1) == "website"){
-					var websiteTrainingFile = ("./data/training/" + collectionName + "_website_training.csv");	//TODO:ensure file ending is good
-					var websiteTestingFile = ("./data/testing/" + collectionName + "_website_testing.csv");	
+					var websiteTrainingFile = ("./data/training/" + eventName + "_webpage_training.csv");	//TODO:ensure file ending is good
+					var websiteTestingFile = ("./data/testing/" + eventName + "_webpage_testing.csv");	
 					//TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 			}
@@ -79,7 +80,7 @@ object SparkGrep {
 				val sc = new SparkContext(conf)
 
 				if(args(1) == "tweet"){
-		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 150, tableNameSrc, tableNameDest, sc)
+		    	val readTweets = DataRetriever.retrieveTweets(eventName, collectionName, 150, tableNameSrc, tableNameDest, sc)
 				}
 				else if(args(1) == "website"){
 					println("TODO: classify website");
@@ -95,7 +96,7 @@ object SparkGrep {
 				}
 				else{
 					println("Labeling Tweet Training Data")
-					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(4))
+					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(5))
 					trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/training/" + args(4) + "_tweet_training.csv")
 				}
 			}
@@ -104,7 +105,7 @@ object SparkGrep {
 			System.exit(0)
 		}
     else{
-      System.err.println("Usage: SparkGrep <train/classify> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]")
+      System.err.println("Usage: SparkGrep <train/classify/label> <webpage/tweet> <srcTableName> <destTableName> <event name> <collection name> <class1Name> <class2Name> [class3Name] [...]")
 			System.err.println("Usage Note: files should be in the ./data/ directory i.e. './data/collection1_trainingfile'")
       System.exit(1)
     }

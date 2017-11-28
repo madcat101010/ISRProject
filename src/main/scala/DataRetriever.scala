@@ -28,6 +28,7 @@ object DataRetriever {
 	val _metaDataColFam : String = "metadata"
 	val _metaDataTypeCol : String = "doc-type"
 	val _metaDataCollectionNameCol : String = "collection-name"
+
 	val _tweetColFam : String = "tweet"
 	val _tweetUniqueIdCol : String = "tweet-id"
 	val _cleanTweetColFam : String = "clean-tweet"
@@ -37,15 +38,18 @@ object DataRetriever {
 	val _cleanTweetSnerPeople : String = "sner-people"
 	val _cleanTweetLongURL : String = "long-url"
 	val _cleanTweetHashtags : String = "hashtags"
+
 	val _classificationColFam = "classification"
 	val _classCol : String = "classification-list"
 	val _classProbCol : String = "probability-list"
 
+	val _webpageColFam : String = ""
+	
 
-  def retrieveTweets(collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
+  def retrieveTweets(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
-		var _lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
-		var _word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
+		var _lrModelFilename = "./data/" + eventName + "_tweet_lr.model";
+		var _word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
 		
 
     val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
@@ -226,10 +230,10 @@ object DataRetriever {
 
 
 
-  def retrieveWebpages(collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
+  def retrieveWebpages(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
-		var _lrModelFilename = "./data/" + collectionName + "_webpage_lr.model";
-		var _word2VecModelFilename = "./data/" + collectionName + "_webpage_w2v.model";
+		var _lrModelFilename = "./data/" + eventName + "_webpage_lr.model";
+		var _word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
 		
 
     val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
@@ -250,13 +254,13 @@ object DataRetriever {
     val srcTable = new HTable(hbaseConf, tableNameSrc)
 		val destTable = new HTable(hbaseConf, tableNameDest)
 
-		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) || !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_tweetColFam)) ){
-			System.err.println("ERROR: Source tweet table missing required column family!");
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) || !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_###)) ){
+			System.err.println("ERROR: Source webpage table missing required column family!");
 			return null;
 		}
 
 		if( !destTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){
-			System.err.println("ERROR: Destination tweet table missing required classification column family!");
+			System.err.println("ERROR: Destination webpage table missing required classification column family!");
 			return null;
 		}
 
