@@ -208,13 +208,20 @@ object DataRetriever {
 		val cell6 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc))
 			
 		val key = Bytes.toString(result.getRow())
-		val word1 = Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength)
-		val word2 = Bytes.toString(cell2.getValueArray, cell2.getValueOffset, cell2.getValueLength)
-		val word3 = Bytes.toString(cell3.getValueArray, cell3.getValueOffset, cell3.getValueLength)
-		val word4 = Bytes.toString(cell4.getValueArray, cell4.getValueOffset, cell4.getValueLength)
-		val word5 = Bytes.toString(cell5.getValueArray, cell5.getValueOffset, cell5.getValueLength)
-		val word6 = Bytes.toString(cell6.getValueArray, cell6.getValueOffset, cell6.getValueLength)
-		val words = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6
+		var words = "";
+		if(cell1 != null)
+			words += (Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength) + " ")
+		if(cell2 != null)
+			words += (Bytes.toString(cell2.getValueArray, cell2.getValueOffset, cell2.getValueLength) + " ")
+		if(cell3 != null)
+			words += (Bytes.toString(cell3.getValueArray, cell3.getValueOffset, cell3.getValueLength) + " ")
+		if(cell4 != null)
+			words += (Bytes.toString(cell4.getValueArray, cell4.getValueOffset, cell4.getValueLength) + " ")
+		if(cell5 != null)
+			words += (Bytes.toString(cell5.getValueArray, cell5.getValueOffset, cell5.getValueLength) + " ")
+		if(cell6 != null)
+			words += (Bytes.toString(cell6.getValueArray, cell6.getValueOffset, cell6.getValueLength) + " ")
+		words.dropRight(1)
 		Tweet(key,words)
 	}
 
@@ -297,18 +304,18 @@ object DataRetriever {
 			val longurlcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
 
 
+			val words = if(textcell != null) Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength) else ""
+			val people = if(peoplecell != null)	Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength) else ""
+			val locations = if(locationcell != null) Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength) else ""
+			val orgs = if(orgcell != null) Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength) else ""
+			val hashtags = if(hashtagcell != null) Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength) else ""
+			val longurl = if(longurlcell != null) Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength) else ""
 
-			val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
-			val people = Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength)
-			val locations = Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength)
-			val orgs = Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength)
-			val hashtags = Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength)
-			val longurl = Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength)
 
 			val combinewords = words + " " + people + " " + locations + " " + orgs + " " + hashtags + " " + longurl
 			println ("Combinedwords: " + combinewords)
 
-			val rawwords = Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength)
+			val rawwords = if(rawcell != null) Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength) else ""
 			var key = Bytes.toString(result.getRow())
 			println("Label this tweetID: " + key + " | RAW: "+rawwords)
 			val label = Console.readInt().toDouble

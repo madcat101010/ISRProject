@@ -24,7 +24,7 @@ object SparkGrep {
     return Tweet(tweet.id, tweet.tweetText, tweet.label)
   }
 
-//SparkGrep <train/classify> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]
+//SparkGrep <train/classify/label> <webpage/tweet> <srcTableName> <destTableName> <collection name> <class1Name> <class2Name> [class3Name] [...]
   def main(args: Array[String]) {
 		if(args.length >= 6){
 			//ensure correct usage
@@ -95,8 +95,8 @@ object SparkGrep {
 				}
 				else{
 					println("Labeling Tweet Training Data")
-					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(3), args(5))
-					trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/training/" + args(5) + "_tweet_training.csv")
+					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(4))
+					trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/training/" + args(4) + "_tweet_training.csv")
 				}
 			}
   		val end = System.currentTimeMillis()
