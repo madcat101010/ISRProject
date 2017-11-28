@@ -28,18 +28,15 @@ object SparkGrep {
   def main(args: Array[String]) {
 		if(args.length >= 6){
 			//ensure correct usage
-			if(args(0) != "train" && args(0) != "classify"){
-				System.err.println("Usage Error: args(0) != 'train' or 'classify'");
+			if(args(0) != "train" && args(0) != "classify" && args(0) != "label"){
+				System.err.println("Usage Error: args(0) != 'train' or 'classify' or 'label'");
       	System.exit(1);
 			}
 			if(args(1) != "webpage" && args(1) != "tweet"){
 				System.err.println("Usage Error: args(1) != 'tweet' or 'webpage'");
       	System.exit(1);
 			}
-			//if(args(2)){
-
-			//}
-
+			
 			//load collection name and class mapping for that collection
 			//class 0.0 is "Can't Classify!" always, so start with class 1.0
 			val collectionName = args(4);
@@ -54,6 +51,7 @@ object SparkGrep {
 			//var tableNameSrc = tableName;
 			var tableNameDest = args(3);
 			//train or classify
+			val start = System.currentTimeMillis()
 			if(args(0) == "train"){
 				val conf = new SparkConf()
 				    .setMaster("local[*]")
@@ -64,7 +62,7 @@ object SparkGrep {
 					var tweetTestingFile = ("./data/testing/" + collectionName + "_tweet_testing.csv");	//TODO:ensure file ending is good
 					Word2VecClassifier._lrModelFilename = "./data/" + collectionName + "_tweet_lr.model";
 					Word2VecClassifier._word2VecModelFilename = "./data/" + collectionName + "_tweet_w2v.model";
-				  TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
+					TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
 				else if(args(1) == "website"){
 					var websiteTrainingFile = ("./data/training/" + collectionName + "_website_training.csv");	//TODO:ensure file ending is good
@@ -74,13 +72,12 @@ object SparkGrep {
 				System.exit(0)
 			}
 			else if(args(0) == "classify"){
-		    Logger.getLogger("org").setLevel(Level.OFF)
-    		Logger.getLogger("akka").setLevel(Level.OFF)
-    		val start = System.currentTimeMillis()
+				Logger.getLogger("org").setLevel(Level.OFF)
+				Logger.getLogger("akka").setLevel(Level.OFF)
 				val conf = new SparkConf()
 		        .setMaster("local[*]")
 		        .setAppName("CLA-Classifying")
-		    val sc = new SparkContext(conf)
+				val sc = new SparkContext(conf)
 
 				if(args(1) == "tweet"){
 		    	val readTweets = DataRetriever.retrieveTweets(collectionName, 150, tableNameSrc, tableNameDest, sc)
@@ -88,9 +85,23 @@ object SparkGrep {
 				else if(args(1) == "website"){
 					println("TODO: classify website");
 				}
+			else if(args(0) == "label"){
+				val conf = new SparkConf()
+				.setMaster("local[*]")
+				.setAppName("HBaseProductExperiments")
+				val sc = new SparkContext(conf)
+				if(args(1) == "website"){
+					println("TODO: Labeling Website Training Data")
+				}
+				else{
+					println("Labeling Tweet Training Data")
+					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(3), args(5))
+					trainingTweets.map(tweet => tweetToCVSLine(tweet)).saveAsTextFile("./data/training/" + args(5) + "_tweet_training.csv")
+				}
+			}
     		val end = System.currentTimeMillis()
     		println(s"Took ${(end - start) / 1000.0} seconds for the whole process.")
-				System.exit(0)
+			System.exit(0)
 			}
 		}
     else{
@@ -100,7 +111,7 @@ object SparkGrep {
     }
 
   }
-
+  
   def TrainTweetModels(trainFile: String, testFile: String, sc: SparkContext): Unit = {
     println("Training models")
 

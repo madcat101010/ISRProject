@@ -192,15 +192,31 @@ object DataRetriever {
     //rdd.map(v => Tweet(v._1, v._2.getOrElse(_colFam, Map()).getOrElse(_col, "")))/*.repartition(sc.defaultParallelism)*/.filter(tweet => tweet.tweetText.trim.isEmpty)
   }
 
-  def rowToTweetConverter(result : Result): Tweet ={
-		var _cleanTweetColFam : String = "clean-tweet"
-  	var _cleanTweetTextCol : String = "clean-text-cla"
-    val cell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
-    val key = Bytes.toString(result.getRow())
-    val words = Bytes.toString(cell.getValueArray, cell.getValueOffset, cell.getValueLength)
-		//println("T: " + words + " . key: " + key);
-    Tweet(key,words)
-  }
+	def rowToTweetConverter(result : Result): Tweet ={
+		val _cleanTweetColFam : String = "clean-tweet"
+		val _cleanTweetTextCol : String = "clean-text-cla"
+		val _cleanTweetSnerOrg : String = "sner-organizations"
+		val _cleanTweetSnerLoc : String = "sner-locations"
+		val _cleanTweetSnerPeople : String = "sner-people"
+		val _cleanTweetLongURL : String = "long-url"
+		val _cleanTweetHashtags : String = "hashtags"
+		val cell1 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
+		val cell2 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags))
+		val cell3 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg))
+		val cell4 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetLongURL))
+		val cell5 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople))
+		val cell6 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc))
+			
+		val key = Bytes.toString(result.getRow())
+		val word1 = Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength)
+		val word2 = Bytes.toString(cell2.getValueArray, cell2.getValueOffset, cell2.getValueLength)
+		val word3 = Bytes.toString(cell3.getValueArray, cell3.getValueOffset, cell3.getValueLength)
+		val word4 = Bytes.toString(cell4.getValueArray, cell4.getValueOffset, cell4.getValueLength)
+		val word5 = Bytes.toString(cell5.getValueArray, cell5.getValueOffset, cell5.getValueLength)
+		val word6 = Bytes.toString(cell6.getValueArray, cell6.getValueOffset, cell6.getValueLength)
+		val word = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6
+		Tweet(key,words)
+	}
 
   def retrieveTrainingTweetsFromFile(fileName:String, sc : SparkContext) : RDD[Tweet] = {
     val lines = sc.textFile(fileName)
@@ -227,6 +243,79 @@ object DataRetriever {
     }).toList)
   }
 
+	def getTrainingTweets(sc:SparkContext, _tableName:String, collectionName:String): RDD[Tweet] = {
+		val _cleanTweetColFam: String = "clean-tweet"
+		val _tweetColFam : String =     "tweet"
+		val _metadataColFam : String = "metadata"
+
+		val _cleanTweetCol : String =   "clean-text-cla"
+		val _tweetCol : String =        "text"
+		val _peopleCol : String =       "sner-people"
+		val _locationsCol : String =    "sner-location"
+		val _orgCol : String =          "sner-organizations"  
+		val _hashtagsCol : String =     "hashtags"
+		val _longurlCol : String =      "long-url"
+		val _collectionNameCol : String = 	"collection-name"
+		val _docTypeCol : String = 			"doc-type"
+
+		val connection = ConnectionFactory.createConnection()
+		val table = connection.getTable(TableName.valueOf(_tableName))
+		val scanner = new Scan()
+		scanner.setMaxResultSize(20)
+		scanner.addColumn(Bytes.toBytes(_tweetColFam),Bytes.toBytes(_tweetCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+		scanner.addColumn(Bytes.toBytes(_metadataColFam), Bytes.toBytes(_docTypeCol))
+		scanner.addColumn(Bytes.toBytes(_metadataColFam), Bytes.toBytes(_collectionNameCol))
+
+		//filter for tweets and same collection name
+		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+
+		println("Filter: Keeping Collection Name == " + collectionName)
+		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_collectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
+		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+		filterList.addFilter(filterCollect);
+
+		println("Filter: Keeping Doc Type == tweet")
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_docTypeCol), CompareOp.EQUAL , Bytes.toBytes("tweet"));
+		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+		filterList.addFilter(filterTweet);
+
+		scan.setFilter(filterList);
+
+		sc.parallelize(table.getScanner(scanner).map(result => {
+			val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+			val rawcell = result.getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetCol))
+			val peoplecell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
+			val locationcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
+			val orgcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
+			val hashtagcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
+			val longurlcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+
+
+
+			val words = Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength)
+			val people = Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength)
+			val locations = Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength)
+			val orgs = Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength)
+			val hashtags = Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength)
+			val longurl = Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength)
+
+			val combinewords = words + " " + people + " " + locations + " " + orgs + " " + hashtags + " " + longurl
+			println ("Combinedwords: " + combinewords)
+
+			val rawwords = Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength)
+			var key = Bytes.toString(result.getRow())
+			println("Label this tweetID: " + key + " | RAW: "+rawwords)
+			val label = Console.readInt().toDouble
+			Tweet(key, words, Option(label))
+			}).toList)
+		}
+	}
 
 
 }
