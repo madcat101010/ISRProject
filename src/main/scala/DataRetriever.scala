@@ -32,7 +32,7 @@ object DataRetriever {
 	val _tweetColFam : String = "tweet"
 	val _tweetUniqueIdCol : String = "tweet-id"
 	val _cleanTweetColFam : String = "clean-tweet"
-  	val _cleanTweetTextCol : String = "clean-text-cla"
+	val _cleanTweetTextCol : String = "clean-text-cla"
 	val _cleanTweetSnerOrg : String = "sner-organizations"
 	val _cleanTweetSnerLoc : String = "sner-locations"
 	val _cleanTweetSnerPeople : String = "sner-people"
@@ -43,8 +43,8 @@ object DataRetriever {
 	val _classCol : String = "classification-list"
 	val _classProbCol : String = "probability-list"
 
-	val _webpageColFam : String = ""
-	
+	val _cleanWebpageColFam : String = "clean-webpage"
+	val _cleanWebpageTextCol : String "clean-text-profanity"
 
   def retrieveTweets(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
@@ -84,12 +84,12 @@ object DataRetriever {
 		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
 		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
 		scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetLongURL));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc));
+		scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
+		scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags));
+		scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg));
+		scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetLongURL));
+		scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople));
+		scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc));
 	  	
 		//will throw exception if table does not have classification family. If ommitted from scan, filter assumes unclassified and will keep the row
 		if( srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){	
@@ -114,11 +114,12 @@ object DataRetriever {
 		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
 		filterList.addFilter(filterNoClean);
 
-
+		/*	Commented out for now so we can reclassify already classified data for now... consider input config arg	  	
 		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.EQUAL , Bytes.toBytes(""));
 		filterUnclass.setFilterIfMissing(false);	//keep only unclassified data
 		filterList.addFilter(filterUnclass);
-	
+		*/
+		
 		scan.setFilter(filterList);
 
 
@@ -189,13 +190,13 @@ object DataRetriever {
 //
 
 	def rowToTweetConverter(result : Result): Tweet ={
-		val _cleanTweetColFam : String = "clean-tweet"
-		val _cleanTweetTextCol : String = "clean-text-cla"
-		val _cleanTweetSnerOrg : String = "sner-organizations"
-		val _cleanTweetSnerLoc : String = "sner-locations"
-		val _cleanTweetSnerPeople : String = "sner-people"
-		val _cleanTweetLongURL : String = "long-url"
-		val _cleanTweetHashtags : String = "hashtags"
+//		val _cleanTweetColFam : String = "clean-tweet"
+//		val _cleanTweetTextCol : String = "clean-text-cla"
+//		val _cleanTweetSnerOrg : String = "sner-organizations"
+//		val _cleanTweetSnerLoc : String = "sner-locations"
+//		val _cleanTweetSnerPeople : String = "sner-people"
+//		val _cleanTweetLongURL : String = "long-url"
+//		val _cleanTweetHashtags : String = "hashtags"
 		val cell1 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
 		val cell2 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags))
 		val cell3 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg))
@@ -203,10 +204,8 @@ object DataRetriever {
 		val cell5 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople))
 		val cell6 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc))
 			
-		val key = Bytes.toString(result.getRow())
-		var words = "";
-		if(cell1 != null)
-			words += (Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength) + " ")
+		val key : String = Bytes.toString(result.getRow())
+		var words : String = (Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength) + " ");
 		if(cell2 != null)
 			words += (Bytes.toString(cell2.getValueArray, cell2.getValueOffset, cell2.getValueLength) + " ")
 		if(cell3 != null)
@@ -221,40 +220,41 @@ object DataRetriever {
 		Tweet(key,words)
 	}
 
+
   def retrieveTrainingTweetsFromFile(fileName:String, sc : SparkContext) : RDD[Tweet] = {
     val lines = sc.textFile(fileName)
     lines.map(line=> Tweet(line.split('|')(1), line.split('|')(2), Option(line.split('|')(0).toDouble))).filter(tweet => tweet.label.isDefined)
   }
 
 
+//////////////////////////////////////////
 
 
-
-  def retrieveWebpages(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
-    //implicit val config = HBaseConfig()
+	def retrieveWebpages(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
+		//implicit val config = HBaseConfig()
 		var _lrModelFilename = "./data/" + eventName + "_webpage_lr.model";
 		var _word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
-		
 
-    val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
-    val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
-    val word2vecModel = Word2VecModel.load(sc, bcWord2VecModelFilename.value)
-    val logisticRegressionModel = LogisticRegressionModel.load(sc, bcLRClassifierModelFilename.value)
-    println(s"Classifier Model file found:$bcLRClassifierModelFilename. Loading model.")
-    //Perform a cold start of the model pipeline so that this loading
-    //doesn't disrupt the read later.
-    val coldTweet = sc.parallelize(Array[Tweet]{ Tweet("id", "Some tweet")})
-    val predictedTweets = Word2VecClassifier.predictClass(coldTweet, sc, word2vecModel, logisticRegressionModel)
-    predictedTweets.count
 
-    // scan over only the collection
-    val scan = new Scan()
+		val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
+		val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
+		val word2vecModel = Word2VecModel.load(sc, bcWord2VecModelFilename.value)
+		val logisticRegressionModel = LogisticRegressionModel.load(sc, bcLRClassifierModelFilename.value)
+		println(s"Classifier Model file found:$bcLRClassifierModelFilename. Loading model.")
+		//Perform a cold start of the model pipeline so that this loading
+		//doesn't disrupt the read later.
+		val coldTweet = sc.parallelize(Array[Tweet]{ Tweet("id", "Some tweet")})
+		val predictedTweets = Word2VecClassifier.predictClass(coldTweet, sc, word2vecModel, logisticRegressionModel)
+		predictedTweets.count
 
-    val hbaseConf = HBaseConfiguration.create()
-    val srcTable = new HTable(hbaseConf, tableNameSrc)
+		// scan over only the collection
+		val scan = new Scan()
+
+		val hbaseConf = HBaseConfiguration.create()
+		val srcTable = new HTable(hbaseConf, tableNameSrc)
 		val destTable = new HTable(hbaseConf, tableNameDest)
 
-		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) || !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_###)) ){
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) || !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_cleanWebpageColFam)) ){
 			System.err.println("ERROR: Source webpage table missing required column family!");
 			return null;
 		}
@@ -265,16 +265,10 @@ object DataRetriever {
 		}
 
 	  	// MUST scan the column to filter using it... else it assumes column does not exist and will auto filter if setFilterIfMissing(true) is set.
-			scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
-			scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
-			scan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetLongURL));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople));
-	  	scan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc));
-	  	
+		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
+		scan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
+		scan.addColumn(Bytes.toBytes(_cleanWebpageColFam), Bytes.toBytes(_cleanWebpageTextCol));
+
 		//will throw exception if table does not have classification family. If ommitted from scan, filter assumes unclassified and will keep the row
 		if( srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){	
 			scan.addColumn(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol));
@@ -288,48 +282,48 @@ object DataRetriever {
 		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
 		filterList.addFilter(filterCollect);
 
-		println("Filter: Keeping Doc Type == tweet")
-		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("tweet"));
+		println("Filter: Keeping Doc Type == webpage")
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("webpage"));
 		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
 		filterList.addFilter(filterTweet);
 
 		println("Filter: Keeping Clean Text != ''")
-		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
+		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanWebpageColFam), Bytes.toBytes(_cleanWebpageTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
 		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
 		filterList.addFilter(filterNoClean);
-
-
+		
+		/*	Commented out for now so we can reclassify already classified data for now... consider input config arg	  	
 		val filterUnclass = new SingleColumnValueFilter(Bytes.toBytes(_classificationColFam), Bytes.toBytes(_classCol), CompareOp.EQUAL , Bytes.toBytes(""));
 		filterUnclass.setFilterIfMissing(false);	//keep only unclassified data
 		filterList.addFilter(filterUnclass);
-	
+		*/
+		
 		scan.setFilter(filterList);
 
 
-    // add caching to increase speed
-    scan.setCaching(_cachedRecordCount)
-    //scan.setBatch(-1)
-    val resultScanner = srcTable.getScanner(scan)
+		// add caching to increase speed
+		scan.setCaching(_cachedRecordCount)
+		val resultScanner = srcTable.getScanner(scan)
 
-    println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
-    println("Scanning results now.")
+		println(s"Caching Info:${scan.getCaching} Batch Info: ${scan.getBatch}")
+		println("Scanning results now.")
 
-    var continueLoop = true
-    var totalRecordCount: Long = 0
-    while (continueLoop) {
-      try {
-        println("Getting next batch of results now.")
-        val start = System.currentTimeMillis()
+		var continueLoop = true
+		var totalRecordCount: Long = 0
+		while (continueLoop) {
+			try {
+				println("Getting next batch of results now.")
+				val start = System.currentTimeMillis()
 
         val results = resultScanner.next(_cachedRecordCount)
 
         if (results == null || results.isEmpty){
-        	println("No more results from scan. Finishing...")
-          continueLoop = false
+					println("No more results from scan. Finishing...")
+					continueLoop = false
 				}
         else {
           println(s"Result Length:${results.length}")
-          val resultTweets = results.map(r => rowToTweetConverter(r))
+          val resultTweets = results.map(r => rowToWebpageConverter(r))
           val rddT = sc.parallelize(resultTweets)
           rddT.cache()
           rddT.repartition(12)
@@ -340,7 +334,7 @@ object DataRetriever {
           println("*********** Persisting the tweets now. *****************")
 
           val repartitionedPredictions = predictedTweets.repartition(12)
-          DataWriter.writeTweets(repartitionedPredictions, tableNameDest)
+          DataWriter.writeTweets(repartitionedPredictions, tableNameDest)	//only writes to classificaiton column family, and Tweet data struct has row key
 
           predictedTweets.cache()
           val batchTweetCount = predictedTweets.count()
@@ -369,7 +363,17 @@ object DataRetriever {
 
   }
 
-
+	
+	def rowToWebpageConverter(result : Result): Tweet ={
+		val cell1 = result.getColumnLatestCell(Bytes.toBytes(_cleanWebpageColFam), Bytes.toBytes(_cleanWebpageTextCol))
+			
+		val key : String = Bytes.toString(result.getRow())
+		val words : String = Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength)
+		Tweet(key,words)
+	}
+	
+	
+	//////////////////////////////////
 
 
 	def getTrainingTweets(sc:SparkContext, _tableName:String, collectionName:String): RDD[Tweet] = {
