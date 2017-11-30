@@ -217,13 +217,13 @@ object SparkGrep {
 	def getWebpagesFromTable(tableName:String, fileName:String, sc: SparkContext): RDD[Tweet] = {
 		//load file of rwa website data
     val file = sc.textFile(fileName)
-		//map websites row keys into RDD[String]
-    val rowKeys = file.map(x => x.split("\t", 23)).filter( y => (y.length == 23 && y(0) != "url-timestamp")).map(x => x(0))
+		//map websites row keys into RDD[(String,Double)]
+    val rowKeys = file.map(x => x.split("\t", 23)).filter( y => (y.length == 23 && y(0) != "url-timestamp")).map(x => ( x(0), labelMap.get(x(22))+1 ))
 		
 		val conf = new HBaseConfiguration.create()
 		val table = new HTable(conf, tableName)
 		//load website clean text into RDD[Tweet]
-		rowKeys.map( rowKey => Tweet(rowKey, Bytes.toString((table.get(new Get(Bytes.toBytes(rowKey)))).getValue(Bytes.toBytes("clean-webpage"),Bytes.toBytes("clean-text-profanity"))), Option(labelDouble)) )
+		rowKeys.map( rowKey => Tweet(rowKey._1, Bytes.toString((table.get(new Get(Bytes.toBytes(rowKey._1)))).getValue(Bytes.toBytes("clean-webpage"),Bytes.toBytes("clean-text-profanity"))), Option(rowKey._2)) )
   }
 
 
