@@ -43,7 +43,7 @@ object DataRetriever {
 	val _classCol : String = "classification-list"
 	val _classProbCol : String = "probability-list"
 
-	val _cleanWebpageColFam : String = "cleanwebpage"
+	val _cleanWebpageColFam : String = "clean-webpage"
 	val _cleanWebpageTextCol : String = "clean-text-profanity"
 
   def retrieveTweets(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
@@ -283,10 +283,10 @@ object DataRetriever {
 		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
 		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
 
-//		println("Filter: Keeping Collection Name == " + collectionName)
-//		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
-//		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
-//		filterList.addFilter(filterCollect);
+		println("Filter: Keeping Collection Name == " + collectionName)
+		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
+		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+		filterList.addFilter(filterCollect);
 
 		println("Filter: Keeping Doc Type == webpage")
 		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("webpage"));
@@ -335,20 +335,20 @@ object DataRetriever {
           rddT.repartition(12)
           //println("*********** Cleaning the tweets now. *****************")
           //val cleanTweets = CleanTweet.clean(rddT, sc)
-          println("*********** Predicting the tweets now. *****************")
+          println("*********** Predicting the webpages now. *****************")
 					val predictedTweets = Word2VecClassifier.predictClass(rddT, sc, word2vecModel, logisticRegressionModel)
-          println("*********** Persisting the tweets now. *****************")
+          println("*********** Persisting the webpages now. *****************")
 
           val repartitionedPredictions = predictedTweets.repartition(12)
           DataWriter.writeTweets(repartitionedPredictions, tableNameDest)	//only writes to classificaiton column family, and Tweet data struct has row key
 
           predictedTweets.cache()
           val batchTweetCount = predictedTweets.count()
-          println(s"The amount of tweets to be written is $batchTweetCount")
+          println(s"The amount of webpages to be written is $batchTweetCount")
           val end = System.currentTimeMillis()
           totalRecordCount += batchTweetCount
           println(s"Took ${(end-start)/1000.0} seconds for This Batch.")
-          println(s"This batch had $batchTweetCount tweets. We have processed $totalRecordCount tweets overall")
+          println(s"This batch had $batchTweetCount webpages. We have processed $totalRecordCount webpages overall")
         }
       }
       catch {

@@ -85,10 +85,10 @@ object SparkGrep {
 				val sc = new SparkContext(conf)
 
 				if(args(1) == "tweet"){
-		    	DataRetriever.retrieveTweets(eventName, collectionName, 1000, tableNameSrc, tableNameDest, sc)
+		    	DataRetriever.retrieveTweets(eventName, collectionName, 20000, tableNameSrc, tableNameDest, sc)
 				}
 				else if(args(1) == "webpage"){
-		    	DataRetriever.retrieveWebpages(eventName, collectionName, 50, tableNameSrc, tableNameDest, sc)
+		    	DataRetriever.retrieveWebpages(eventName, collectionName, 1000, tableNameSrc, tableNameDest, sc)
 				}
 			}
 			else if(args(0) == "label"){
