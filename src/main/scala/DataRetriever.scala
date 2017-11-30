@@ -43,8 +43,8 @@ object DataRetriever {
 	val _classCol : String = "classification-list"
 	val _classProbCol : String = "probability-list"
 
-	val _cleanWebpageColFam : String = "clean-webpage"
-	val _cleanWebpageTextCol : String "clean-text-profanity"
+	val _cleanWebpageColFam : String = "cleanwebpage"
+	val _cleanWebpageTextCol : String = "clean-text-profanity"
 
   def retrieveTweets(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
@@ -254,9 +254,15 @@ object DataRetriever {
 		val srcTable = new HTable(hbaseConf, tableNameSrc)
 		val destTable = new HTable(hbaseConf, tableNameDest)
 
-		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) || !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_cleanWebpageColFam)) ){
-			System.err.println("ERROR: Source webpage table missing required column family!");
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) ){
+			System.err.println("ERROR: Source webpage table missing required metadata column family!");
 			return null;
+		}
+
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_cleanWebpageColFam)) ){
+			System.err.println("ERROR: Source webpage table missing required clean-webpage column family!");
+			return null;
+
 		}
 
 		if( !destTable.getTableDescriptor().hasFamily(Bytes.toBytes(_classificationColFam)) ){
@@ -277,10 +283,10 @@ object DataRetriever {
 		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
 		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
 
-		println("Filter: Keeping Collection Name == " + collectionName)
-		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
-		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
-		filterList.addFilter(filterCollect);
+//		println("Filter: Keeping Collection Name == " + collectionName)
+//		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
+//		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+//		filterList.addFilter(filterCollect);
 
 		println("Filter: Keeping Doc Type == webpage")
 		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("webpage"));

@@ -11,7 +11,10 @@ import org.apache.spark.mllib.feature.Word2VecModel
 import org.apache.spark.mllib.linalg.Word2VecClassifier
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.hadoop.hbase.util.Bytes
+import org.apache.hadoop.hbase.{HBaseConfiguration, TableName}
 import org.apache.hadoop.hbase.client.HBaseAdmin
+import org.apache.hadoop.hbase.client.{ConnectionFactory, HTable, Result, Scan, Get}
 import scala.util.Random
 import scala.collection.mutable.ArrayBuffer
 
@@ -26,7 +29,7 @@ object SparkGrep {
 
 //SparkGrep <train/classify/label> <webpage/tweet> <srcTableName> <destTableName> <event name> <collection name> <class1Name> <class2Name> [class3Name] [...]
   def main(args: Array[String]) {
-		if(args.length >= 7){
+		if(args.length >= 8){
 			//ensure correct usage
 			if(args(0) != "train" && args(0) != "classify" && args(0) != "label"){
 				System.err.println("Usage Error: args(0) != 'train' or 'classify' or 'label'");
@@ -65,10 +68,12 @@ object SparkGrep {
 					Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
 					TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
-				else if(args(1) == "website"){
+				else if(args(1) == "webpage"){
 					var websiteTrainingFile = ("./data/training/" + eventName + "_webpage_training.csv");	//TODO:ensure file ending is good
 					var websiteTestingFile = ("./data/testing/" + eventName + "_webpage_testing.csv");
-					TrainWebsiteModelsBasedTweet(tableNameSrc,websiteTrainingFile, websiteTestingFile, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
+					Word2VecClassifier._lrModelFilename = "./data/" + eventName + "_webpage_lr.model";
+					Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
+					TrainWebpageModelsBasedTweet(tableNameSrc,websiteTrainingFile, websiteTestingFile, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 			}
 			else if(args(0) == "classify"){
@@ -82,7 +87,7 @@ object SparkGrep {
 				if(args(1) == "tweet"){
 		    	DataRetriever.retrieveTweets(eventName, collectionName, 1000, tableNameSrc, tableNameDest, sc)
 				}
-				else if(args(1) == "website"){
+				else if(args(1) == "webpage"){
 		    	DataRetriever.retrieveWebpages(eventName, collectionName, 50, tableNameSrc, tableNameDest, sc)
 				}
 			}
@@ -162,7 +167,7 @@ object SparkGrep {
   }
 
 	//based on above traintweetmodels which works. Just hack in the website into Tweet data format.
-	def TrainWebsiteModelsBasedTweet(trainTableName:String, webTrain:String, webTest:String, sc:SparkContext):Unit = {
+	def TrainWebpageModelsBasedTweet(trainTableName:String, webTrain:String, webTest:String, sc:SparkContext):Unit = {
     println("Training website models using tweet methodology")
 
 		//load training files... labelMap is for string to double mapping which is weirdish
@@ -174,13 +179,13 @@ object SparkGrep {
 
 		//randomly pick out tweets for testing and training
     //load website data from .csv provided by CMW team.
-    val webpages = getWebpagesFromTable(trainTableName,webTrain, sc).collect()
+    val webpages = getWebpagesFromTable(trainTableName,webTrain,labelMap, sc).collect().toBuffer
 
 		println("*********")
 		var trainWebsB = ArrayBuffer[Tweet]()
 		var testWebsB = ArrayBuffer[Tweet]()
 		for((k,v) <- labelMap){
-			val singleClassWebs = allTweets.filter(y => y.label == labelMap.get(k))
+			val singleClassWebs = webpages.filter(y => y.label == labelMap.get(k))
 			println(labelMap.get(k).toString)
 			println(singleClassWebs.size.toString)
 			
@@ -206,7 +211,7 @@ object SparkGrep {
 
 ///////////////////////////////////////
 	//initial get website data from SMW .csv file. each file is its own topic already, so provide the desired label ID!
-	def getWebsitesFromRawCsv(fileName:String, labelDouble: Double, sc: SparkContext): RDD[Tweet] = {
+	def getWebpagesFromRawCsv(fileName:String, labelDouble: Double, sc: SparkContext): RDD[Tweet] = {
 		//load file of rwa website data
     val file = sc.textFile(fileName)
 
@@ -214,16 +219,52 @@ object SparkGrep {
     file.map(x => x.split(",", 5)).filter( y => (y.length == 5 && y(0) != "id")).map(x => Tweet(x(0),x(4), Option(labelDouble)))
   }
 
-	def getWebpagesFromTable(tableName:String, fileName:String, sc: SparkContext): RDD[Tweet] = {
+	def getWebpagesFromTable(tableName:String, fileName:String,labelMap:scala.collection.mutable.Map[String,Double], sc: SparkContext): RDD[Tweet] = {
 		//load file of rwa website data
     val file = sc.textFile(fileName)
 		//map websites row keys into RDD[(String,Double)]
-    val rowKeys = file.map(x => x.split("\t", 23)).filter( y => (y.length == 23 && y(0) != "url-timestamp")).map(x => ( x(0), labelMap.get(x(22))+1 ))
+    val rowKeys : RDD[(String, Double)] = file.map(x => x.split("\t", 23)).filter( y => (y.length == 23 && y(22) != "spam label" && y(22) != "")).map(x => ( x(0), x(22).toDouble+1.0) )
 		
-		val conf = new HBaseConfiguration.create()
+		val allProductNum = file.map(x => x.split("\t", 23)).filter( y => (y.length == 23 && y(22) != "spam label" && y(22) != "")).map(x => (x(22).toDouble+1.0).toString).distinct().collect()
+		var maxLab = 0.0		
+		labelMap += ("0.0" -> 0.0)
+    if (labelMap.nonEmpty ){
+      maxLab = labelMap.valuesIterator.max + 1
+    }
+    allProductNum.foreach(num => {
+      if (!labelMap.contains(num)){
+        labelMap += (num -> maxLab)
+        maxLab = maxLab + 1
+      }
+		})
+
+		val rowKeySer = rowKeys.collect()
+		val conf = HBaseConfiguration.create()
 		val table = new HTable(conf, tableName)
-		//load website clean text into RDD[Tweet]
-		rowKeys.map( rowKey => Tweet(rowKey._1, Bytes.toString((table.get(new Get(Bytes.toBytes(rowKey._1)))).getValue(Bytes.toBytes("clean-webpage"),Bytes.toBytes("clean-text-profanity"))), Option(rowKey._2)) )
+		//load website data from table cannot be parallized via RDD, can only be serial. Hence use a map and then parallize to RDD
+		var dataMap = scala.collection.mutable.Map[String,(String, String)]()
+		for( (rowkey, label) <- rowKeySer){
+			//println(rowkey)
+			if(rowkey != ""){
+				val resultRow = table.get(new Get(Bytes.toBytes(rowkey)))
+				if (!resultRow.isEmpty()){
+					val getData = resultRow.getValue(Bytes.toBytes("clean-webpage"),Bytes.toBytes("clean-text-profanity"))
+					if (getData != null){
+						dataMap += (rowkey -> (Bytes.toString(getData), label.toString) )
+						println("ADDED:" + rowkey + " | " + label.toString)
+					}
+				}
+			}
+		}
+		if(!dataMap.isEmpty){
+			val dataMapRDD = sc.parallelize(dataMap.toSeq)
+			val rowText : RDD[(String, String, String)] = dataMapRDD.map( row => ( row._1, row._2._1, row._2._2 ) )
+			rowText.map( row => Tweet(row._1, row._2 , labelMap.get(row._3)) )
+		}
+		else{
+			println("ERROR: Empty dataName in getWebpagesFromTable")
+			null
+		}
   }
 
 

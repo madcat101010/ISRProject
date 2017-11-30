@@ -109,7 +109,7 @@ object ExperimentRunner {
         //testTweetsRDD.repartition(64)
         //trainTweetsRDD.cache()
         //testTweetsRDD.cache()
-        SparkGrep.SetupWord2VecField(trainFName, trainTweetsRDD)
+//        SparkGrep.SetupWord2VecField(trainFName, trainTweetsRDD)
         val (word2VecModel, logisticRegressionModel, trainTime) = SparkGrep.PerformTraining(sc, trainTweetsRDD)
         val predictstart = System.currentTimeMillis()
         val (predictionTweets, predictionLabel) = performPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
@@ -145,7 +145,7 @@ object ExperimentRunner {
         val trainTweetsRDD = trainTweets
         val testTweets = SparkGrep.getTweetsFromFile(testFName, m, sc)
         val testTweetsRDD = testTweets
-        SparkGrep.SetupWord2VecField(trainFName, trainTweets)
+//        SparkGrep.SetupWord2VecField(trainFName, trainTweets)
         //This is how the IDF based classifier would run.
         val (idfModel, hashingTfModel, idfLrModel, idfTrainTime) = SparkGrep.PerformIDFTraining(sc, trainTweetsRDD)
         val (predictionIDFTweets, predictionIDFLabels) = Word2VecClassifier.predictForIDFClassifer(testTweetsRDD, sc, idfModel, hashingTfModel, idfLrModel)

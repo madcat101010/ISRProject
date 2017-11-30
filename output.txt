@@ -2,11 +2,17 @@ building the project
 [0m[[0m[0minfo[0m] [0m[0mLoading project definition from /home/cloudera/Project/ISRProject/project[0m
 [0m[[0m[0minfo[0m] [0m[0mLoading settings from build.sbt ...[0m
 [0m[[0m[0minfo[0m] [0m[0mSet current project to sparkGrep (in build file:/home/cloudera/Project/ISRProject/)[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Scala source to /home/cloudera/Project/ISRProject/target/scala-2.10/classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 1 deprecation warning(s); re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
 [0m[[0m[33mwarn[0m] [0m[0mMultiple main classes detected.  Run 'show discoveredMainClasses' to see the list[0m
-[0m[[0m[32msuccess[0m] [0m[0mTotal time: 5 s, completed Nov 16, 2017 12:33:03 PM[0m
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/cloudera/Project/ISRProject/target/scala-2.10/sparkgrep_2.10-1.0.jar ...[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 14 s, completed Nov 30, 2017 11:59:13 AM[0m
 running the script on tweet solar eclipsed collection with block size hardcoded
 Number of classes is: 3
-Training models
+Training Tweet models
 *********
 Some(2.0)
 380
@@ -403,34 +409,35 @@ String Learning and evaluating models
 3
 #########
 3
-Took 19.206 seconds for the training.
+Took 17.505 seconds for the training.
 <---- done
-Took 0.025 seconds for Prediction.
+Took 0.015 seconds for Prediction.
 
 ***********   Class:1.0   *************
-F1 Score:0.6756756756756757
-True Positive:0.78125
-False Positive:0.10429447852760736
-Precision:0.5952380952380952
-Recall:0.78125
+F1 Score:0.7326732673267328
+True Positive:0.7872340425531915
+False Positive:0.10240963855421686
+Precision:0.6851851851851852
+Recall:0.7872340425531915
 
 ***********   Class:2.0   *************
-F1 Score:0.9102564102564101
-True Positive:0.8711656441717791
-False Positive:0.21875
-Precision:0.9530201342281879
-Recall:0.8711656441717791
+F1 Score:0.9197530864197531
+True Positive:0.8975903614457831
+False Positive:0.19148936170212766
+Precision:0.9430379746835443
+Recall:0.8975903614457831
 
 Confusion Matrix 
-25.0  7.0    
-17.0  142.0  
+37.0  9.0    
+17.0  149.0  
 
 ***********   Classifier Results for LRW2VClassifier   *************
-Weighted F1-Measure = 0.8717611102226486
-Weighted Precision = 0.89430718424007
-Weighted Recall = 0.8564102564102564
-Macro F1 = 0.7929660429660429
-Micro F1 = 0.8564102564102564
+Weighted F1-Measure = 0.8784725629579129
+Weighted Precision = 0.8861408802871927
+Weighted Recall = 0.8732394366197183
+Macro F1 = 0.8262131768732429
+Micro F1 = 0.8732394366197183
 
 ***********   End of Classifier Results for LRW2VClassifier   *************
-Took 3.474 seconds for the prediction.
+Took 2.903 seconds for the prediction.
+Took 31.199 seconds for the whole process.
