@@ -57,8 +57,6 @@ object Word2VecClassifier{
 
     // Word2Vec
     val samplePairs = wordOnlyTrainSample.map(s => s.id -> s)
-		//println("@@@@@@@@@@@@@@@@@")
-		//wordOnlyTrainSample.foreach(println)
     val reviewWordsPairs: RDD[(String, Iterable[String])] = samplePairs.mapValues(_.tweetText.split(" ").toIterable)
 
     val word2vecModel = new Word2Vec().fit(reviewWordsPairs.values)

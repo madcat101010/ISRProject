@@ -67,8 +67,8 @@ object SparkGrep {
 				}
 				else if(args(1) == "website"){
 					var websiteTrainingFile = ("./data/training/" + eventName + "_webpage_training.csv");	//TODO:ensure file ending is good
-					var websiteTestingFile = ("./data/testing/" + eventName + "_webpage_testing.csv");	
-					//TrainWebsiteModelsBasedTweet("./data/website_shooting_data/dhs_shooting.csv", "./data/website_shooting_data/niu_shooting.csv", sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
+					var websiteTestingFile = ("./data/testing/" + eventName + "_webpage_testing.csv");
+					TrainWebsiteModelsBasedTweet(tableNameSrc,websiteTrainingFile, websiteTestingFile, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 			}
 			else if(args(0) == "classify"){
@@ -117,7 +117,7 @@ object SparkGrep {
 	}
   
   def TrainTweetModels(trainFile: String, testFile: String, sc: SparkContext): Unit = {
-    println("Training models")
+    println("Training Tweet models")
 
 		//load training files
     var labelMap = scala.collection.mutable.Map[String,Double]()
@@ -150,79 +150,58 @@ object SparkGrep {
 		println(trainTweets.size.toString)
 		println(testTweets.size.toString)
 
-		//println("#############################################################")
-		//for (v <- trainTweets) printf("| Tweet: %s , %s, %s", v.id, v.tweetText, v.label.toString)
-		
-
     DataStatistics(trainTweets, testTweets)
-    SetupWord2VecField(trainFile, getTweetsFromFile(trainFile, labelMap, sc))
 
     val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
 
-		//test that RDD map has the expected text file data
-		//println("Get here")    
-		//println("#############################################################")
-		//for ((k,v) <- trainTweets) printf("key: %s, value: %s", k, v)
-		//println(trainTweets.mkString(" "))
-		//println(trainTweetsRDD)
-		
-		//val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
-
     val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainTweetsRDD)
 		val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
-    //val cleaned_testTweetsRDD = sc.parallelize(CleanTweet.clean(testTweetsRDD,sc).collect(),testing_partitions).cache()
 
     PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
-		//word2vecModel.save(sc, bcWord2VecModelFilename.value); //done in word2vecclassifier.scala .train()
 
   }
 
 	//based on above traintweetmodels which works. Just hack in the website into Tweet data format.
-	def TrainWebsiteModelsBasedTweet( web1:String, web2:String, sc:SparkContext):Unit = {
+	def TrainWebsiteModelsBasedTweet(trainTableName:String, webTrain:String, webTest:String, sc:SparkContext):Unit = {
     println("Training website models using tweet methodology")
 
 		//load training files... labelMap is for string to double mapping which is weirdish
     var labelMap = scala.collection.mutable.Map[String,Double]()
     val training_partitions = 8
     val testing_partitions = 8
+    println("Training models")
 
+
+		//randomly pick out tweets for testing and training
     //load website data from .csv provided by CMW team.
-    val websites_1 = getWebsitesFromRawCsv(web1, 0.0, sc).collect() //DunbarHighSchoolShooting
-    val websites_2 = getWebsitesFromRawCsv(web2, 1.0, sc).collect() //NorthIllinoisUniversityShooting
-		//combine odds of both website sets for training, and evens of both website sets for testing
-		//websites_1.foreach(println)
-		//websites_2.foreach(println)
-		val web1_even = (websites_1.filter(f => f.id.toInt % 2 == 0))
-		val web1_odd = (websites_1.filter(f => f.id.toInt % 2 != 0))
-		val web2_even = (websites_2.filter(f => f.id.toInt % 2 == 0))
-		val web2_odd = (websites_2.filter(f => f.id.toInt % 2 != 0))
-		val trainTweets = web1_odd.union(web2_odd)
-		val testTweets = web1_even.union(web2_even)
-		
-		//println("$$$$$$$$$TRAIN TWEETS$$$$$")
-		//trainTweets.foreach(println)
-		//println("######TEST TWEEETS####")
-		//testTweets.foreach(println)
+    val webpages = getWebpagesFromTable(trainTableName,webTrain, sc).collect()
 
-    DataStatistics(trainTweets, testTweets)
-    SetupWord2VecField("website_tweethack_", sc.parallelize(trainTweets))
+		println("*********")
+		var trainWebsB = ArrayBuffer[Tweet]()
+		var testWebsB = ArrayBuffer[Tweet]()
+		for((k,v) <- labelMap){
+			val singleClassWebs = allTweets.filter(y => y.label == labelMap.get(k))
+			println(labelMap.get(k).toString)
+			println(singleClassWebs.size.toString)
+			
+			val shuffled = Random.shuffle(singleClassWebs)
+			val (trainWebsR, testWebsR) = shuffled.splitAt(shuffled.size/2)
+			trainWebsB ++= trainWebsR
+			testWebsB ++= testWebsR
+		}
 
-    val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
+		val trainWebs = trainWebsB.toArray
+		val testWebs = testWebsB.toArray
+		println(trainWebs.size.toString)
+		println(testWebs.size.toString)
 
-		//test that RDD map has the expected text file data
-		//println("Get here")    
-		//println("#############################################################")
-		//for ((k,v) <- trainTweets) printf("key: %s, value: %s", k, v)
-		//println(trainTweets.mkString(" "))
-		//println(trainTweetsRDD)
-		
-		//val cleaned_trainingTweetsRDD = sc.parallelize(CleanTweet.clean(trainTweetsRDD,sc).collect(),training_partitions).cache()
+    DataStatistics(trainWebs, testWebs)
 
-    val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainTweetsRDD)
-		val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
-    //val cleaned_testTweetsRDD = sc.parallelize(CleanTweet.clean(testTweetsRDD,sc).collect(),testing_partitions).cache()
+    val trainWebsRDD = sc.parallelize(trainWebs, training_partitions)
+    val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainWebsRDD)
+		val testWebsRDD = sc.parallelize(testWebs, testing_partitions)
 
-    PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
+    PerformPrediction(sc, word2VecModel, logisticRegressionModel, testWebsRDD)
 	}
 
 ///////////////////////////////////////
@@ -235,6 +214,17 @@ object SparkGrep {
     file.map(x => x.split(",", 5)).filter( y => (y.length == 5 && y(0) != "id")).map(x => Tweet(x(0),x(4), Option(labelDouble)))
   }
 
+	def getWebpagesFromTable(tableName:String, fileName:String, sc: SparkContext): RDD[Tweet] = {
+		//load file of rwa website data
+    val file = sc.textFile(fileName)
+		//map websites row keys into RDD[String]
+    val rowKeys = file.map(x => x.split("\t", 23)).filter( y => (y.length == 23 && y(0) != "url-timestamp")).map(x => x(0))
+		
+		val conf = new HBaseConfiguration.create()
+		val table = new HTable(conf, tableName)
+		//load website clean text into RDD[Tweet]
+		rowKeys.map( rowKey => Tweet(rowKey, Bytes.toString((table.get(new Get(Bytes.toBytes(rowKey)))).getValue(Bytes.toBytes("clean-webpage"),Bytes.toBytes("clean-text-profanity"))), Option(labelDouble)) )
+  }
 
 
 /////////////////////////////////////
@@ -272,11 +262,6 @@ object SparkGrep {
     (word2VecModel, logisticRegressionModel, (trainend-trainstart)/1000.0)
   }
 ///////////////////////
-  def SetupWord2VecField(trainFile: String, trainTweets: RDD[Tweet]): Unit = {
-    //Word2VecClassifier._lrModelFilename = trainFile + "lrModel"
-    //Word2VecClassifier._word2VecModelFilename = trainFile + "w2vModel"
-    //Word2VecClassifier._numberOfClasses =  trainTweets.map(x => x.label).distinct.count().toInt
-  }
 
   private def DataStatistics(trainTweets: Array[Tweet], testTweets: Array[Tweet]) = {
     //place a debug point or prints to see the statistics
