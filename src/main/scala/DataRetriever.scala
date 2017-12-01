@@ -404,6 +404,7 @@ object DataRetriever {
 		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
 		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
 		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_rtCol))
 		scanner.addColumn(Bytes.toBytes(_metadataColFam), Bytes.toBytes(_docTypeCol))
 		scanner.addColumn(Bytes.toBytes(_metadataColFam), Bytes.toBytes(_collectionNameCol))
 
