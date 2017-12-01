@@ -392,6 +392,7 @@ object DataRetriever {
 		val _longurlCol : String =      "long-url"
 		val _collectionNameCol : String = 	"collection-name"
 		val _docTypeCol : String = 			"doc-type"
+        val _rtCol : String =           "rt"
 
 		val connection = ConnectionFactory.createConnection()
 		val table = connection.getTable(TableName.valueOf(_tableName))
@@ -422,6 +423,11 @@ object DataRetriever {
         val filterEmptyCleanText = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));
 		filterEmptyCleanText.setFilterIfMissing(true);	//filter all rows without a clean text tweet
 		filterList.addFilter(filterEmptyCleanText);
+
+        val filterRT = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_rtCol), CompareOp.EQUAL , Bytes.toBytes("false"));
+		filterRT.setFilterIfMissing(true);	//filter all rows with RT flag
+		filterList.addFilter(filterRT);
+
 
 		scanner.setFilter(filterList);
 
