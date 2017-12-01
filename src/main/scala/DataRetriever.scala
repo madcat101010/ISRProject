@@ -190,13 +190,6 @@ object DataRetriever {
 //
 
 	def rowToTweetConverter(result : Result): Tweet ={
-//		val _cleanTweetColFam : String = "clean-tweet"
-//		val _cleanTweetTextCol : String = "clean-text-cla"
-//		val _cleanTweetSnerOrg : String = "sner-organizations"
-//		val _cleanTweetSnerLoc : String = "sner-locations"
-//		val _cleanTweetSnerPeople : String = "sner-people"
-//		val _cleanTweetLongURL : String = "long-url"
-//		val _cleanTweetHashtags : String = "hashtags"
 		val cell1 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol))
 		val cell2 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags))
 		val cell3 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg))
@@ -205,7 +198,9 @@ object DataRetriever {
 		val cell6 = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc))
 			
 		val key : String = Bytes.toString(result.getRow())
-		var words : String = (Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength) + " ");
+		var words : String = ""
+		if(cell1 != null)
+			words += (Bytes.toString(cell1.getValueArray, cell1.getValueOffset, cell1.getValueLength) + " ")
 		if(cell2 != null)
 			words += (Bytes.toString(cell2.getValueArray, cell2.getValueOffset, cell2.getValueLength) + " ")
 		if(cell3 != null)
