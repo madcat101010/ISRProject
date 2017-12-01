@@ -101,7 +101,7 @@ object SparkGrep {
 				}
 				else{
 					println("Labeling Tweet Training Data")
-					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(5))
+					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(5), 500)
 					trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/training/" + args(4) + "_tweet_training.csv")
 				}
 			}

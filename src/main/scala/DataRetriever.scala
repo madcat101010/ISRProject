@@ -17,6 +17,7 @@ import org.apache.spark.mllib.classification.LogisticRegressionModel
 import org.apache.spark.mllib.feature.Word2VecModel
 import org.apache.spark.mllib.linalg.Word2VecClassifier
 
+import scala.collection.mutable.ListBuffer
 import scala.collection.JavaConversions._
 /**
   * Created by Eric on 11/8/2016.
@@ -377,7 +378,7 @@ object DataRetriever {
 	//////////////////////////////////
 
 
-	def getTrainingTweets(sc:SparkContext, _tableName:String, collectionName:String): RDD[Tweet] = {
+	def getTrainingTweets(sc:SparkContext, _tableName:String, collectionName:String, tweetLimit:Int): RDD[Tweet] = {
 		val _cleanTweetColFam: String = "clean-tweet"
 		val _tweetColFam : String =     "tweet"
 		val _metadataColFam : String = "metadata"
@@ -395,7 +396,6 @@ object DataRetriever {
 		val connection = ConnectionFactory.createConnection()
 		val table = connection.getTable(TableName.valueOf(_tableName))
 		val scanner = new Scan()
-		scanner.setMaxResultSize(1000)
 		scanner.addColumn(Bytes.toBytes(_tweetColFam),Bytes.toBytes(_tweetCol))
 		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
 		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
@@ -425,33 +425,67 @@ object DataRetriever {
 
 		scanner.setFilter(filterList);
 
-		sc.parallelize(table.getScanner(scanner).map(result => {
-			val textcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
-			val rawcell = result.getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetCol))
-			val peoplecell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
-			val locationcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
-			val orgcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
-			val hashtagcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
-			val longurlcell = result.getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+        var tweet_count:Int = 0
+        var resultScanner = table.getScanner(scanner)
+        var listTweet = new ListBuffer[Tweet]()
+        var continueLoop = true
+        var totalRecordCount: Long = 0
+        while (continueLoop) {
+          try {
+            val result = resultScanner.next(1)
+            if (result == null || result.isEmpty){
+                println("No more results from scan. Finishing...")
+              continueLoop = false
+                    }
+            else {
+              val textcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+              val rawcell = result(0).getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetCol))
+              val peoplecell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
+              val locationcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
+              val orgcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
+              val hashtagcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
+              val longurlcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
 
 
-			val words = if(textcell != null) Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength) else ""
-			val people = if(peoplecell != null)	Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength) else ""
-			val locations = if(locationcell != null) Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength) else ""
-			val orgs = if(orgcell != null) Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength) else ""
-			val hashtags = if(hashtagcell != null) Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength) else ""
-			val longurl = if(longurlcell != null) Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength) else ""
+              val words = if(textcell != null) Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength) else ""
+              val people = if(peoplecell != null)	Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength) else ""
+              val locations = if(locationcell != null) Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength) else ""
+              val orgs = if(orgcell != null) Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength) else ""
+              val hashtags = if(hashtagcell != null) Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength) else ""
+              val raw_longurl = if(longurlcell != null) Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength) else ""
 
 
-			val combinewords = words + " " + people + " " + locations + " " + orgs + " " + hashtags + " " + longurl
-			println ("Combinedwords: " + combinewords)
+              val longurl = raw_longurl.replaceAll("""<(?!\/?a(?=>|\s.*>))\/?.*?>""","")
+              val raw_combinewords = words + " " + people + " " + locations + " " + orgs + " " + hashtags + " " + longurl
 
-			val rawwords = if(rawcell != null) Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength) else ""
-			var key = Bytes.toString(result.getRow())
-			println("Label this tweetID: " + key + " | RAW: "+rawwords)
-			val label = Console.readInt().toDouble
-			Tweet(key, words, Option(label))
-		}).toList)
-	}
+              //remove tweet syntax
+              val combinewords = raw_combinewords.replaceAll("[@#]","").replaceAll("[,]"," ")
+
+              println ("NUMBER OF LABELED TWEETS: " + tweet_count + " / "+tweetLimit)
+              println ("Combinedwords: " + combinewords)
+              
+
+              val rawwords = if(rawcell != null) Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength) else ""
+              var key = Bytes.toString(result(0).getRow())
+              println("Label this tweetID: " + key + " | RAW: "+rawwords)
+              val label = Console.readInt().toDouble
+              println("")
+              tweet_count = tweet_count + 1;
+              listTweet += Tweet(key, combinewords, Option(label))
+              if (tweet_count >= tweetLimit){
+                continueLoop = false
+              }
+            }
+          }
+          catch {
+            case e: Exception =>
+              println(e.printStackTrace())
+              println("Exception Encountered")
+              println(e.getMessage)
+              continueLoop = false
+          }
+        }
+		sc.parallelize(listTweet.toList)
+    }
 }
 
