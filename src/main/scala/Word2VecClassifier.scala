@@ -33,7 +33,7 @@ object Word2VecClassifier{
 
 
 
-  def train(tweets: RDD[Tweet], sc:SparkContext): (Word2VecModel,LogisticRegressionModel) = {
+  def train(tweets: RDD[Tweet], word2vecModel:Word2VecModel, sc:SparkContext): LogisticRegressionModel = {
 		//val _threshold = 0.25
   	//val _lrModelFilename = "data/lrclassifier.model"
   	//val _numberOfClasses = 2
@@ -59,9 +59,9 @@ object Word2VecClassifier{
     val samplePairs = wordOnlyTrainSample.map(s => s.id -> s)
     val reviewWordsPairs: RDD[(String, Iterable[String])] = samplePairs.mapValues(_.tweetText.split(" ").toIterable)
 
-    val word2vecModel = new Word2Vec().fit(reviewWordsPairs.values)
+    //val word2vecModel = new Word2Vec().fit(reviewWordsPairs.values)
     // commented out to run on our system
-    word2vecModel.save(sc, bcWord2VecModelFilename.value) //######
+    //word2vecModel.save(sc, bcWord2VecModelFilename.value) //######
 
 
     def wordFeatures(words: Iterable[String]): Iterable[Vector] = words.map(w => Try(word2vecModel.transform(w))).filter(_.isSuccess).map(x => x.get)

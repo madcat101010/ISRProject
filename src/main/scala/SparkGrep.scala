@@ -35,8 +35,8 @@ object SparkGrep {
 				System.err.println("Usage Error: args(0) != 'train' or 'classify' or 'label'");
       	System.exit(1);
 			}
-			if(args(1) != "webpage" && args(1) != "tweet"){
-				System.err.println("Usage Error: args(1) != 'tweet' or 'webpage'");
+			if(args(1) != "webpage" && args(1) != "tweet" && args(1) != "w2v"){
+				System.err.println("Usage Error: args(1) != 'tweet' or 'webpage' or 'w2v'");
       	System.exit(1);
 			}
 			
@@ -61,19 +61,23 @@ object SparkGrep {
 				    .setMaster("local[*]")
 				    .setAppName("CLA-ModelTraining")
 				val sc = new SparkContext(conf);
-				if(args(1) == "tweet"){
+				if(args(1) == "w2v"){
+					val w2vModel = loadGoogleW2VBin("./data/GoogleNews-vectors-negative300.bin.gz")
+					w2vModel.save(sc, "./data/training/GoogleNews-vectors-negative300_w2v.model")
+				}
+				else if(args(1) == "tweet"){
 					var tweetTrainingFile = ("./data/training/" + eventName + "_tweet_training.csv");	//TODO:ensure file ending is good
-					var tweetTestingFile = ("./data/testing/" + eventName + "_tweet_testing.csv");	//TODO:ensure file ending is good
 					Word2VecClassifier._lrModelFilename = "./data/" + eventName + "_tweet_lr.model";
-					Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
-					TrainTweetModels(tweetTrainingFile, tweetTestingFile, sc);	//TODO: File formatting must match when we make the training/testing files...
+					//Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
+					Word2VecClassifier._word2VecModelFilename = "./data/training/GoogleNews-vectors-negative300_w2v.model";
+					TrainTweetModels(tweetTrainingFile, Word2VecClassifier._word2VecModelFilename, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
 				else if(args(1) == "webpage"){
 					var websiteTrainingFile = ("./data/training/" + eventName + "_webpage_training.csv");	//TODO:ensure file ending is good
-					var websiteTestingFile = ("./data/testing/" + eventName + "_webpage_testing.csv");
 					Word2VecClassifier._lrModelFilename = "./data/" + eventName + "_webpage_lr.model";
-					Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
-					TrainWebpageModelsBasedTweet(tableNameSrc,websiteTrainingFile, websiteTestingFile, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
+					//Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
+					Word2VecClassifier._word2VecModelFilename = "./data/training/GoogleNews-vectors-negative300_w2v.model";
+					TrainWebpageModelsBasedTweet(tableNameSrc,websiteTrainingFile, Word2VecClassifier._word2VecModelFilename, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 			}
 			else if(args(0) == "classify"){
@@ -121,7 +125,7 @@ object SparkGrep {
 		return tweet.id + "," + tweet.tweetText + "," + tweet.label.get.toString
 	}
   
-  def TrainTweetModels(trainFile: String, testFile: String, sc: SparkContext): Unit = {
+  def TrainTweetModels(trainFile: String, w2vModelFile: String, sc: SparkContext): Unit = {
     println("Training Tweet models")
 
 		//load training files
@@ -129,9 +133,6 @@ object SparkGrep {
     val training_partitions = 8
     val testing_partitions = 8
 
-		//val trainTweets = getTweetsFromFile(trainFile, labelMap, sc).collect()
-    //val testTweets = getTweetsFromFile(testFile, labelMap, sc).collect()
-		//eclipsedatasample1
 
 		//randomly pick out tweets for testing and training
 		val allTweets = getTweetsFromFile(trainFile, labelMap, sc).collect().toBuffer
@@ -144,7 +145,7 @@ object SparkGrep {
 			println(singleClassTweets.size.toString)
 			
 			val shuffled = Random.shuffle(singleClassTweets)
-			val (trainTweetR, testTweetR) = shuffled.splitAt(shuffled.size/2)
+			val (trainTweetR, testTweetR) = shuffled.splitAt(shuffled.size*(0.8))
 			trainTweetsB ++= trainTweetR
 			testTweetsB ++= testTweetR
 //			printf(trainTweetsB)
@@ -158,16 +159,16 @@ object SparkGrep {
     DataStatistics(trainTweets, testTweets)
 
     val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
-
-    val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainTweetsRDD)
+		val word2vecModel = Word2VecModel.load(sc, w2vModelFile)			
+    val logisticRegressionModel = PerformTraining(sc, trainTweetsRDD, word2vecModel)
 		val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
 
-    PerformPrediction(sc, word2VecModel, logisticRegressionModel, testTweetsRDD)
+    PerformPrediction(sc, word2vecModel, logisticRegressionModel, testTweetsRDD)
 
   }
 
 	//based on above traintweetmodels which works. Just hack in the website into Tweet data format.
-	def TrainWebpageModelsBasedTweet(trainTableName:String, webTrain:String, webTest:String, sc:SparkContext):Unit = {
+	def TrainWebpageModelsBasedTweet(trainTableName:String, webTrain:String, w2vFileName:String, sc:SparkContext):Unit = {
     println("Training website models using tweet methodology")
 
 		//load training files... labelMap is for string to double mapping which is weirdish
@@ -190,7 +191,7 @@ object SparkGrep {
 			println(singleClassWebs.size.toString)
 			
 			val shuffled = Random.shuffle(singleClassWebs)
-			val (trainWebsR, testWebsR) = shuffled.splitAt(shuffled.size/2)
+			val (trainWebsR, testWebsR) = shuffled.splitAt(shuffled.size*(0.8))
 			trainWebsB ++= trainWebsR
 			testWebsB ++= testWebsR
 		}
@@ -203,10 +204,11 @@ object SparkGrep {
     DataStatistics(trainWebs, testWebs)
 
     val trainWebsRDD = sc.parallelize(trainWebs, training_partitions)
-    val (word2VecModel, logisticRegressionModel, _) = PerformTraining(sc, trainWebsRDD)
+		val word2vecModel = Word2VecModel.load(sc, w2vModelFile)
+    val logisticRegressionModel = PerformTraining(sc, trainWebsRDD, word2vecModel)
 		val testWebsRDD = sc.parallelize(testWebs, testing_partitions)
 
-    PerformPrediction(sc, word2VecModel, logisticRegressionModel, testWebsRDD)
+    PerformPrediction(sc, word2vecModel, logisticRegressionModel, testWebsRDD)
 	}
 
 ///////////////////////////////////////
@@ -295,12 +297,12 @@ object SparkGrep {
     println(s"Took ${(testEnd - teststart) / 1000.0} seconds for the prediction.")
   }
 /////////////////////
-  def PerformTraining(sc: SparkContext, cleaned_trainingTweetsRDD: RDD[Tweet]) = {
+  def PerformTraining(sc: SparkContext, cleaned_trainingTweetsRDD: RDD[Tweet], w2vModel:Word2VecModel) = {
     val trainstart = System.currentTimeMillis()
-    val (word2VecModel, logisticRegressionModel) = Word2VecClassifier.train(cleaned_trainingTweetsRDD, sc)
+    val logisticRegressionModel = Word2VecClassifier.train(cleaned_trainingTweetsRDD, Word2VecModel, sc)
     val trainend = System.currentTimeMillis()
     println(s"Took ${(trainend - trainstart) / 1000.0} seconds for the training.")
-    (word2VecModel, logisticRegressionModel, (trainend-trainstart)/1000.0)
+    (logisticRegressionModel, (trainend-trainstart)/1000.0)
   }
 ///////////////////////
 
@@ -328,6 +330,41 @@ object SparkGrep {
     println(s"Took ${(trainend - trainstart) / 1000.0} seconds for the IDF model training.")
     (idfModel, hashingModel, logisticRegressionModel, (trainend - trainstart) / 1000.0)
   }
+
+
+	//direct read the .bin.gz file
+	private def loadGoogleW2VBin(file: String) : Word2VecModel = {
+		def readUntil(inputStream: DataInputStream, term: Char, maxLength: Int = 1024 * 8): String = {
+		  var char: Char = inputStream.readByte().toChar
+		  val str = new StringBuilder
+		  while (!char.equals(term)) {
+		    str.append(char)
+		    assert(str.size < maxLength)
+		    char = inputStream.readByte().toChar
+		  }
+		  str.toString
+		}
+		val inputStream: DataInputStream = new DataInputStream(new GZIPInputStream(new FileInputStream(file)))
+		try {
+		  val header = readUntil(inputStream, '\n')
+		  val (records, dimensions) = header.split(" ") match {
+		    case Array(records, dimensions) => (records.toInt, dimensions.toInt)
+		  }
+		  val w2vModel = new Word2VecModel((0 until records).toArray.map(recordIndex => {
+		    readUntil(inputStream, ' ') -> (0 until dimensions).map(dimensionIndex => {
+		      java.lang.Float.intBitsToFloat(java.lang.Integer.reverseBytes(inputStream.readInt()))
+		    }).toArray
+		  }).toMap)
+			return w2vModel
+		} finally {
+		  inputStream.close()
+		}
+	}
+
+
+
+
 }
+
 
 //
