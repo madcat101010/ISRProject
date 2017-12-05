@@ -89,7 +89,7 @@ object Word2VecClassifier{
     val logisticRegressionModel = GenerateOptimizedModel(trainingSet,bcNumberOfClasses.value)
     // ####
     logisticRegressionModel.save(sc, bcLRClassifierModelFilename.value)
-    return (word2vecModel,logisticRegressionModel)
+    return logisticRegressionModel
   }
 
   def trainIdfClassifer(tweets: RDD[Tweet], sc: SparkContext) = {

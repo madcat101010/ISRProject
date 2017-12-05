@@ -17,6 +17,8 @@ import org.apache.hadoop.hbase.client.HBaseAdmin
 import org.apache.hadoop.hbase.client.{ConnectionFactory, HTable, Result, Scan, Get}
 import scala.util.Random
 import scala.collection.mutable.ArrayBuffer
+import java.io.{FileInputStream,DataInputStream}
+import java.util.zip.GZIPInputStream
 
 
 object SparkGrep {
@@ -125,7 +127,7 @@ object SparkGrep {
 		return tweet.id + "," + tweet.tweetText + "," + tweet.label.get.toString
 	}
   
-  def TrainTweetModels(trainFile: String, w2vModelFile: String, sc: SparkContext): Unit = {
+  def TrainTweetModels(trainFile: String, w2vFileName: String, sc: SparkContext): Unit = {
     println("Training Tweet models")
 
 		//load training files
@@ -145,7 +147,7 @@ object SparkGrep {
 			println(singleClassTweets.size.toString)
 			
 			val shuffled = Random.shuffle(singleClassTweets)
-			val (trainTweetR, testTweetR) = shuffled.splitAt(shuffled.size*(0.8))
+			val (trainTweetR, testTweetR) = shuffled.splitAt((shuffled.size.toDouble*(0.8)).toInt)
 			trainTweetsB ++= trainTweetR
 			testTweetsB ++= testTweetR
 //			printf(trainTweetsB)
@@ -159,8 +161,8 @@ object SparkGrep {
     DataStatistics(trainTweets, testTweets)
 
     val trainTweetsRDD = sc.parallelize(trainTweets, training_partitions)
-		val word2vecModel = Word2VecModel.load(sc, w2vModelFile)			
-    val logisticRegressionModel = PerformTraining(sc, trainTweetsRDD, word2vecModel)
+		val word2vecModel = Word2VecModel.load(sc, w2vFileName)			
+    val (logisticRegressionModel,_) = PerformTraining(sc, trainTweetsRDD, word2vecModel)
 		val testTweetsRDD = sc.parallelize(testTweets, testing_partitions)
 
     PerformPrediction(sc, word2vecModel, logisticRegressionModel, testTweetsRDD)
@@ -191,7 +193,7 @@ object SparkGrep {
 			println(singleClassWebs.size.toString)
 			
 			val shuffled = Random.shuffle(singleClassWebs)
-			val (trainWebsR, testWebsR) = shuffled.splitAt(shuffled.size*(0.8))
+			val (trainWebsR, testWebsR) = shuffled.splitAt((shuffled.size.toDouble*(0.8)).toInt)
 			trainWebsB ++= trainWebsR
 			testWebsB ++= testWebsR
 		}
@@ -204,8 +206,8 @@ object SparkGrep {
     DataStatistics(trainWebs, testWebs)
 
     val trainWebsRDD = sc.parallelize(trainWebs, training_partitions)
-		val word2vecModel = Word2VecModel.load(sc, w2vModelFile)
-    val logisticRegressionModel = PerformTraining(sc, trainWebsRDD, word2vecModel)
+		val word2vecModel = Word2VecModel.load(sc, w2vFileName)
+    val (logisticRegressionModel,_) = PerformTraining(sc, trainWebsRDD, word2vecModel)
 		val testWebsRDD = sc.parallelize(testWebs, testing_partitions)
 
     PerformPrediction(sc, word2vecModel, logisticRegressionModel, testWebsRDD)
@@ -299,7 +301,7 @@ object SparkGrep {
 /////////////////////
   def PerformTraining(sc: SparkContext, cleaned_trainingTweetsRDD: RDD[Tweet], w2vModel:Word2VecModel) = {
     val trainstart = System.currentTimeMillis()
-    val logisticRegressionModel = Word2VecClassifier.train(cleaned_trainingTweetsRDD, Word2VecModel, sc)
+    val logisticRegressionModel = Word2VecClassifier.train(cleaned_trainingTweetsRDD, w2vModel, sc)
     val trainend = System.currentTimeMillis()
     println(s"Took ${(trainend - trainstart) / 1000.0} seconds for the training.")
     (logisticRegressionModel, (trainend-trainstart)/1000.0)
