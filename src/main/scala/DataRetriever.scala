@@ -50,7 +50,7 @@ object DataRetriever {
 
   def retrieveTweets(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
-		var _lrModelFilename = "./data/" + tableNameSrc +"_table_w2v.model";
+		var _lrModelFilename = "./data/" + eventName +"_webpage_lr.model";
 		var _word2VecModelFilename = "./data/" + tableNameSrc +"_table_w2v.model";
 		
 
@@ -229,7 +229,7 @@ object DataRetriever {
 
 	def retrieveWebpages(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
 		//implicit val config = HBaseConfig()
-		var _lrModelFilename = "./data/" + tableNameSrc +"_table_w2v.model";
+		var _lrModelFilename = "./data/" + eventName +"_webpage_lr.model";
 		var _word2VecModelFilename = "./data/" + tableNameSrc +"_table_w2v.model";
 
 
