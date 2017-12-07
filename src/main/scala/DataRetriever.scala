@@ -16,6 +16,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.mllib.classification.LogisticRegressionModel
 import org.apache.spark.mllib.feature.Word2VecModel
 import org.apache.spark.mllib.linalg.Word2VecClassifier
+import org.apache.spark.mllib.feature.{HashingTF, IDFModel, Word2Vec, Word2VecModel}
 
 import scala.collection.mutable.ListBuffer
 import scala.collection.JavaConversions._
@@ -49,7 +50,7 @@ object DataRetriever {
 
   def retrieveTweets(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
     //implicit val config = HBaseConfig()
-		var _lrModelFilename = "./data/" + eventName + "_tweet_lr.model";
+		var _lrModelFilename = "./data/" + tableNameSrc +"_table_w2v.model";
 		var _word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
 		
 
@@ -228,7 +229,7 @@ object DataRetriever {
 
 	def retrieveWebpages(eventName:String, collectionName:String, _cachedRecordCount:Int, tableNameSrc:String, tableNameDest:String, sc: SparkContext): RDD[Tweet] = {
 		//implicit val config = HBaseConfig()
-		var _lrModelFilename = "./data/" + eventName + "_webpage_lr.model";
+		var _lrModelFilename = "./data/" + tableNameSrc +"_table_w2v.model";
 		var _word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
 
 
@@ -494,5 +495,204 @@ object DataRetriever {
         }
 		sc.parallelize(listTweet.toList)
     }
+
+/////////////////////////////////////////
+
+def trainW2VOnTable(tableNameSrc:String, sc: SparkContext): Word2VecModel = {
+
+    val hbaseConf = HBaseConfiguration.create()
+    val srcTable = new HTable(hbaseConf, tableNameSrc)
+		
+		//error check the table for columns
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_cleanTweetColFam)) ){
+			System.err.println("ERROR: Source table missing required clean-tweet column family!");
+			return null;
+		}
+
+
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_metaDataColFam)) ){
+			System.err.println("ERROR: Source table missing required metadata column family!");
+			return null;
+		}
+
+		if( !srcTable.getTableDescriptor().hasFamily(Bytes.toBytes(_cleanWebpageColFam)) ){
+			System.err.println("ERROR: Source table missing required clean-webpage column family!");
+			return null;
+
+		}
+
+    // scan over only the tweets
+    val Tscan = new Scan()
+	  
+		// MUST scan the column to filter using it... else it assumes column does not exist and will auto filter if setFilterIfMissing(true) is set.
+		Tscan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
+		Tscan.addColumn(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetUniqueIdCol));
+		Tscan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol));
+		Tscan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetHashtags));
+		Tscan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerOrg));
+		Tscan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetLongURL));
+		Tscan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerPeople));
+		Tscan.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetSnerLoc));
+
+		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
+		val TfilterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+
+		println("Filter: Keeping Doc Type == tweet")
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("tweet"));
+		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+		TfilterList.addFilter(filterTweet);
+
+		println("Filter: Keeping Clean Text != ''")
+		val filterNoClean = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
+		filterNoClean.setFilterIfMissing(true);	//filter all rows that do not have clean text column
+		TfilterList.addFilter(filterNoClean);
+
+		Tscan.setFilter(TfilterList);
+
+    // add caching to increase speed
+		Tscan.setCaching(200000)
+    val TresultScanner = srcTable.getScanner(Tscan)
+
+		println(s"Caching Info:${Tscan.getCaching} Batch Info: ${Tscan.getBatch}")
+		println("Scanning tweet results now.")
+
+		var continueLoop = true
+		var totalRecordCount: Long = 0
+
+		var AllTRDD : org.apache.spark.rdd.RDD[Tweet] = sc.emptyRDD;
+    while (continueLoop) {
+      try {
+        println("Getting next batch of results now.")
+        val start = System.currentTimeMillis()
+        val results = TresultScanner.next(200000)
+        if (results == null || results.isEmpty){
+        	println("No more results from scan. Doing websites...")
+          continueLoop = false
+				}
+        else {
+          val resultTweets = results.map(r => rowToTweetConverter(r))
+
+          val rddT = sc.parallelize(resultTweets)
+					AllTRDD = AllTRDD.union(rddT)
+
+          val batchTweetCount = rddT.count()
+          println(s"The amount of tweets loaded is $batchTweetCount")
+          val end = System.currentTimeMillis()
+          totalRecordCount += batchTweetCount
+          println(s"Took ${(end-start)/1000.0} seconds for This Batch.")
+          println(s"We have loaded $totalRecordCount tweets overall")
+        }
+      }
+      catch {
+        case e: Exception =>
+          println(e.printStackTrace())
+          println("Exception Encountered")
+          println(e.getMessage)
+          continueLoop = false
+      }
+
+    }
+
+
+    println(s"Total tweet record count:$totalRecordCount")
+    TresultScanner.close()
+    //val interactor = new HBaseInteraction(_tableName)
+
+
+		// scan over only the collection
+		val Wscan = new Scan()
+	  // MUST scan the column to filter using it... else it assumes column does not exist and will auto filter if setFilterIfMissing(true) is set.
+		Wscan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataCollectionNameCol));
+		Wscan.addColumn(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol));
+		Wscan.addColumn(Bytes.toBytes(_cleanWebpageColFam), Bytes.toBytes(_cleanWebpageTextCol));
+
+		//filter for only same collection, is tweet, has clean text, and not classified ... uncomment when table has the missing fields
+		val WfilterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+
+
+		println("Filter: Keeping Doc Type == webpage")
+		val filterWeb = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_metaDataTypeCol), CompareOp.EQUAL , Bytes.toBytes("webpage"));
+		filterWeb.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+		WfilterList.addFilter(filterWeb);
+
+		println("Filter: Keeping Clean Text != ''")
+		val filterNoCleanW = new SingleColumnValueFilter(Bytes.toBytes(_cleanWebpageColFam), Bytes.toBytes(_cleanWebpageTextCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));	//note compareOp vs compareOperator depending on hadoop version
+		filterNoCleanW.setFilterIfMissing(true);	//filter all rows that do not have clean text column
+		WfilterList.addFilter(filterNoCleanW);
+		
+		Wscan.setFilter(WfilterList);
+
+
+		// add caching to increase speed
+		Wscan.setCaching(2000)
+		val WresultScanner = srcTable.getScanner(Wscan)
+
+		println(s"Caching Info:${Wscan.getCaching} Batch Info: ${Wscan.getBatch}")
+		println("Scanning results now.")
+		
+		var AllWRDD : org.apache.spark.rdd.RDD[Tweet] = sc.emptyRDD;
+		
+		continueLoop = true
+		totalRecordCount = 0
+		while (continueLoop) {
+			try {
+				println("Getting next batch of results now.")
+				val start = System.currentTimeMillis()
+
+        val results = WresultScanner.next(2000)
+
+        if (results == null || results.isEmpty){
+					println("No more results from scan. Finishing...")
+					continueLoop = false
+				}
+        else {
+          println(s"Result Length:${results.length}")
+          val resultTweets = results.map(r => rowToWebpageConverter(r))
+          val rddT = sc.parallelize(resultTweets)
+					AllWRDD = AllWRDD.union(rddT)
+          val batchTweetCount = rddT.count()
+          println(s"The amount of webpages to loaded is $batchTweetCount")
+          val end = System.currentTimeMillis()
+          totalRecordCount += batchTweetCount
+          println(s"Took ${(end-start)/1000.0} seconds for This Batch.")
+          println(s"We have loaded $totalRecordCount webpages overall")
+        }
+      }
+      catch {
+        case e: Exception =>
+          println(e.printStackTrace())
+          println("Exception Encountered")
+          println(e.getMessage)
+          continueLoop = false
+      }
+    }
+
+    println(s"Total webpage record count:$totalRecordCount")
+    WresultScanner.close()
+		
+		//combine and train word2vec model!
+		AllTRDD = AllTRDD.union(AllWRDD)
+    
+		def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "");
+    def cleanTweetHtml(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText));
+    def cleanWord(str: String) = str.split(" ").map(_.trim.toLowerCase).filter(_.size > 0).map(_.replaceAll("\\W", "")).reduceOption((x, y) => s"$x $y");
+    def wordOnlySample(sample: Tweet) = sample copy (tweetText = cleanWord(sample.tweetText).getOrElse(""));
+
+    val cleanTrainingTweets = AllTRDD map cleanTweetHtml;
+
+    val wordOnlyTrainSample = cleanTrainingTweets map wordOnlySample
+
+    // Word2Vec
+    val samplePairs = wordOnlyTrainSample.map(s => s.id -> s)
+    val reviewWordsPairs: RDD[(String, Iterable[String])] = samplePairs.mapValues(_.tweetText.split(" ").toIterable)
+
+    val word2vecModel = new Word2Vec().fit(reviewWordsPairs.values)
+
+    return word2vecModel
+
+  }
+
+
+
 }
 

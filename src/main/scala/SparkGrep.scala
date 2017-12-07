@@ -7,7 +7,7 @@ package isr.project
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.mllib.classification.LogisticRegressionModel
-import org.apache.spark.mllib.feature.Word2VecModel
+import org.apache.spark.mllib.feature.{HashingTF, IDFModel, Word2Vec, Word2VecModel}
 import org.apache.spark.mllib.linalg.Word2VecClassifier
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -58,27 +58,32 @@ object SparkGrep {
 			var tableNameDest = args(3);
 			//train or classify
 			val start = System.currentTimeMillis()
+			val word2VecModelFile = "./data/" + tableNameSrc +"_table_w2v.model";
 			if(args(0) == "train"){
 				val conf = new SparkConf()
 				    .setMaster("local[*]")
 				    .setAppName("CLA-ModelTraining")
 				val sc = new SparkContext(conf);
 				if(args(1) == "w2v"){
-					val w2vModel = loadGoogleW2VBin("./data/GoogleNews-vectors-negative300.bin.gz")
-					w2vModel.save(sc, "./data/training/GoogleNews-vectors-negative300_w2v.model")
+					//val w2vModel = loadGoogleW2VBin("./data/GoogleNews-vectors-negative300.bin.gz")
+					//println("Saving W2V Model. Java OOM exception means need more driver memory (like >60G).")
+					//w2vModel.save(sc, "./data/GoogleNews-vectors-negative300_w2v.model")
+					//println("Model Saved!")
+					val w2vModel = DataRetriever.trainW2VOnTable(tableNameSrc, sc)
+					w2vModel.save(sc, word2VecModelFile)
 				}
 				else if(args(1) == "tweet"){
 					var tweetTrainingFile = ("./data/training/" + eventName + "_tweet_training.csv");	//TODO:ensure file ending is good
 					Word2VecClassifier._lrModelFilename = "./data/" + eventName + "_tweet_lr.model";
 					//Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_tweet_w2v.model";
-					Word2VecClassifier._word2VecModelFilename = "./data/training/GoogleNews-vectors-negative300_w2v.model";
+					Word2VecClassifier._word2VecModelFilename = word2VecModelFile;
 					TrainTweetModels(tweetTrainingFile, Word2VecClassifier._word2VecModelFilename, sc);	//TODO: File formatting must match when we make the training/testing files...
 				}
 				else if(args(1) == "webpage"){
 					var websiteTrainingFile = ("./data/training/" + eventName + "_webpage_training.csv");	//TODO:ensure file ending is good
 					Word2VecClassifier._lrModelFilename = "./data/" + eventName + "_webpage_lr.model";
 					//Word2VecClassifier._word2VecModelFilename = "./data/" + eventName + "_webpage_w2v.model";
-					Word2VecClassifier._word2VecModelFilename = "./data/training/GoogleNews-vectors-negative300_w2v.model";
+					Word2VecClassifier._word2VecModelFilename = word2VecModelFile;
 					TrainWebpageModelsBasedTweet(tableNameSrc,websiteTrainingFile, Word2VecClassifier._word2VecModelFilename, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 			}
@@ -287,7 +292,7 @@ object SparkGrep {
         maxLab = maxLab + 1
       }
     })
-    file.map(x => x.split(",", 4)).map(x => Tweet(x(0),x(1), labelMap.get(x(2))))
+    file.map(x => x.split(",", 3)).filter(y => y.length == 3).map(x => Tweet(x(0),x(1), labelMap.get(x(2))))
   }
 
    def PerformPrediction(sc: SparkContext, word2VecModel: Word2VecModel, logisticRegressionModel: LogisticRegressionModel, cleaned_testTweetsRDD: RDD[Tweet]) = {
@@ -346,17 +351,21 @@ object SparkGrep {
 		  }
 		  str.toString
 		}
+    println("Generating input Google W2V .bin.gz file stream")
 		val inputStream: DataInputStream = new DataInputStream(new GZIPInputStream(new FileInputStream(file)))
 		try {
 		  val header = readUntil(inputStream, '\n')
 		  val (records, dimensions) = header.split(" ") match {
 		    case Array(records, dimensions) => (records.toInt, dimensions.toInt)
 		  }
+			println("Reading and Training new W2V model...Will take 10~20 minutes on cluster")
 		  val w2vModel = new Word2VecModel((0 until records).toArray.map(recordIndex => {
 		    readUntil(inputStream, ' ') -> (0 until dimensions).map(dimensionIndex => {
 		      java.lang.Float.intBitsToFloat(java.lang.Integer.reverseBytes(inputStream.readInt()))
 		    }).toArray
-		  }).toMap)
+		  }).toMap	
+			)
+			println("W2V model trained")
 			return w2vModel
 		} finally {
 		  inputStream.close()
