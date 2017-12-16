@@ -33,7 +33,7 @@ object SparkGrep {
   def main(args: Array[String]) {
 		if(args.length >= 8){
 			//ensure correct usage
-			if(args(0) != "train" && args(0) != "classify" && args(0) != "label"){
+			if(args(0) != "train" && args(0) != "classify" && args(0) != "label" && args(0) != "testAcc"){
 				System.err.println("Usage Error: args(0) != 'train' or 'classify' or 'label'");
       	System.exit(1);
 			}
@@ -87,6 +87,16 @@ object SparkGrep {
 					TrainWebpageModelsBasedTweet(tableNameSrc,websiteTrainingFile, Word2VecClassifier._word2VecModelFilename, sc)  //TODO: Don't combine csv file anymore... don't random pick train:test data
 				}
 			}
+            else if(args(0) == "testAcc"){
+				val conf = new SparkConf()
+				.setMaster("local[*]")
+				.setAppName("HBaseProductExperiments")
+				val sc = new SparkContext(conf)
+                println("Testing Our classifier Accuracy")
+                val trainingTweets = DataRetriever.getTweetToTestAcc(sc, args(2), args(5), args(3).toInt)
+                trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/testAccuracy/" + args(4) + "_acc_test.csv")
+
+            }
 			else if(args(0) == "classify"){
 				Logger.getLogger("org").setLevel(Level.OFF)
 				Logger.getLogger("akka").setLevel(Level.OFF)
@@ -112,7 +122,7 @@ object SparkGrep {
 				}
 				else{
 					println("Labeling Tweet Training Data")
-					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(5), 500)
+					val trainingTweets = DataRetriever.getTrainingTweets(sc, args(2), args(5), args(3).toInt)
 					trainingTweets.map(tweet => tweetToCSVLine(tweet)).saveAsTextFile("./data/training/" + args(4) + "_tweet_training.csv")
 				}
 			}

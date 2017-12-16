@@ -379,6 +379,160 @@ object DataRetriever {
 	//////////////////////////////////
 
 
+	def getTweetToTestAcc(sc:SparkContext, _tableName:String, collectionName:String, tweetLimit:Int): RDD[Tweet] = {
+		val _cleanTweetColFam: String = "clean-tweet"
+		val _tweetColFam : String =     "tweet"
+		val _metadataColFam : String = "metadata"
+        val _claColFam : String = "classification"
+
+		val _cleanTweetCol : String =   "clean-text-cla"
+		val _tweetCol : String =        "text"
+		val _peopleCol : String =       "sner-people"
+		val _locationsCol : String =    "sner-location"
+		val _orgCol : String =          "sner-organizations"  
+		val _hashtagsCol : String =     "hashtags"
+		val _longurlCol : String =      "long-url"
+		val _collectionNameCol : String = 	"collection-name"
+		val _docTypeCol : String = 			"doc-type"
+        val _rtCol : String =           "rt"
+        val _claListCol : String = "classification-list"
+        val _claProCol : String = "probability-list"
+
+		val connection = ConnectionFactory.createConnection()
+		val table = connection.getTable(TableName.valueOf(_tableName))
+		val scanner = new Scan()
+		scanner.addColumn(Bytes.toBytes(_tweetColFam),Bytes.toBytes(_tweetCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+		scanner.addColumn(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_rtCol))
+		scanner.addColumn(Bytes.toBytes(_metadataColFam), Bytes.toBytes(_docTypeCol))
+		scanner.addColumn(Bytes.toBytes(_metadataColFam), Bytes.toBytes(_collectionNameCol))
+		scanner.addColumn(Bytes.toBytes(_claColFam), Bytes.toBytes(_claListCol))
+		scanner.addColumn(Bytes.toBytes(_claColFam), Bytes.toBytes(_claProCol))
+
+		//filter for tweets and same collection name
+		val filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+
+		println("Filter: Keeping Collection Name == " + collectionName)
+		val filterCollect = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_collectionNameCol), CompareOp.EQUAL , Bytes.toBytes(collectionName));
+		filterCollect.setFilterIfMissing(true);	//filter all rows that do not have a collection name
+		filterList.addFilter(filterCollect);
+
+		println("Filter: Keeping Doc Type == tweet")
+		val filterTweet = new SingleColumnValueFilter(Bytes.toBytes(_metaDataColFam), Bytes.toBytes(_docTypeCol), CompareOp.EQUAL , Bytes.toBytes("tweet"));
+		filterTweet.setFilterIfMissing(true);	//filter all rows that are not marked as tweets
+		filterList.addFilter(filterTweet);
+
+        val filterEmptyCleanText = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol), CompareOp.NOT_EQUAL , Bytes.toBytes(""));
+		filterEmptyCleanText.setFilterIfMissing(true);	//filter all rows without a clean text tweet
+		filterList.addFilter(filterEmptyCleanText);
+
+        val filterRT = new SingleColumnValueFilter(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_rtCol), CompareOp.EQUAL , Bytes.toBytes("false"));
+		filterRT.setFilterIfMissing(true);	//filter all rows with RT flag
+		filterList.addFilter(filterRT);
+
+
+		scanner.setFilter(filterList);
+
+        var TP_tweet:Int = 0
+        var FP_tweet:Int = 0
+        var TN_tweet:Int = 0
+        var FN_tweet:Int = 0
+
+        var tweet_count:Int = 0
+        var resultScanner = table.getScanner(scanner)
+        var listTweet = new ListBuffer[Tweet]()
+        var continueLoop = true
+        var totalRecordCount: Long = 0
+        while (continueLoop) {
+          try {
+            val result = resultScanner.next(100)
+            if (result == null || result.isEmpty){
+                println("No more results from scan. Finishing...")
+              continueLoop = false
+                    }
+            else {
+              val textcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_cleanTweetCol))
+              val rawcell = result(0).getColumnLatestCell(Bytes.toBytes(_tweetColFam), Bytes.toBytes(_tweetCol))
+              val peoplecell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_peopleCol))
+              val locationcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_locationsCol))
+              val orgcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_orgCol))
+              val hashtagcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_hashtagsCol))
+              val longurlcell = result(0).getColumnLatestCell(Bytes.toBytes(_cleanTweetColFam), Bytes.toBytes(_longurlCol))
+              val clalistcell = result(0).getColumnLatestCell(Bytes.toBytes(_claColFam), Bytes.toBytes(_claListCol))
+              val claprocell = result(0).getColumnLatestCell(Bytes.toBytes(_claColFam), Bytes.toBytes(_claProCol))
+              
+
+
+              val words = if(textcell != null) Bytes.toString(textcell.getValueArray, textcell.getValueOffset, textcell.getValueLength) else ""
+              val people = if(peoplecell != null)	Bytes.toString(peoplecell.getValueArray, peoplecell.getValueOffset, peoplecell.getValueLength) else ""
+              val locations = if(locationcell != null) Bytes.toString(locationcell.getValueArray, locationcell.getValueOffset, locationcell.getValueLength) else ""
+              val orgs = if(orgcell != null) Bytes.toString(orgcell.getValueArray, orgcell.getValueOffset, orgcell.getValueLength) else ""
+              val hashtags = if(hashtagcell != null) Bytes.toString(hashtagcell.getValueArray, hashtagcell.getValueOffset, hashtagcell.getValueLength) else ""
+              val raw_longurl = if(longurlcell != null) Bytes.toString(longurlcell.getValueArray, longurlcell.getValueOffset, longurlcell.getValueLength) else ""
+              val claList = if(clalistcell != null) Bytes.toString(clalistcell.getValueArray, clalistcell.getValueOffset, clalistcell.getValueLength) else ""
+              val claPro = if(claprocell != null) Bytes.toString(claprocell.getValueArray, claprocell.getValueOffset, claprocell.getValueLength) else ""
+
+
+
+              val longurl = raw_longurl.replaceAll("""<(?!\/?a(?=>|\s.*>))\/?.*?>""","")
+              val combinewords = "[" + claList + "] [" + claPro + "]"
+
+
+              println ("NUMBER OF LABELED TWEETS: " + tweet_count + " / "+tweetLimit)
+              println ("Key: 1 => True Positive; 2 => False Positive; 3 => True Negative; 4 => False Negative")
+              
+
+              val rawwords = if(rawcell != null) Bytes.toString(rawcell.getValueArray, rawcell.getValueOffset, rawcell.getValueLength) else ""
+              var key = Bytes.toString(result(0).getRow())
+              println("For This tweet: "+rawwords)
+              println("We label it as: "+combinewords)
+              val label = Console.readInt().toDouble
+              if (label == 1.0){
+                TP_tweet += 1
+              }
+              else if (label == 2.0){
+                FP_tweet += 1
+              }
+              else if (label == 3.0){
+                TN_tweet += 1
+              }
+              else {
+                FN_tweet += 1
+              }
+
+              println("")
+              tweet_count = tweet_count + 1;
+              listTweet += Tweet(key, rawwords + " | " + combinewords, Option(label))
+              if (tweet_count >= tweetLimit){
+                continueLoop = false
+              }
+            }
+          }
+          catch {
+            case e: Exception =>
+              println(e.printStackTrace())
+              println("Exception Encountered")
+              println(e.getMessage)
+              continueLoop = false
+          }
+        }
+        println("================TEST RESULTS=====================")
+        println("TP Classified Tweets: "+TP_tweet+ " out of " + tweet_count)
+        println("FP Classified Tweets: "+FP_tweet+ " out of " + tweet_count)
+        println("TN Classified Tweets: "+TN_tweet+ " out of " + tweet_count)
+        println("FN Classified Tweets: "+FN_tweet+ " out of " + tweet_count)
+		sc.parallelize(listTweet.toList)
+    }
+
+/////////////////////////////////////////
+	//////////////////////////////////
+
+
 	def getTrainingTweets(sc:SparkContext, _tableName:String, collectionName:String, tweetLimit:Int): RDD[Tweet] = {
 		val _cleanTweetColFam: String = "clean-tweet"
 		val _tweetColFam : String =     "tweet"

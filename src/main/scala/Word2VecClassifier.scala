@@ -42,7 +42,7 @@ object Word2VecClassifier{
     var bcWord2VecModelFilename = sc.broadcast(this._word2VecModelFilename)
     var bcLRClassifierModelFilename = sc.broadcast(this._lrModelFilename)
 
-    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
+    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", " ")
 
     def cleanTweetHtml(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 
@@ -97,7 +97,7 @@ object Word2VecClassifier{
     var bcWord2VecModelFilename = sc.broadcast(this._word2VecModelFilename)
     var bcLRClassifierModelFilename = sc.broadcast(this._lrModelFilename)
 
-    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
+    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", " ")
 
     def cleanTweetHtml(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 
@@ -149,7 +149,7 @@ object Word2VecClassifier{
     //val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     //val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
 
-    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
+    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", " ")
 
     def cleanTweetHtml(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 
@@ -212,7 +212,7 @@ object Word2VecClassifier{
     //val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     //val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
 
-    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
+    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", " ")
 
     def cleanTweetHtmlC(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 
@@ -285,7 +285,7 @@ object Word2VecClassifier{
     //val bcWord2VecModelFilename = sc.broadcast(_word2VecModelFilename)
     //val bcLRClassifierModelFilename = sc.broadcast(_lrModelFilename)
 
-    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
+    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", " ")
 
     def cleanTweetHtml(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 
@@ -381,7 +381,7 @@ object Word2VecClassifier{
     val testTweets = testFile map toTweet
 
     // Clean Html
-    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", "")
+    def cleanHtml(str: String) = str.replaceAll( """<(?!\/?a(?=>|\s.*>))\/?.*?>""", " ")
 
     def cleanTweetHtml(sample: Tweet) = sample copy (tweetText = cleanHtml(sample.tweetText))
 

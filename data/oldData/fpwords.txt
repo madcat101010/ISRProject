@@ -1,6 +1,0 @@
-This file contains words.
-This file has many lines.
-This file is supposed to contain a list of tweets.
-We will analyze those tweets for frequent patterns.
-Based on the frequent patterns that are generated for a topic collection, we will select a top-k out of them.
-Once we generate the top-k FPMs, we can generate features out of those based on the presence of those frequent patterns in the tweet.

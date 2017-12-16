@@ -1,4 +1,0 @@
-import sys
-for line in sys.stdin.readlines():
-	l = line.split(';')
-	print('|'.join(l).strip())
