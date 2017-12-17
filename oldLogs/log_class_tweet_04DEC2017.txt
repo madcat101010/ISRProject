@@ -1,0 +1,752 @@
+building the project
+running the script on tweet solar eclipsed collection with block size hardcoded
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.005 seconds for Prediction.
+Filter: Keeping Collection Name == #Eclipse2017
+Filter: Keeping Doc Type == tweet
+Filter: Keeping Clean Text != ''
+Caching Info:20000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.13 seconds for This Batch.
+This batch had 20000 tweets. We have processed 20000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 46.132 seconds for This Batch.
+This batch had 20000 tweets. We have processed 40000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 48.448 seconds for This Batch.
+This batch had 20000 tweets. We have processed 60000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 51.162 seconds for This Batch.
+This batch had 20000 tweets. We have processed 80000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 55.571 seconds for This Batch.
+This batch had 20000 tweets. We have processed 100000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 76.501 seconds for This Batch.
+This batch had 20000 tweets. We have processed 120000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 56.976 seconds for This Batch.
+This batch had 20000 tweets. We have processed 140000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.079 seconds for This Batch.
+This batch had 20000 tweets. We have processed 160000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.151 seconds for This Batch.
+This batch had 20000 tweets. We have processed 180000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 55.386 seconds for This Batch.
+This batch had 20000 tweets. We have processed 200000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.552 seconds for This Batch.
+This batch had 20000 tweets. We have processed 220000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.881 seconds for This Batch.
+This batch had 20000 tweets. We have processed 240000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 58.264 seconds for This Batch.
+This batch had 20000 tweets. We have processed 260000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 56.119 seconds for This Batch.
+This batch had 20000 tweets. We have processed 280000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 57.62 seconds for This Batch.
+This batch had 20000 tweets. We have processed 300000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 57.624 seconds for This Batch.
+This batch had 20000 tweets. We have processed 320000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 57.381 seconds for This Batch.
+This batch had 20000 tweets. We have processed 340000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 56.84 seconds for This Batch.
+This batch had 20000 tweets. We have processed 360000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.252 seconds for This Batch.
+This batch had 20000 tweets. We have processed 380000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 52.14 seconds for This Batch.
+This batch had 20000 tweets. We have processed 400000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 50.291 seconds for This Batch.
+This batch had 20000 tweets. We have processed 420000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 74.684 seconds for This Batch.
+This batch had 20000 tweets. We have processed 440000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.52 seconds for This Batch.
+This batch had 20000 tweets. We have processed 460000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.889 seconds for This Batch.
+This batch had 20000 tweets. We have processed 480000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 52.124 seconds for This Batch.
+This batch had 20000 tweets. We have processed 500000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.927 seconds for This Batch.
+This batch had 20000 tweets. We have processed 520000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.999 seconds for This Batch.
+This batch had 20000 tweets. We have processed 540000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 55.942 seconds for This Batch.
+This batch had 20000 tweets. We have processed 560000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 58.842 seconds for This Batch.
+This batch had 20000 tweets. We have processed 580000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 63.051 seconds for This Batch.
+This batch had 20000 tweets. We have processed 600000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 63.521 seconds for This Batch.
+This batch had 20000 tweets. We have processed 620000 tweets overall
+Getting next batch of results now.
+Result Length:19993
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 19993
+Took 83.275 seconds for This Batch.
+This batch had 19993 tweets. We have processed 639993 tweets overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:639993
+Took 1839.781 seconds for the whole process.
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.005 seconds for Prediction.
+Filter: Keeping Collection Name == #Eclipse
+Filter: Keeping Doc Type == tweet
+Filter: Keeping Clean Text != ''
+Caching Info:20000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 64.903 seconds for This Batch.
+This batch had 20000 tweets. We have processed 20000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.189 seconds for This Batch.
+This batch had 20000 tweets. We have processed 40000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.111 seconds for This Batch.
+This batch had 20000 tweets. We have processed 60000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.872 seconds for This Batch.
+This batch had 20000 tweets. We have processed 80000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 52.707 seconds for This Batch.
+This batch had 20000 tweets. We have processed 100000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.214 seconds for This Batch.
+This batch had 20000 tweets. We have processed 120000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 52.184 seconds for This Batch.
+This batch had 20000 tweets. We have processed 140000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 50.32 seconds for This Batch.
+This batch had 20000 tweets. We have processed 160000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 49.755 seconds for This Batch.
+This batch had 20000 tweets. We have processed 180000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 49.034 seconds for This Batch.
+This batch had 20000 tweets. We have processed 200000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.569 seconds for This Batch.
+This batch had 20000 tweets. We have processed 220000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 60.408 seconds for This Batch.
+This batch had 20000 tweets. We have processed 240000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.97 seconds for This Batch.
+This batch had 20000 tweets. We have processed 260000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 54.102 seconds for This Batch.
+This batch had 20000 tweets. We have processed 280000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 53.709 seconds for This Batch.
+This batch had 20000 tweets. We have processed 300000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 63.051 seconds for This Batch.
+This batch had 20000 tweets. We have processed 320000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 63.347 seconds for This Batch.
+This batch had 20000 tweets. We have processed 340000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 60.1 seconds for This Batch.
+This batch had 20000 tweets. We have processed 360000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 59.297 seconds for This Batch.
+This batch had 20000 tweets. We have processed 380000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 74.713 seconds for This Batch.
+This batch had 20000 tweets. We have processed 400000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 56.205 seconds for This Batch.
+This batch had 20000 tweets. We have processed 420000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 56.35 seconds for This Batch.
+This batch had 20000 tweets. We have processed 440000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 74.198 seconds for This Batch.
+This batch had 20000 tweets. We have processed 460000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 57.992 seconds for This Batch.
+This batch had 20000 tweets. We have processed 480000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 59.144 seconds for This Batch.
+This batch had 20000 tweets. We have processed 500000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 55.897 seconds for This Batch.
+This batch had 20000 tweets. We have processed 520000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 59.553 seconds for This Batch.
+This batch had 20000 tweets. We have processed 540000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 60.914 seconds for This Batch.
+This batch had 20000 tweets. We have processed 560000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 57.189 seconds for This Batch.
+This batch had 20000 tweets. We have processed 580000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 48.7 seconds for This Batch.
+This batch had 20000 tweets. We have processed 600000 tweets overall
+Getting next batch of results now.
+Result Length:11356
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 11356
+Took 59.086 seconds for This Batch.
+This batch had 11356 tweets. We have processed 611356 tweets overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:611356
+Took 1785.69 seconds for the whole process.
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.004 seconds for Prediction.
+Filter: Keeping Collection Name == #solareclipse
+Filter: Keeping Doc Type == tweet
+Filter: Keeping Clean Text != ''
+Caching Info:20000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 70.13 seconds for This Batch.
+This batch had 20000 tweets. We have processed 20000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 55.712 seconds for This Batch.
+This batch had 20000 tweets. We have processed 40000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 59.802 seconds for This Batch.
+This batch had 20000 tweets. We have processed 60000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 60.101 seconds for This Batch.
+This batch had 20000 tweets. We have processed 80000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 66.562 seconds for This Batch.
+This batch had 20000 tweets. We have processed 100000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 64.237 seconds for This Batch.
+This batch had 20000 tweets. We have processed 120000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 66.94 seconds for This Batch.
+This batch had 20000 tweets. We have processed 140000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 82.785 seconds for This Batch.
+This batch had 20000 tweets. We have processed 160000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 94.317 seconds for This Batch.
+This batch had 20000 tweets. We have processed 180000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 68.879 seconds for This Batch.
+This batch had 20000 tweets. We have processed 200000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 73.727 seconds for This Batch.
+This batch had 20000 tweets. We have processed 220000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 76.522 seconds for This Batch.
+This batch had 20000 tweets. We have processed 240000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.001 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 78.733 seconds for This Batch.
+This batch had 20000 tweets. We have processed 260000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 75.05 seconds for This Batch.
+This batch had 20000 tweets. We have processed 280000 tweets overall
+Getting next batch of results now.
+Result Length:20000
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 20000
+Took 66.454 seconds for This Batch.
+This batch had 20000 tweets. We have processed 300000 tweets overall
+Getting next batch of results now.
+Result Length:10866
+*********** Predicting the tweets now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the tweets now. *****************
+The amount of tweets to be written is 10866
+Took 63.739 seconds for This Batch.
+This batch had 10866 tweets. We have processed 310866 tweets overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:310866
+Took 1133.475 seconds for the whole process.

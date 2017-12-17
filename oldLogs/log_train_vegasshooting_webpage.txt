@@ -1,0 +1,1317 @@
+building the project
+running the script on tweet solar eclipsed collection with block size hardcoded
+Number of classes is: 3
+Training website models using tweet methodology
+Training models
+ADDED:http://insider.foxnews.com/2017/10/03/retired-las-vegas-police-captain-massacre-how-prevent-mass-shootings-future-1509400889.67 | 2.0
+ADDED:http://www.chicagotribune.com/news/local/breaking/ct-las-vegas-mass-shooting-chicago-area-1003-20171002-story.html-1509400896.66 | 2.0
+ADDED:http://www.chicagotribune.com/news/nationworld/ct-las-vegas-shooter-motive-20171003-story.html-1509400900.33 | 2.0
+ADDED:http://www.chicagotribune.com/news/nationworld/ct-las-vegas-shooting-20171003-story.html-1509400903.89 | 2.0
+ADDED:http://www.foxnews.com/health/2017/10/03/during-las-vegas-shooting-heroes-risked-lives-to-save-others-in-kill-zone.html-1509400911.56 | 2.0
+ADDED:http://www.foxnews.com/health/2017/10/03/las-vegas-shooting-umc-had-trained-for-concert-venue-disaster.html-1509400914.22 | 2.0
+ADDED:http://www.foxnews.com/opinion/2017/10/02/las-vegas-attacks-unsung-heroes-say-prayer-thanks-for-our-first-responders.html-1509400916.84 | 2.0
+ADDED:http://www.foxnews.com/politics/2017/10/03/las-vegas-tragedy-shock-resignation-call-for-unity-and-instant-politicization.html-1509400919.44 | 2.0
+ADDED:http://www.foxnews.com/travel/2017/10/02/las-vegas-shooting-hotel-security-concern-expert-says-mandalay-bay-was-soft-target.html-1509400921.89 | 2.0
+ADDED:http://www.foxnews.com/travel/2017/10/03/las-vegas-shooting-security-experts-on-what-hotels-can-do-to-prevent-another-tragedy.html-1509400924.5 | 2.0
+ADDED:http://www.foxnews.com/us/2017/10/03/23-firearms-found-in-mandalay-bay-hotel-room-occupied-by-las-vegas-gunman.html-1509400927.1 | 2.0
+ADDED:http://www.foxnews.com/us/2017/10/03/acts-heroism-saved-countless-lives-at-las-vegas-shooting.html-1509400929.67 | 2.0
+ADDED:https://www.nytimes.com/2017/10/02/us/las-vegas-mass-shooting-weapons.html-1509400935.75 | 2.0
+ADDED:https://www.nytimes.com/2017/10/02/us/vegas-shooting-hospital.html-1509400939.78 | 2.0
+ADDED:https://www.nytimes.com/2017/10/03/arts/music/vegas-shooting-concert-security.html-1509400943.96 | 2.0
+ADDED:https://www.nytimes.com/2017/10/03/us/vegas-shooting-survivors.html-1509400951.97 | 2.0
+ADDED:https://www.washingtonpost.com/amphtml/news/post-nation/wp/2017/10/02/las-vegas-shooting-victims/-1509400955.73 | 2.0
+ADDED:https://www.washingtonpost.com/lifestyle/style/how-a-las-vegas-newspaper-quickly-mobilized-to-cover-a-tragedy/2017/10/02/c37149c0-a794-11e7-850e-2bdd1236be5d_story.html?utm_term=.b3083fd1457a-1509400961.0 | 2.0
+ADDED:https://www.washingtonpost.com/news/inspired-life/wp/2017/10/02/thousands-fled-the-hail-of-gunfire-in-las-vegas-these-people-stayed-to-try-to-save-lives/?utm_term=.6e0c0a1e900f-1509400966.21 | 2.0
+ADDED:https://www.washingtonpost.com/news/post-nation/wp/2017/10/03/new-details-emerge-about-las-vegas-shooter-stephen-paddock-and-girlfriend-marilou-danley-1509400968.73 | 2.0
+ADDED:https://www.washingtonpost.com/news/post-nation/wp/2017/10/03/new-details-emerge-about-las-vegas-shooter-stephen-paddock-and-girlfriend-marilou-danley/?utm_term=.2008845a0a97-1509400971.68 | 2.0
+ADDED:https://www.washingtonpost.com/news/true-crime/wp/2017/10/02/some-automatic-weapons-as-used-in-las-vegas-shooting-are-legal-but-heavily-regulated/?utm_term=.f68dafe96c63-1509400974.7 | 2.0
+ADDED:https://www.washingtonpost.com/world/national-security/las-vegas-gunman-used-heavy-weapons-tiny-cameras-to-carry-out-attack/2017/10/03/afeec518-a87e-11e7-b3aa-c0e2e1d41e38_story.html?utm_term=.498a4887078c-1509400977.92 | 2.0
+ADDED:https://www.nytimes.com/2017/10/02/us/politics/viral-claims-and-rumors-in-the-las-vegas-shooting.html-1509400996.92 | 2.0
+ADDED:https://www.nytimes.com/2017/10/03/arts/television/kimmel-vegas-shooting.html-1509401010.4 | 2.0
+ADDED:https://www.nytimes.com/2017/10/02/us/benjamin-paddock-stephen-paddock.html-1509401014.21 | 2.0
+ADDED:https://www.nytimes.com/2017/10/02/us/transcript-video-trump-las-vegas.html-1509401018.46 | 2.0
+ADDED:https://www.nytimes.com/2017/10/02/us/stephen-paddock-vegas-shooter.html-1509401022.33 | 2.0
+ADDED:https://www.nytimes.com/video/us/100000005472618/mass-shooting-in-las-vegas.html-1509401026.74 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/stephen-paddock-las-vegas-shooting-suspect-identified-n806471-1509401030.91 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/las-vegas-police-investigating-shooting-mandalay-bay-n806461-1509401033.48 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting-1509401041.06 | 2.0
+ADDED:http://www.nbcnews.com/storyline/las-vegas-shooting/las-vegas-shooting-live-updates-n806586-1509401045.06 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/las-vegas-shooter-seemed-use-machine-gun-how-n806786-1509401048.93 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/angry-democrats-demand-action-guns-after-las-vegas-shooting-n806561-1509401051.86 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/premature-talk-gun-control-white-house-says-after-vegas-shooting-n806831-1509401054.43 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/gabby-giffords-i-know-horror-too-well-n806691-1509401057.78 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/las-vegas-shooting-deadliest-modern-u-s-history-n806486-1509401060.33 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/trump-vegas-shooting-n806496-1509401063.03 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/two-nevada-gun-shops-say-stephen-paddock-passed-background-checks-n806921-1509401066.35 | 2.0
+ADDED:https://www.nbcnews.com/card/volunteers-line-donate-blood-vegas-n806816-1509401068.98 | 2.0
+ADDED:https://www.nbcnews.com/card/twitter-list-vegas-n806966-1509401071.79 | 2.0
+ADDED:https://www.nbcnews.com/card/ariana-grande-calls-gun-control-n806891-1509401075.56 | 2.0
+ADDED:https://www.nbcnews.com/card/watch-press-secretary-sarah-huckabee-sanders-las-vegas-shooting-n806811-1509401078.42 | 2.0
+ADDED:https://www.nbcnews.com/storyline/las-vegas-shooting/democrats-seek-ban-devices-boost-gun-rate-fire-n807456-1509401081.2 | 2.0
+ADDED:https://www.nbcnews.com/card/las-vegas-hospital-even-level-1-trauma-center-104-patients-n806741-1509401083.85 | 2.0
+ADDED:https://www.nbcnews.com/card/see-how-las-vegas-shooter-s-position-created-sniper-s-n806971-1509401087.4 | 2.0
+ADDED:https://www.nbcnews.com/politics/white-house/trump-vegas-shooting-n806496-1509401090.16 | 2.0
+ADDED:http://www.msnbc.com/msnbc-news/watch/suspect-down-after-las-vegas-shooting-1059556931580-1509401092.5 | 2.0
+ADDED:http://www.msnbc.com/morning-joe/watch/las-vegas-shooting-suspect-identified-1059597379715-1509401096.63 | 2.0
+ADDED:http://uk.businessinsider.com/las-vegas-shooting-reports-of-gunman-at-mandalay-bay-casino-2017-10-1509401100.82 | 2.0
+ADDED:http://uk.businessinsider.com/las-vegas-shooting-the-deadliest-in-us-history-2017-10-1509401103.51 | 2.0
+ADDED:http://uk.businessinsider.com/stephen-paddock-las-vegas-shooting-marilou-danley-2017-10-1509401105.97 | 2.0
+ADDED:http://uk.businessinsider.com/las-vegas-shooting-people-run-and-hide-as-shots-ring-out-at-country-music-festival-2017-10-1509401108.71 | 2.0
+ADDED:http://uk.businessinsider.com/trump-las-vegas-shooting-2017-10-1509401111.2 | 2.0
+ADDED:http://uk.businessinsider.com/las-vegas-shooting-jason-aldean-says-attack-beyond-horrific-2017-10-1509401113.96 | 2.0
+ADDED:http://www.businessinsider.com/category/las-vegas-shooting-1509401116.17 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-victims-names-off-duty-police-officer-2017-10-1509401119.75 | 2.0
+ADDED:http://www.businessinsider.com/what-was-stephen-paddock-motive-las-vegas-shooting-2017-10-1509401122.7 | 2.0
+ADDED:http://www.businessinsider.com/trump-response-las-vegas-mass-shooting-miracle-sick-demented-2017-10-1509401125.55 | 2.0
+ADDED:http://www.businessinsider.com/category/las-vegas-1509401127.81 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-terrorism-mass-shooting-2017-10-1509401130.47 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-freezer-2017-10-1509401133.07 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-reports-of-gunman-at-mandalay-bay-casino-2017-10-1509401135.59 | 2.0
+ADDED:http://www.businessinsider.com/watch-president-trump-statement-donald-the-las-vegas-mass-shooting-politics-2017-10-1509401138.02 | 2.0
+ADDED:http://www.businessinsider.com/trump-las-vegas-shooting-2017-10-1509401141.27 | 2.0
+ADDED:http://www.businessinsider.com/stephen-paddock-las-vegas-shooting-marilou-danley-2017-10-1509401143.54 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-gunman-paddock-hotel-mandalay-bay-shooting-2017-10-1509401146.22 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-jason-aldean-says-attack-beyond-horrific-2017-10-1509401148.63 | 2.0
+ADDED:http://www.businessinsider.com/nevada-gun-laws-las-vegas-shooting-2017-10-1509401151.14 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-mass-shooting-trump-speech-response-2017-10-1509401153.4 | 2.0
+ADDED:http://www.businessinsider.com/ap-gunman-who-killed-50-at-las-vegas-concert-was-retired-2017-10-1509401156.01 | 2.0
+ADDED:http://www.businessinsider.com/category/shooting-1509401158.5 | 1.0
+ADDED:http://www.businessinsider.com/how-many-mass-shootings-in-america-las-vegas-shooting-2017-10-1509401161.52 | 2.0
+ADDED:http://www.businessinsider.com/seth-moulton-las-vegas-shooting-moment-of-silence-gabby-giffords-2017-10-1509401164.09 | 2.0
+ADDED:http://www.businessinsider.com/eyewitnesses-describe-las-vegas-shooting-stephen-paddock-2017-10-1509401166.67 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-crowd-witness-stephen-paddock-2017-10-1509401169.28 | 2.0
+ADDED:http://www.businessinsider.com/hillary-clinton-nra-las-vegas-shooting-2017-10-1509401171.89 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-victims-how-to-help-go-fund-me-donate-2017-10-1509401174.12 | 2.0
+ADDED:http://www.businessinsider.com/obama-las-vegas-mass-shooting-senseless-tragedy-2017-10-1509401176.75 | 2.0
+ADDED:http://www.businessinsider.com/trump-tweet-warmest-condolences-las-vegas-shooting-2017-10-1509401179.05 | 2.0
+ADDED:http://www.businessinsider.com/donate-blood-las-vegas-shooting-victims-2017-10-1509401181.33 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-caleb-keeter-gun-control-2017-10-1509401183.58 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-british-morning-show-mariah-carey-interview-2017-10-1509401186.27 | 2.0
+ADDED:http://www.businessinsider.com/medical-groups-gun-control-las-vegas-shooting-2017-10-1509401188.8 | 2.0
+ADDED:http://www.businessinsider.com/james-corden-talks-las-vegas-shooting-difference-between-us-and-uk-2017-10-1509401191.46 | 2.0
+ADDED:http://www.businessinsider.com/why-does-isis-claim-terrorist-attacks-las-vegas-shooting-2017-10-1509401194.13 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-residents-fill-blood-donation-center-after-deadly-shooting-photos-2017-10-1509401197.07 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-mandalay-bay-photos-windows-smashed-2017-10-1509401199.67 | 2.0
+ADDED:http://www.businessinsider.com/where-americans-most-likely-die-gun-shots-las-vegas-shooting-2017-10-1509401201.93 | 2.0
+ADDED:http://www.businessinsider.com/stephen-paddock-las-vegas-shooter-shooting-family-2017-10-1509401204.41 | 2.0
+ADDED:http://www.businessinsider.com/isis-claims-responsibility-las-vegas-shooting-isis-2017-10-1509401207.47 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-steve-scalise-fortified-view-2nd-amendment-2017-10-1509401209.73 | 2.0
+ADDED:http://www.businessinsider.com/mark-kelly-gabby-giffords-speech-las-vegas-shooting-thoughts-prayers-2017-10-1509401212.46 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-casino-stocks-reaction-2017-10-1509401215.21 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-photos-show-stephen-paddock-guns-2017-10-1509401217.78 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooter-stephen-paddock-camera-rig-hotel-2017-10-1509401220.3 | 2.0
+ADDED:http://www.businessinsider.com/sarah-huckabee-sanders-las-vegas-shooting-trump-2017-10-1509401222.74 | 2.0
+ADDED:http://www.businessinsider.com/country-singer-jake-owen-shares-firsthand-account-las-vegas-shooting-2017-10-1509401225.22 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-paddock-gunman-mandalay-bay-hotel-guest-shaken-gunfire-2017-10-1509401229.13 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooter-stephen-paddock-dad-fbi-ten-most-wanted-list-2017-10-1509401231.62 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-cbs-hayley-geftman-gold-2017-10-1509401233.91 | 2.0
+ADDED:http://www.businessinsider.com/cbs-exec-hayley-geftman-gold-fired-las-vegas-victims-remarks-2017-10-1509401236.15 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-party-photos-over-time-2017-10-1509401238.72 | 1.0
+ADDED:http://www.businessinsider.com/disney-ceo-bob-iger-mourns-cast-member-killed-in-las-vegas-shooting-2017-10-1509401241.04 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-gunman-had-a-penchant-for-guns-poker-and-real-estate-2017-10-1509401243.52 | 2.0
+ADDED:http://www.businessinsider.com/stephen-colbert-asks-trump-to-pass-gun-legislation-after-las-vegas-2017-10-1509401246.26 | 2.0
+ADDED:http://www.businessinsider.com/country-music-stars-react-to-las-vegas-shooting-jason-aldean-carrie-underwood-2017-10-1509401248.89 | 2.0
+ADDED:http://www.businessinsider.com/jason-aldean-moving-tribute-after-shooting-at-his-las-vegas-concert-2017-10-1509401251.57 | 2.0
+ADDED:http://www.businessinsider.com/marilou-danley-sisters-las-vegas-gunman-stephen-paddock-sent-away-2017-10-1509401257.72 | 2.0
+ADDED:http://www.businessinsider.com/stephen-paddock-las-vegas-shooter-bought-33-firearms-last-year-2017-10-1509401260.25 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-the-deadliest-in-us-history-2017-10-1509401262.64 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-mass-shooting-police-body-camera-video-footage-2017-10-1509401265.23 | 2.0
+ADDED:http://www.businessinsider.com/stephen-paddock-las-vegas-shooter-gambling-habits-2017-10-1509401267.62 | 2.0
+ADDED:http://www.businessinsider.com/vegas-shooting-hero-2017-10-1509401269.92 | 2.0
+ADDED:http://www.businessinsider.com/trump-las-vegas-shoting-visiting-wednesday-2017-10-1509401272.35 | 2.0
+ADDED:http://www.businessinsider.com/category/go-fund-me-las-vegas-1509401274.56 | 2.0
+ADDED:http://www.businessinsider.com/ap-citing-vegas-shooting-film-premieres-cancelled-scaled-back-2017-10-1509401276.91 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-people-run-and-hide-as-shots-ring-out-at-country-music-festival-2017-10-1509401279.32 | 2.0
+ADDED:http://www.businessinsider.com/stephen-paddock-las-vegas-shooting-weapons-vantage-point-room-2017-10-1509401284.4 | 2.0
+ADDED:http://www.businessinsider.com/a-womans-iphone-stopped-a-bullet-in-the-las-vegas-shooting-2017-10-1509401286.96 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-hero-veteran-stole-truck-hospital-saved-lives-2017-10-1509401289.46 | 2.0
+ADDED:http://www.businessinsider.com/bump-stocks-las-vegas-shooting-gun-control-2017-10-1509401291.88 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-chance-the-rapper-lorde-concert-2017-10-1509401294.23 | 2.0
+ADDED:http://www.businessinsider.com/starbucks-barista-las-vegas-shooter-abusive-to-girlfriend-2017-10-1509401296.41 | 2.0
+ADDED:http://www.businessinsider.com/a-brewers-prospect-protected-two-women-during-the-vegas-shooting-2017-10-1509401298.81 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-tourist-landmarks-go-dark-in-honour-of-victims-2017-10-1509401301.28 | 2.0
+ADDED:http://www.businessinsider.com/miley-cyrus-and-adam-sandler-sing-no-freedom-tribute-to-las-vegas-victims-on-fallon-2017-10-1509401303.85 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-video-shows-mandalay-bay-suite-after-swat-teams-2017-10-1509401306.4 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-dan-bilzerian-caught-up-in-mandalay-bay-2017-10-1509401309.02 | 2.0
+ADDED:http://www.businessinsider.com/mandalay-bay-hotel-room-las-vegas-shooter-suite-2017-10-1509401311.58 | 2.0
+ADDED:http://www.businessinsider.com/americans-gun-control-beliefs-las-vegas-shooting-polls-surveys-2017-10-1509401314.3 | 2.0
+ADDED:http://www.businessinsider.com/hospital-called-air-force-surgeons-over-las-vegas-shooting-wounds-2017-10-1509401316.75 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-marine-vet-criticizes-instagram-star-dan-bilzerian-2017-10-1509401319.31 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-shooting-miley-cyrus-adam-sandler-perform-tribute-on-jimmy-fallon-2017-10-1509401321.94 | 2.0
+ADDED:http://www.businessinsider.com/caleb-keeter-good-guy-with-a-gun-mass-shooter-vegas-2017-10-1509401324.38 | 2.0
+ADDED:http://www.businessinsider.com/timeline-shows-exactly-how-the-las-vegas-massacre-unfolded-2017-10-1509401326.67 | 2.0
+ADDED:http://www.businessinsider.com/how-ammonium-nitrate-explodes-las-vegas-shooter-car-stephen-paddock-2017-10-1509401329.44 | 2.0
+ADDED:http://www.businessinsider.com/las-vegas-mayor-responds-to-shooter-stephen-paddock-in-fiery-statement-2017-10-1509401331.97 | 2.0
+ADDED:http://www.businessinsider.com/r-las-vegas-rampage-could-prompt-casinos-to-re-think-security-experts-2017-10-1509401334.22 | 2.0
+ADDED:http://www.businessinsider.com/jimmy-kimmel-cries-emotional-monologue-gun-control-las-vegas-2017-10-1509401336.92 | 2.0
+ADDED:http://www.businessinsider.com/category/mass-shooting-1509401339.47 | 1.0
+ADDED:http://uk.businessinsider.com/what-was-stephen-paddock-motive-las-vegas-shooting-2017-10-1509401342.46 | 2.0
+ADDED:http://www.businessinsider.com/deadliest-mass-shootings-in-us-history-2017-10-1509401344.97 | 2.0
+ADDED:http://www.businessinsider.com/category/mass-shootings-1509401347.81 | 1.0
+ADDED:http://uk.businessinsider.com/las-vegas-shooting-victims-names-off-duty-police-officer-2017-10-1509401350.67 | 2.0
+ADDED:http://www.businessinsider.com/christopher-roybal-last-facebook-post-us-navy-afghanistan-deployment-2017-10-1509401353.72 | 2.0
+ADDED:http://www.msnbc.com/rachel-maddow/watch/where-to-donate-blood-for-las-vegas-shooting-victims-1060279875565-1509401356.08 | 2.0
+ADDED:https://www.nytimes.com/2017/10/04/us/police-response-mass-shootings.html-1509401359.92 | 2.0
+ADDED:https://www.nytimes.com/2017/10/03/us/las-vegas-victims-names.html-1509401367.89 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-shooting-congress-reacts-to-massacre-1509401381.35 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-mandalay-bay-shooting-witness-it-was-just-chaos-1509401386.15 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-shooting-suspects-family-shocked-horrified-completely-dumbfounded-1509401390.69 | 2.0
+ADDED:https://www.cbsnews.com/news/donald-trump-las-vegas-shooting-trump-statement-1509401401.64 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-shooting-isis-claim-no-proof-stephen-paddock-linked-terror-group-1509401405.9 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-shooting-where-the-investigation-will-turn-next-1509401416.99 | 2.0
+ADDED:https://www.cbsnews.com/feature/las-vegas-shooting-1509401421.6 | 2.0
+ADDED:https://www.cbsnews.com/feature/las-vegas-shooting/2-1509401426.26 | 2.0
+ADDED:https://www.cbsnews.com/feature/las-vegas-shooting/3-1509401430.91 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting-1509401433.67 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/10-1509401436.73 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/11-1509401440.85 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/12-1509401444.52 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/13-1509401448.63 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/14-1509401452.73 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/15-1509401456.84 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/16-1509401461.0 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/17-1509401465.37 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/18-1509401469.0 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/19-1509401472.69 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/2-1509401475.59 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/20-1509401478.69 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/21-1509401483.12 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/22-1509401486.72 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/23-1509401490.73 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/24-1509401494.27 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/25-1509401497.97 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/26-1509401502.06 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/27-1509401505.78 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/28-1509401510.05 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/29-1509401514.23 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/3-1509401518.45 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/30-1509401522.77 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/4-1509401525.47 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/5-1509401528.96 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/6-1509401531.86 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/7-1509401535.99 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/8-1509401540.17 | 2.0
+ADDED:https://www.cbsnews.com/pictures/las-vegas-mandalay-bay-shooting/9-1509401545.19 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-shooting-suspects-dad-was-on-fbi-ten-most-wanted-half-a-century-ago-1509401550.72 | 2.0
+ADDED:https://www.cbsnews.com/news/report-u-s-averages-nearly-one-mass-shooting-per-day-so-far-in-2017-1509401555.91 | 2.0
+ADDED:https://www.cbsnews.com/news/las-vegas-shooting-gofundme-campaign-reaches-millions-1509401563.5 | 2.0
+ADDED:https://www.nytimes.com/video/us/100000005473223/las-vegas-shooting-guns.html-1509401565.91 | 2.0
+ADDED:https://commons.wikimedia.org/wiki/Category:Las_Vegas_Strip_shooting-1509401568.32 | 2.0
+ADDED:http://uk.businessinsider.com/isis-claims-responsibility-las-vegas-shooting-isis-2017-10-1509401570.87 | 2.0
+ADDED:http://www.latimes.com/nation/la-las-vegas-shooting-live-updates-paddock-had-19-rifles-in-room-1506985512-htmlstory.html-1509401573.16 | 2.0
+ADDED:http://www.cnn.com/2017/10/02/politics/donald-trump-las-vegas-shooting-remarks/index.html-1509401580.28 | 2.0
+ADDED:http://uk.businessinsider.com/timeline-shows-exactly-how-the-las-vegas-massacre-unfolded-2017-10-1509401582.9 | 2.0
+ADDED:https://www.nytimes.com/2017/10/04/us/politics/trump-las-vegas-mass-shooting.html-1509401585.82 | 2.0
+ADDED:http://www.businessinsider.com/gun-death-statistics-assault-mass-shootings-accidents-2017-10-1509401589.51 | 2.0
+ADDED:http://www.businessinsider.com/portishead-shooting-bristol-motorway-spencer-ashworth-2017-10-1509401593.33 | 1.0
+ADDED:https://www.washingtonpost.com/news/morning-mix/wp/2017/10/02/police-shut-down-part-of-las-vegas-strip-due-to-shooting-1509401595.94 | 2.0
+ADDED:http://www.latimes.com/nation/la-na-las-vegas-airport-delays-shooting-20171002-story.html-1509401601.91 | 2.0
+ADDED:http://www.latimes.com/local/lanow/la-na-las-vegas-shooting-videos-20171002-story.html-1509401604.83 | 2.0
+ADDED:http://www.latimes.com/nation/la-na-las-vegas-mandalay-bay-20171001-story.html-1509401607.71 | 2.0
+ADDED:http://www.latimes.com/nation/la-na-las-vegas-shooting-videos-20171002-story.html-1509401610.36 | 2.0
+ADDED:http://www.latimes.com/nation/la-na-shooting-bulletin-20171002-story.html-1509401612.67 | 2.0
+ADDED:http://www.latimes.com/nation/la-na-las-vegas-deadly-shooting-20171002-story.html-1509401616.05 | 2.0
+ADDED:http://www.latimes.com/nation/os-stephen-paddock-las-vegas-shooter-brother-20171002-story.html-1509401619.98 | 2.0
+ADDED:http://www.latimes.com/nation/la-na-witnesses-las-vegas-shooting-20171002-story.html-1509401623.11 | 2.0
+ADDED:http://www.latimes.com/opinion/editorials/la-ed-las-vegas-shooting-20171002-story.html-1509401626.16 | 2.0
+ADDED:http://www.latimes.com/local/lanow/la-me-ln-bakersfield-vegas-shooting-20171002-story.html-1509401629.44 | 2.0
+ADDED:http://www.orlandosentinel.com/news/ct-las-vegas-shooting-20171001-story.html-1509401633.45 | 2.0
+ADDED:http://www.orlandosentinel.com/news/nationworld/os-who-is-stephen-paddock-las-vegas-1002-story.html-1509401636.97 | 2.0
+ADDED:http://www.thisisinsider.com/las-vegas-shooting-reports-of-gunman-at-mandalay-bay-casino-2017-10-1509401643.24 | 2.0
+ADDED:https://www.theguardian.com/us-news/live/2017/oct/02/las-vegas-two-dead-in-mandalay-bay-casino-shooting-latest-updates-1509401645.87 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting-1509401649.5 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-1509401652.48 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-shooting-what-we-know-so-far-1509401655.73 | 2.0
+ADDED:https://www.theguardian.com/us-news/live/2017/oct/03/las-vegas-shooting-trump-puerto-rico-live-updates-1509401659.08 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-shooting-how-it-happened-1509401662.71 | 2.0
+ADDED:https://www.theguardian.com/us-news/gallery/2017/oct/03/las-vegas-shooting-aftermath-in-pictures-1509401665.87 | 2.0
+ADDED:https://www.theguardian.com/commentisfree/2017/oct/03/mourn-las-vegas-shooting-gun-control-1509401669.19 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-suspect-stephen-paddock-gun-semi-automatic-1509401673.87 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-suspect-weapons-guns-explosives-1509401676.87 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/mesquite-nevada-las-vegas-shooting-suspect-1509401680.04 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-shooting-university-of-texas-tower-1509401682.87 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-shooting-mood-at-mandalay-bay-hotel-1509401685.89 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/stephen-paddock-named-las-vegas-shooting-suspect-1509401688.67 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-shooting-hysteria-witnesses-1509401691.73 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/donald-trump-condolences-las-vegas-shooting-1509401695.02 | 2.0
+ADDED:https://www.theguardian.com/commentisfree/2017/oct/02/las-vegas-america-gun-control-choice-1509401697.86 | 2.0
+ADDED:https://www.theguardian.com/us-news/gallery/2017/oct/02/vegas-shooting-route-91-music-festival-attack-in-pictures-1509401700.52 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-gun-control-caleb-keeter-josh-abbott-band-1509401703.68 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-shooting-facebook-google-fake-news-shooter-1509401706.48 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/las-vegas-active-shooter-harvest-country-music-festival-1509401709.78 | 2.0
+ADDED:https://www.theguardian.com/world/2017/oct/02/have-you-been-affected-by-the-shooting-in-las-vegas-1509401712.58 | 2.0
+ADDED:https://www.theguardian.com/music/2017/oct/02/jason-aldean-las-vegas-shooting-route-91-harvest-festival-1509401715.39 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/las-vegas-shooting-community-recovers-volunteer-blood-drive-1509401719.99 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/donald-trump-gun-control-discuss-las-vegas-1509401722.74 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/las-vegas-shooting-scene-at-the-hospital-1509401725.51 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/las-vegas-shooting-gun-control-genghis-cohen-1509401728.67 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/las-vegas-shooting-girlfriend-marilou-danley-person-of-interest-sheriff-1509401731.47 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/04/donald-trump-visit-las-vegas-shooting-gun-control-democrats-1509401734.16 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/04/who-is-marilou-danley-girlfriend-of-the-las-vegas-gunman-1509401736.99 | 2.0
+ADDED:https://www.theguardian.com/us-news/ng-interactive/2017/oct/02/america-mass-shootings-gun-violence-1509401739.69 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas/2017/oct/02/all-1509401742.92 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas/2017/oct/03/all-1509401746.13 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas/2017/oct/04/all-1509401749.23 | 2.0
+ADDED:https://www.theguardian.com/commentisfree/2017/oct/03/gun-control-las-vegas-laws-jihadist-terrorism-1509401751.78 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/gun-control-america-failed-las-vegas-1509401754.43 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/jun/12/orlando-shooting-one-year-anniversary-pulse-nightclub-1509401757.22 | 1.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/04/las-vegas-shooter-stephen-paddock-intelligent-gambler-gun-rights-1509401759.99 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/nevada-gun-control-law-las-vegas-shooting-1509401762.85 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting/2017/oct/03/all-1509401766.07 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting/2017/oct/04/all-1509401769.31 | 2.0
+ADDED:http://www.latimes.com/nation/la-las-vegas-shooting-live-updates-at-his-local-starbucks-vegas-shooter-1507060195-htmlstory.html-1509401772.19 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/03/ban-bump-stocks-las-vegas-shooter-automatic-fire-1509401774.5 | 2.0
+ADDED:https://www.theguardian.com/us-news/video/2017/oct/02/gun-attack-on-las-vegas-music-festivalgoers-video-report-1509401778.84 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas/2017/sep/27/all-1509401781.9 | 1.0
+ADDED:https://www.theguardian.com/us-news/las-vegas/2017/oct/04/altdate-1509401785.27 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting/2017/oct/02/all-1509401788.1 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting/2017/oct/01/altdate-1509401790.79 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting/2017/oct/03/altdate-1509401793.48 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas-shooting/2017/oct/04/altdate-1509401797.04 | 2.0
+ADDED:https://www.theguardian.com/us-news/las-vegas/2017/oct/03/altdate-1509401799.9 | 2.0
+ADDED:https://www.theguardian.com/culture/2017/oct/03/late-night-hosts-on-the-attack-in-vegas-now-is-the-time-for-political-debate-1509401802.55 | 2.0
+ADDED:https://www.theguardian.com/us-news/2017/oct/02/absolute-mayhem-britons-las-vegas-describe-terror-panic-1509401805.51 | 2.0
+ADDED:https://www.theguardian.com/commentisfree/2017/oct/02/the-guardian-view-on-las-vegas-and-puerto-rico-a-tale-of-two-americas-1509401808.24 | 2.0
+ADDED:https://www.theguardian.com/football/live-1509401811.21 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-neysa-tonks-las-vegas-1509401814.31 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-erick-silva-las-vegas-1509401817.38 | 2.0
+ADDED:https://www.reviewjournal.com/./news/politics-and-government/las-vegas-1509401820.29 | 2.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas-1509401823.27 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/gofundme-for-las-vegas-shooting-victims-surpasses-8-3m-1509401826.22 | 2.0
+ADDED:https://www.reviewjournal.com/business/tourism/after-mass-shooting-las-vegas-shifts-marketing-1509401829.27 | 2.0
+ADDED:https://www.reviewjournal.com/./local/north-las-vegas-1509401832.43 | 1.0
+ADDED:https://www.reviewjournal.com/./news/special-features/death-in-las-vegas-1509401835.34 | 1.0
+ADDED:https://www.reviewjournal.com/./sports/football/las-vegas-bowl-1509401838.23 | 1.0
+ADDED:https://www.reviewjournal.com/sports/football/las-vegas-bowl/las-vegas-bowl-results-1509401841.24 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/families-friends-seek-those-missing-after-las-vegas-shooting-1509401844.35 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-memorials-honor-shooting-victims-photos-1509401847.51 | 2.0
+ADDED:https://www.reviewjournal.com/business/tourism/andre-agassi-is-voice-for-las-vegas-ad-titled-vegas-strong-1509401850.71 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-hotels-offer-free-stays-for-shooting-victims-families-1509401853.99 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-lisa-patterson-lomita-california-1509401860.26 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-brian-fraser-pomona-california-1509401863.62 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-bill-wolfe-jr-shippensburg-pennsylvania-1509401866.75 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-dorene-anderson-anchorage-alaska-1509401869.85 | 2.0
+ADDED:https://www.reviewjournal.com/news/bundy-blm/after-las-vegas-shooting-bunkerville-defendant-wants-trial-postponed-1509401872.9 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-shooting-victim-heather-warino-alvarado-cedar-city-utah-1509401876.53 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-jack-beaton-bakersfield-california-1509401879.77 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-andrea-castilla-huntington-beach-california-1509401883.35 | 2.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/trump-to-visit-with-first-responders-victims-families-in-las-vegas-1509401886.96 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/new-information-on-las-vegas-gunman-stephen-paddock-1509401890.3 | 2.0
+ADDED:https://www.reviewjournal.com/sports/sports-columns/ron-kantowski/golden-knights-can-provide-rallying-point-for-las-vegas-after-mass-shooting-1509401893.39 | 2.0
+ADDED:https://www.reviewjournal.com/news/education/how-to-talk-to-kids-about-tragedy-in-las-vegas-1509401897.21 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/jason-aldean-cancels-shows-to-honor-las-vegas-shooting-victims-1509401900.41 | 2.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-businesses-launch-fundraisers-offer-free-food-to-first-responders-1509401903.63 | 2.0
+ADDED:https://www.reviewjournal.com/crime/nevada-prison-inmate-dies-at-las-vegas-hospital-1509401907.33 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/all-of-las-vegas-boulevard-now-open-again-in-front-of-mandalay-bay-1509401910.39 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/mccarrans-fence-breached-by-people-fleeing-las-vegas-strip-shooting-1509401913.52 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/it-was-a-horror-show-mass-shooting-leaves-at-least-59-dead-527-wounded-on-las-vegas-strip-1509401916.99 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/what-we-know-latest-update-on-las-vegas-strip-shooting-1509401920.81 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/gunshots-clear-in-video-from-scene-of-las-vegas-strip-shootings-1509401923.8 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/social-media-reports-from-shooting-on-las-vegas-strip-1509401926.85 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/amid-the-gunfire-acts-of-selfless-heroism-in-las-vegas-1509401929.97 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/firefighters-responded-quickly-to-mass-shooting-in-las-vegas-1509401933.5 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/vermont-newspaper-apologizes-for-insensitive-las-vegas-cartoon-1509401936.62 | 2.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/president-trump-first-lady-arrive-in-las-vegas-1509401939.68 | 2.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/adelsons-meet-with-trump-discuss-las-vegas-shooting-1509401943.35 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/sandoval-signs-emergency-order-in-wake-of-las-vegas-shooting-1509401946.37 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/body-of-slain-las-vegas-officer-gets-police-escort-to-mortuary-1509401949.4 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/trump-decries-act-of-pure-evil-will-visit-las-vegas-on-wednesday-1509401952.75 | 2.0
+ADDED:https://www.reviewjournal.com/./news/news-columns/vegas-vice-1509401955.83 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/vegas-vice/lives-lost-are-devastating-for-las-vegas-homeless-community-1509401958.81 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/vegas-vice/las-vegas-dispatcher-weighs-in-on-when-you-should-call-911-1509401961.94 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/vegas-vice/las-vegas-has-a-domestic-violence-problem-but-you-can-help-1509401965.02 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/vegas-vice/higher-crime-rate-is-new-normal-for-las-vegas-valley-1509401968.17 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/distraught-man-shot-by-las-vegas-police-in-critical-condition-1509401971.66 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/toddler-dies-in-las-vegas-after-being-left-in-hot-car-1509401975.18 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/coroner-ids-4-year-old-boy-left-in-hot-car-by-grandfather-1509401978.48 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/suspects-in-las-vegas-strip-shooting-armed-and-dangerous-1509401981.55 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/vegas-vice/teen-defendants-get-important-advice-in-las-vegas-courtroom-1509401984.66 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/kats/wayne-newton-kicks-in-100k-to-las-vegas-victims-fund-1509401988.44 | 2.0
+ADDED:https://www.reviewjournal.com/download-the-las-vegas-review-journal-app-1509401991.34 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/now-you-can-find-pumpkin-spice-pizza-in-las-vegas-1509401994.2 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/las-vegas-restaurants-help-feed-shooting-victims-and-first-responders-1509401997.35 | 2.0
+ADDED:https://www.reviewjournal.com/entertainment/food/10-best-things-to-do-in-las-vegas-this-weekend-sep-29-oct-1-1509402000.06 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/5-las-vegas-coffee-shops-to-visit-for-national-coffee-day-1509402003.25 | 1.0
+ADDED:https://www.reviewjournal.com/local/southwest/tangtangtang-in-las-vegas-has-korean-soup-shareable-dishes-1509402006.31 | 1.0
+ADDED:https://www.reviewjournal.com/local/roommates-in-custody-after-argument-in-southwest-las-vegas-1509402009.72 | 1.0
+ADDED:https://www.reviewjournal.com/local/southwest/suspicious-death-of-las-vegas-man-ruled-a-suicide-1509402012.72 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/police-investigating-suspicious-death-in-south-las-vegas-1509402015.76 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-denise-salmon-burditus-martinsburg-west-virginia-1509402018.82 | 1.0
+ADDED:https://www.reviewjournal.com/local/southwest/southwest-las-vegas-valley-appealing-to-restaurateurs-1509402021.95 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/las-vegas-strip-shooter-prescribed-anti-anxiety-drug-in-june-1509402025.52 | 2.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown-1509402028.55 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-short-term-rental-hotline-has-busy-first-month-1509402031.95 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-launches-online-sewer-payments-system-1509402035.98 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/after-less-than-a-year-city-of-las-vegas-dumps-flashy-logo-1509402039.18 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/city-of-las-vegas-denies-request-for-fire-department-records-1509402042.48 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-fire-department-begins-installation-of-security-cameras-1509402045.61 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-restaurant-casa-don-juan-gets-big-expansion-approved-1509402049.17 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-mayor-shocked-at-claims-of-firehouse-sex-1509402052.41 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-launches-short-term-rental-complaint-hotline-1509402055.58 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-city-council-split-on-short-term-rental-vote-1509402058.78 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-city-council-to-vote-on-short-term-rentals-rules-1509402062.19 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-officials-weigh-short-term-rental-regulations-and-citizen-concerns-1509402065.53 | 1.0
+ADDED:https://www.reviewjournal.com/news/pot-news/las-vegas-marijuana-shop-can-stay-open-247-1509402069.08 | 1.0
+ADDED:https://www.reviewjournal.com/local/north-las-vegas/law-allows-north-las-vegas-pot-dispensaries-to-stay-open-247-1509402072.28 | 1.0
+ADDED:https://www.reviewjournal.com/news/pot-news/las-vegas-police-bust-fake-marijuana-store-1509402075.16 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/las-vegas-fire-captain-jailed-on-charge-involving-child-prostitute-1509402078.24 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-nonprofit-embraces-victims-of-sex-trafficking-1509402081.56 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/advocates-fear-new-las-vegas-sports-teams-could-spur-sex-trafficking-1509402085.17 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/las-vegas-sexual-assault-case-against-chiropractor-dismissed-1509402088.61 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/chiropractor-sues-las-vegas-police-palms-over-sex-assault-case-1509402091.82 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/freed-o-j-simpson-will-live-in-las-vegas-official-says-1509402095.21 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-indicted-after-series-of-las-vegas-robberies-1509402098.63 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-who-shot-las-vegas-police-officer-sentenced-to-prison-1509402101.97 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/video-shows-former-las-vegas-police-officer-shoving-woman-into-car-hood-1509402105.62 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/ex-las-vegas-police-officer-indicted-on-federal-civil-rights-violation-1509402109.07 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/ex-las-vegas-cop-pleads-guilty-to-federal-charge-1509402112.21 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/woman-charged-with-attempted-murder-in-las-vegas-courthouse-hit-and-run-1509402115.29 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-arrested-in-arizona-in-connection-with-fatal-central-las-vegas-shooting-1509402118.39 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/police-identify-suspect-wanted-connection-central-las-vegas-fatal-shooting-1509402121.45 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/1-fatally-shot-near-boulevard-mall-las-vegas-1509402124.5 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/new-las-vegas-logo-goes-pink-and-flashy-1509402127.88 | 1.0
+ADDED:https://www.reviewjournal.com/local/sex-cover-up-at-las-vegas-fire-station-alleged-in-document-1509402131.04 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/woman-alleges-sex-is-common-at-las-vegas-fire-stations-1509402134.59 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/las-vegas-man-accused-of-acting-as-teen-girls-pimp-1509402138.08 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/complaint-says-las-vegas-fire-captain-paid-girl-300-for-sex-1509402141.28 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-officer-dies-during-hiker-rescue-on-mount-charleston-1509402144.5 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/2-accused-of-recruiting-prostitute-via-snapchat-in-las-vegas-1509402148.11 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/convicted-las-vegas-doctor-barred-from-treating-some-patients-1509402150.77 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/billboards-used-to-fight-human-trafficking-in-las-vegas-valley-1509402154.08 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/las-vegas-strip-security-guard-arrested-after-sexual-assault-1509402157.12 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/man-faces-charges-in-sexual-assault-at-las-vegas-park-1509402162.78 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/las-vegas-molester-who-lured-children-with-candy-gets-life-term-1509402166.0 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/cause-of-death-pending-for-las-vegas-officer-charged-in-child-porn-case-1509402169.53 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/las-vegas-police-officer-charged-in-child-porn-case-has-died-1509402172.19 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/las-vegas-police-officer-arrested-child-porn-charges-1509402175.28 | 1.0
+ADDED:https://www.reviewjournal.com/./crime/shootings-1509402178.27 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/las-vegas-police-officer-arrested-had-prolific-stash-of-porn-files-report-says-1509402181.29 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-charged-with-attempted-murder-in-north-las-vegas-shooting-1509402185.45 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-hospitalized-after-road-rage-shooting-in-north-las-vegas-1509402188.69 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/on-education/in-education-funding-las-vegas-is-a-city-of-contradictions-1509402191.75 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/on-education/las-vegas-students-dream-of-being-president-leads-to-meeting-trump-1509402194.98 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/las-vegas-police-officer-arrested-on-child-porn-charges-1509402197.87 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-convicted-of-molesting-kids-at-las-vegas-apartment-complex-1509402201.22 | 1.0
+ADDED:https://www.reviewjournal.com/crime/las-vegas-courthouse-hit-and-run-suspect-faces-weapons-charges-1509402204.56 | 1.0
+ADDED:https://www.reviewjournal.com/crime/witness-in-murder-case-hit-by-vehicle-in-downtown-las-vegas-1509402208.19 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/1-fatally-shot-near-boulevard-mall-in-las-vegas-1509402211.26 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-arrested-arizona-connection-fatal-central-las-vegas-shooting-1509402213.85 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/road-warrior/215-beltway-in-las-vegas-was-never-planned-as-a-full-loop-1509402216.9 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/road-warrior/carpool-lanes-digital-signs-will-change-how-las-vegas-drives-1509402221.46 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/disbarred-las-vegas-lawyer-wanted-in-pot-dispensary-scam-1509402224.61 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/vigil-attendees-tattoo-serves-as-reminder-of-survival-after-shooting-1509402228.01 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/housing-program-will-replace-north-las-vegas-apartment-complex-1509402231.28 | 1.0
+ADDED:https://www.reviewjournal.com/local/north-las-vegas/seeds-of-hope-sprout-in-north-las-vegas-neighborhood-1509402234.41 | 1.0
+ADDED:https://www.reviewjournal.com/local/north-las-vegas/father-of-3-family-persevere-through-cancer-setbacks-1509402237.62 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/homebuilder-buys-land-once-earmarked-for-north-las-vegas-casino-1509402240.99 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/report-says-las-vegas-apartment-vacancy-among-smallest-in-us-1509402244.31 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/utah-firm-buys-las-vegas-apartment-complexes-for-129m-1509402247.37 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/many-of-longtime-las-vegas-developer-kishners-properties-still-stand-1509402250.51 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/inventory-of-condos-townhomes-tumbling-in-las-vegas-1509402253.62 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/lennar-buys-22-acres-at-lake-las-vegas-for-housing-tract-1509402256.75 | 1.0
+ADDED:https://www.reviewjournal.com/business/lake-las-vegas-on-road-to-better-times-but-montelago-village-still-sluggish-1509402259.93 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/ex-boston-police-commissioner-relates-to-las-vegas-shootings-1509402263.43 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/station-casinos-donates-1m-to-support-las-vegas-shooting-victims-1509402266.73 | 2.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/mgm-resorts-assists-families-of-las-vegas-shooting-victims-cancels-shows-1509402272.04 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/gaming-board-deploying-officers-to-las-vegas-strip-casinos-1509402275.04 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/shooters-brother-we-have-no-idea-how-this-happened-1509402278.48 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/las-vegas-strip-massacre-will-force-hotels-to-rethink-security-1509402281.42 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/it-was-a-horror-show-mass-shooting-leaves-at-least-58-dead-515-wounded-on-las-vegas-strip-1509402284.1 | 2.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/wynn-las-vegas-encore-begin-checking-bags-with-metal-detectors-1509402287.9 | 2.0
+ADDED:https://www.reviewjournal.com/entertainment/music/experts-expect-las-vegas-outdoor-music-venues-to-flourish-1509402291.03 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/performer-shares-backstage-account-of-las-vegas-festival-shooting-1509402294.44 | 2.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/kats/in-the-face-of-tragedy-las-vegas-strip-falls-silent-1509402297.56 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/it-was-a-horror-show-mass-shooting-leaves-at-least-59-dead-525-wounded-on-las-vegas-strip-1509402300.28 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/las-vegas-strip-massacre-may-affect-concert-security-protocols-1509402304.09 | 2.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-boulevard-parcels-left-out-of-land-buying-boom-1509402306.73 | 2.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/removal-of-signs-begins-demolition-in-downtown-las-vegas-1509402310.06 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/kats/frankie-moreno-fan-club-supports-las-vegas-entertainer-1509402314.63 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-among-most-popular-places-in-us-to-flip-houses-report-says-1509402317.93 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/how-hot-is-las-vegas-housing-report-calls-gains-unsustainable-1509402320.97 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/investors-pay-premium-for-land-near-raiders-stadium-in-las-vegas-1509402324.06 | 1.0
+ADDED:https://www.reviewjournal.com/business/buyers-pay-269m-for-4-las-vegas-apartment-complexes-1509402327.19 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/sales-prices-for-las-vegas-apartment-complexes-rising-quickly-1509402330.67 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/investment-pro-reflects-on-hot-las-vegas-apartment-market-1509402333.82 | 1.0
+ADDED:https://www.reviewjournal.com/business/new-world-market-center-owner-no-stranger-to-las-vegas-real-estate-1509402337.06 | 1.0
+ADDED:https://www.reviewjournal.com/business/world-market-center-in-downtown-las-vegas-being-sold-1509402340.38 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/real-estate-pros-see-brighter-future-for-blighted-las-vegas-shopping-center-1509402343.44 | 1.0
+ADDED:https://www.reviewjournal.com/business/exodus-of-big-box-stores-leaves-gaping-holes-in-las-vegas-retail-scene-1509402346.75 | 1.0
+ADDED:https://www.reviewjournal.com/business/save-lot-closing-all-4-las-vegas-locations-1509402349.96 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-bailey-schweitzer-bakersfield-california-1509402353.04 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-stacee-etcheber-san-francisco-1509402356.13 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-shooting-victim-thomas-day-jr-corona-california-1509402358.83 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/sheriff-las-vegas-gunman-had-cameras-inside-outside-hotel-room-1509402361.87 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/las-vegas-gunmans-girlfriend-arrives-back-in-us-is-met-by-fbi-1509402365.76 | 2.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-police-dispatch-call-on-mandalay-bay-shooter-1509402369.04 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/inside-las-vegas-strip-shooter-stephen-paddocks-room-photos-1509402372.03 | 2.0
+ADDED:https://www.reviewjournal.com/local/the-strip/video-shows-mandalay-bay-room-where-shooter-fired-at-las-vegas-festival-1509402375.1 | 2.0
+ADDED:https://www.reviewjournal.com/business/food-4-less-stores-exit-las-vegas-market-1509402377.68 | 1.0
+ADDED:https://www.reviewjournal.com/business/retail/fresh-easy-closing-3-east-las-vegas-stores-1509402380.86 | 1.0
+ADDED:https://www.reviewjournal.com/business/retail/las-vegas-sport-chalet-locations-said-be-closing-1509402384.03 | 1.0
+ADDED:https://www.reviewjournal.com/business/albertsons-close-one-store-las-vegas-another-henderson-1509402386.93 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/l-a-investors-pay-80-million-for-las-vegas-rental-properties-1509402389.97 | 1.0
+ADDED:https://www.reviewjournal.com/news/fiscal-forecast-gloomy-for-north-las-vegas-1509402393.38 | 1.0
+ADDED:https://www.reviewjournal.com/opinion/columns-blogs/real-estate-insider/price-unit-apartment-complexes-sharply-2015-las-vegas-1509402396.54 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/pent-demand-creates-wave-luxury-apartment-development-las-vegas-valley-1509402399.64 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-among-top-cities-for-rising-home-values-1509402402.96 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/looking-for-a-las-vegas-house-lack-of-supply-may-be-a-problem-1509402406.23 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-home-prices-up-from-year-ago-but-inventory-still-tight-1509402409.51 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-home-sales-prices-both-rose-in-march-1509402412.65 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-housing-has-come-a-long-way-back-but-hold-off-on-the-fireworks-1509402415.76 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-foreclosures-slow-still-more-common-most-cities-report-says-1509402418.93 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-home-prices-move-slightly-lower-latest-month-1509402421.99 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-home-prices-now-double-recession-low-1509402425.31 | 1.0
+ADDED:https://www.reviewjournal.com/business/economic-development/illinois-real-estate-titan-buys-las-vegas-rental-property-573m-1509402428.53 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/la-investors-pay-80-million-las-vegas-rental-properties-1509402431.15 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/for-a-few-dollars-you-can-own-a-stake-in-a-las-vegas-home-sort-of-1509402434.3 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-housing-collapse-saw-many-many-casualties-1509402437.41 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/future-of-north-las-vegas-strip-linked-to-its-pre-recession-past-1509402440.99 | 1.0
+ADDED:https://www.reviewjournal.com/local/north-las-vegas/blitz-boba-beverage-truck-sells-smoothies-thai-teas-1509402444.58 | 1.0
+ADDED:https://www.reviewjournal.com/local/north-las-vegas/new-olive-crest-director-has-seen-the-abuse-her-clients-face-1509402447.71 | 1.0
+ADDED:https://www.reviewjournal.com/news/north-las-vegas-emergency-tactic-hasnt-been-tried-experts-say-1509402451.31 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/duplexes-and-townhouses-going-up-in-new-subdivision-in-western-las-vegas-1509402454.49 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/las-vegas-retains-title-of-underwater-homes-capital-1509402457.62 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/nevada-task-force-aids-in-hurricane-recovery-work-1509402460.79 | 1.0
+ADDED:https://www.reviewjournal.com/local/north-las-vegas/citys-graffiti-removal-team-closes-1400-cases-per-week-1509402465.95 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-homebuilders-see-record-prices-lower-sales-1509402469.24 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/las-vegas-house-flippers-again-show-handsome-profits-report-shows-1509402472.53 | 1.0
+ADDED:https://www.reviewjournal.com/news/las-vegas/wal-mart-supercenter-closure-las-vegas-hits-customers-hard-1509402476.8 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/industry-watchers-see-big-potential-for-las-vegas-strips-fontainebleau-1509402480.61 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/wrap-planned-for-unfinished-fontainebleau-on-las-vegas-strip-1509402483.86 | 1.0
+ADDED:https://www.reviewjournal.com/business/columns/real-estate-insider/pig-farm-loft-5-among-top-las-vegas-real-estate-deals-2016-1509402486.5 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/businesses-on-north-las-vegas-strip-look-forward-to-big-developments-1509402489.58 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/contractor-suing-developers-of-stalled-alon-project-on-las-vegas-strip-1509402492.75 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-paving-snaps-up-property-at-lake-las-vegas-1509402496.03 | 1.0
+ADDED:https://www.reviewjournal.com/business/lake-las-vegas-road-better-times-montelago-village-still-sluggish-1509402499.0 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/fontainebleaus-new-owner-is-no-stranger-to-las-vegas-1509402503.2 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/fontainebleau-on-las-vegas-strip-sells-for-600m-1509402505.93 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/huge-apartment-complex-planned-for-area-south-of-las-vegas-strip-1509402509.1 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/4-towering-apartment-projects-planned-for-las-vegas-1509402511.84 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/council-approves-plan-to-build-15-story-tower-in-downtown-las-vegas-1509402515.28 | 1.0
+ADDED:https://www.reviewjournal.com/business/developer-still-scarred-from-las-vegas-boom-bust-1509402519.09 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/star-of-las-vegas-boom-years-launching-new-title-company-1509402522.32 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/personalized-meal-planning-service-launches-in-las-vegas-1509402525.47 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/tech-scene-in-las-vegas-gaining-momentum-1509402528.57 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/las-vegas-entrepreneur-changing-the-way-we-hammock-1509402532.07 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/las-vegas-couple-opens-at-home-care-facility-for-seniors-1509402535.12 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/las-vegas-startup-offers-millennials-affordable-way-to-travel-1509402538.42 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/entrepreneur-thrives-in-las-vegas-fingerprint-business-1509402541.51 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/las-vegas-entrepreneur-pursues-expansion-after-leaving-corporate-world-1509402544.66 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/ny-firm-buys-3-las-vegas-valley-apartment-complexes-for-170m-1509402548.2 | 1.0
+ADDED:https://www.reviewjournal.com/news/las-vegas/rivalry-flares-between-downtown-wedding-chapel-hotel-1509402551.62 | 1.0
+ADDED:https://www.reviewjournal.com/business/columns/real-estate-insider/big-hopes-turnabout-north-las-vegas-strip-fall-short-1509402554.37 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/sounding-off/vegas-musician-eats-sleeps-and-breathes-rock-n-roll-1509402558.58 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/sounding-off/4-new-las-vegas-music-releases-you-should-know-1509402561.64 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/sounding-off/viva-las-vegas-rocks-around-the-clock-1509402564.77 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/arts-culture/rockabilly-festival-thunders-into-las-vegas-photos-1509402568.52 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/arts-culture/chalk-artists-spread-the-hues-at-northwest-las-vegas-event-1509402572.0 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/sounding-off/system-of-a-down-drummer-building-comic-book-fantasyland-in-las-vegas-1509402575.35 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/pig-farm-loft-5-among-top-las-vegas-real-estate-deals-of-2016-1509402580.02 | 1.0
+ADDED:https://www.reviewjournal.com/business/economic-development/nongaming-hotel-planned-west-vegas-strip-site-sold-discount-boom-years-1509402583.49 | 1.0
+ADDED:https://www.reviewjournal.com/business/economy/sale-shows-landlords-will-pay-premium-prime-las-vegas-property-1509402587.19 | 1.0
+ADDED:https://www.reviewjournal.com/business/economic-development/southern-california-investors-buy-igt-offices-southwest-las-vegas-1509402590.59 | 1.0
+ADDED:https://www.reviewjournal.com/business/for-sale-gaping-reminder-of-las-vegas-boom-and-bust-1509402595.06 | 1.0
+ADDED:https://www.reviewjournal.com/business/entrepreneurs/star-las-vegas-boom-years-launching-new-title-company-1509402597.95 | 1.0
+ADDED:https://www.reviewjournal.com/business/investors-buying-town-square-south-las-vegas-strip-sources-say-1509402600.57 | 1.0
+ADDED:https://www.reviewjournal.com/business/columns/real-estate-insider/las-vegas-housing-still-weaker-many-cities-more-signs-positive-1509402603.42 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-master-planned-communities-make-steady-comeback-1509402606.48 | 1.0
+ADDED:https://www.reviewjournal.com/business/wal-mart-closing-269-stores-1-las-vegas-1509402609.84 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/wealthy-tech-couple-snags-las-vegas-condos-moves-trump-international-1509402613.39 | 1.0
+ADDED:https://www.reviewjournal.com/business/north-las-vegas-farmer-who-earned-his-chops-pig-business-sells-out-1509402616.67 | 1.0
+ADDED:https://www.reviewjournal.com/news/las-vegas/north-las-vegas-pig-farm-sell-land-move-out-the-valley-1509402620.09 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/strip-shooting-witnesses-recall-hearing-a-steady-stream-of-gunfire-1509402623.54 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/it-was-a-horror-show-mass-shooting-leaves-more-than-20-dead-100-wounded-on-las-vegas-strip-1509402626.56 | 2.0
+ADDED:https://www.reviewjournal.com/crime/courts/app-lets-north-las-vegas-residents-notify-city-about-vandalism-1509402630.52 | 2.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/kats/fanilows-take-note-barry-wants-back-in-vegas-1509402633.67 | 2.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-home-flippers-share-of-market-dips-but-profits-rise-1509402636.84 | 2.0
+ADDED:https://www.reviewjournal.com/business/housing/some-house-flippers-still-at-home-in-las-vegas-despite-slimmer-profit-margins-1509402640.11 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/despite-monthly-dip-las-vegas-home-prices-51-percent-1509402643.45 | 1.0
+ADDED:https://www.reviewjournal.com/business/columns/real-estate-insider/don-t-fear-bubble-despite-rising-new-home-prices-las-vegas-1509402646.16 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-midyear-new-home-sales-highest-since-08-report-says-1509402649.25 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-home-analyst-sees-little-chance-of-bubble-in-market-1509402652.26 | 1.0
+ADDED:https://www.reviewjournal.com/news/las-vegas/police-officer-charged-battery-suspected-prostitute-1509402655.21 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/ax-throwing-attraction-opens-at-neonoplis-in-downtown-las-vegas-1509402657.99 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/woman-shot-left-for-dead-near-downtown-las-vegas-1509402661.12 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/find-performances-family-friendly-fests-this-week-in-downtown-las-vegas-1509402664.39 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/tv/red-carpet-premieres-canceled-after-las-vegas-shooting-tv-anchors-coming-1509402667.47 | 2.0
+ADDED:https://www.reviewjournal.com/crime/shootings/cbs-exec-fired-after-comments-about-las-vegas-shooting-1509402670.59 | 2.0
+ADDED:https://www.reviewjournal.com/entertainment/food/a-beginners-guide-to-dim-sum-dining-at-ping-pang-pong-in-las-vegas-1509402673.72 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/las-vegas-restaurants-serving-tastings-golden-knights-meals-this-week-1509402677.28 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/las-vegas-man-arrested-on-sex-assault-charges-suspected-of-luring-kids-with-candy-1509402680.53 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-mexican-restaurant-casa-don-juan-plans-to-expand-1509402683.8 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/southern-nevada-apartment-development-turns-urban-neighborhoods-1509402686.45 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/mortgage-lending-las-vegas-loan-volume-down-compared-boom-years-1509402689.56 | 1.0
+ADDED:https://www.reviewjournal.com/news/pot-news/las-vegas-pot-testing-lab-gets-license-suspended-by-state-1509402692.58 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/its-like-a-joke-victim-says-of-north-las-vegas-doctors-sentence-1509402695.93 | 1.0
+ADDED:https://www.reviewjournal.com/crime/sex-crimes/north-las-vegas-doctor-arrested-again-on-multiple-lewdness-counts-1509402699.04 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/north-las-vegas-doctor-sentenced-for-kissing-groping-patients-1509402702.1 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/big-hopes-for-turnabout-on-north-las-vegas-strip-fall-short-1509402705.26 | 1.0
+ADDED:https://www.reviewjournal.com/business/columns/real-estate-insider/australian-billionaire-packer-again-rolls-snake-eyes-vegas-1509402708.11 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/layoffs-recently-opened-sls-las-vegas-1509402710.75 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/genting-buys-echelon-2-billion-resorts-world-las-vegas-1509402713.61 | 2.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/la-retailer-closes-7-shops-sls-las-vegas-1509402716.22 | 2.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/capacity-crowd-packs-opening-sls-las-vegas-1509402718.87 | 2.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/price-per-unit-for-apartment-complexes-up-sharply-since-2015-in-las-vegas-1509402721.47 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/las-vegas-homebuilder-buys-penn-jillette-s-mansion-the-slammer-1509402724.2 | 1.0
+ADDED:https://www.reviewjournal.com/real-estate-millions/developer-buy-penn-jillette-s-las-vegas-home-1509402727.39 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/report-shows-house-flippers-less-active-las-vegas-1509402730.7 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/dormant-project-to-build-22000-seat-arena-with-retractable-roof-on-las-vegas-strip-comes-to-life-1509402733.81 | 1.0
+ADDED:https://www.reviewjournal.com/sports/nhl-vegas-1509402736.47 | 1.0
+ADDED:https://www.reviewjournal.com/news/las-vegas/shovels-ground-confetti-air-mgmaeg-arena-construction-begins-1509402739.1 | 1.0
+ADDED:https://www.reviewjournal.com/business/business-columns/real-estate-insider/las-vegas-housing-still-weaker-than-many-cities-but-more-signs-positive-1509402742.14 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor/https://www.reviewjournal.com/local/local-las-vegas/nevada-high-court-reinstates-sex-assault-charges-against-arizona-chiropractor-1509402745.43 | 1.0
+ADDED:https://www.reviewjournal.com/news/las-vegas/chiropractor-sues-las-vegas-police-palms-over-sex-assault-case-1509402748.36 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/at-least-50-dead-shootings-surpass-worst-in-u-s-history-1509402752.66 | 2.0
+ADDED:https://www.reviewjournal.com/local/southwest/coroner-ids-construction-worker-who-died-monday-in-las-vegas-1509402755.7 | 1.0
+ADDED:https://www.reviewjournal.com/local/southwest/mathis-elementary-in-southwest-las-vegas-to-help-relieve-overcrowded-schools-1509402758.84 | 1.0
+ADDED:https://www.reviewjournal.com/crime/student-brings-loaded-gun-to-sierra-vista-high-school-in-las-vegas-1509402762.15 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/sounding-off/vegas-the-fat-dukes-evolve-on-tight-new-record-1509402767.78 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/2-1509402770.75 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-has-learned-plenty-in-5-years-of-life-is-beautiful-1509402773.77 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/suspect-arrested-after-deadly-shooting-near-downtown-las-vegas-1509402777.13 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/downtown-las-vegas-ramp-to-be-restricted-through-sept-28-1509402780.24 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/las-vegas-police-say-man-shoots-himself-in-car-on-us-95-1509402783.29 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/coroner-identifies-las-vegas-man-killed-in-saturday-crash-1509402786.47 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/2-dead-after-early-morning-crash-near-las-vegas-strip-1509402789.84 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/bicyclist-injured-in-collision-with-taxi-in-central-las-vegas-1509402792.86 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/vigil-attendees-tattoo-serves-as-reminder-of-survival-after-shooting-1509402795.97 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/woman-hit-killed-in-crosswalk-by-pickup-in-east-las-vegas-1509402799.17 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/police-investigating-stabbing-near-downtown-las-vegas-1509402802.21 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-sentenced-in-las-vegas-for-fatally-stabbing-his-father-1509402805.34 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/woman-has-throat-slashed-in-central-las-vegas-attack-1509402808.67 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/woman-slashed-with-knife-in-downtown-las-vegas-robbery-1509402811.72 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/man-hospitalized-after-being-stabbed-on-las-vegas-strip-1509402814.95 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-police-arrest-2nd-man-in-connection-with-deadly-brawl-1509402817.95 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/las-vegas-strip-stabbing-suspect-appears-in-court-1509402821.09 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/las-vegas-strip-stabbing-suspect-was-jailed-after-2015-attack-1509402824.17 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/las-vegas-man-removed-from-death-row-31-years-after-first-sentence-1509402827.54 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/south-las-vegas-strip-remains-closed-to-traffic-monday-1509402830.69 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/passenger-stabs-driver-of-greyhound-bus-heading-to-las-vegas-1509402833.83 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/suspect-in-custody-after-2-women-stabbed-at-las-vegas-gas-station-1509402836.85 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/freeway-interchange-in-downtown-las-vegas-will-close-this-weekend-1509402839.86 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/fun-walk-opens-new-mlk-segment-to-las-vegas-residents-saturday-1509402842.91 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/see-worlds-largest-cucumber-slicer-in-downtown-las-vegas-1509402846.47 | 1.0
+ADDED:https://www.reviewjournal.com/crime/las-vegas-police-reveal-how-dummy-helped-cinch-attempted-murder-charge-1509402849.59 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/1-arrested-in-april-killing-at-central-las-vegas-apartment-1509402852.84 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/fight-at-central-las-vegas-apartment-complex-leaves-1-dead-1509402855.89 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/life-is-beautiful-road-closures-begin-in-downtown-las-vegas-1509402859.12 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/police-arrest-19-year-old-man-in-deadly-stabbing-1509402862.32 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/1-1509402865.27 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/3-1509402868.16 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-police-to-display-decoy-dummy-at-mob-museum-event-1509402871.15 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-busker-lottery-plan-still-controversial-after-2-years-1509402874.34 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-womens-shelter-starts-fundraiser-to-revive-transitional-housing-program-1509402878.01 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/motorcycle-officer-hurt-in-fall-near-downtown-las-vegas-1509402881.33 | 1.0
+ADDED:https://www.reviewjournal.com/crime/man-hits-2-with-pole-near-downtown-las-vegas-1509402884.36 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-headed-to-prison-after-attacking-mannequin-in-las-vegas-1509402887.67 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/friends-remember-homeless-man-killed-near-downtown-las-vegas-1509402890.8 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/no-leads-related-slayings-sleeping-homeless-men-near-downtown-las-vegas-1509402893.5 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/robber-hits-woman-with-bottle-in-downtown-las-vegas-1509402896.53 | 1.0
+ADDED:https://www.reviewjournal.com/crime/las-vegas-police-id-officer-in-420-a-m-pot-store-shooting-1509402899.67 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-shot-in-chest-during-home-invasion-robbery-in-las-vegas-1509402903.03 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/las-vegas-police-looking-for-suspects-in-violent-robbery-1509402906.25 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/police-search-for-2-who-robbed-east-las-vegas-valley-convenience-store-1509402909.23 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/2-armed-men-rob-walgreens-in-east-las-vegas-1509402912.22 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/police-search-for-3-in-central-las-vegas-taco-shop-robbery-1509402915.22 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/california-man-accused-of-las-vegas-carjacking-in-arrest-report-1509402918.26 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/stolen-phone-leads-to-central-las-vegas-apartments-evacuation-1509402921.31 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/good-samaritan-killed-trying-to-stop-north-las-vegas-robbery-1509402924.54 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/2-teens-arrested-2-sought-after-las-vegas-robbery-car-chase-1509402927.58 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shots-fired-during-robbery-at-las-vegas-marijuana-dispensary-1509402930.69 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/las-vegas-police-name-suspects-in-marijuana-dispensary-robbery-1509402933.72 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/police-video-shows-hammer-attack-on-mannequin-1509402936.79 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-pleads-not-guilty-in-las-vegas-mannequin-attack-1509402939.99 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/hearing-set-for-man-charged-in-las-vegas-mannequin-attack-1509402943.31 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/paul-harasim/las-vegas-police-who-caught-suspect-in-deaths-of-homeless-men-empathized-with-victims-1509402946.35 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/attorney-for-man-charged-in-las-vegas-mannequin-attack-not-challenging-competency-1509402949.58 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/unusual-use-decoy-las-vegas-homicide-investigation-spurs-legal-debate-1509402952.19 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/unusual-use-of-decoy-in-las-vegas-homicide-investigation-spurs-legal-debate-1509402956.32 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-charged-attempted-murder-attack-police-decoy-downtown-las-vegas-1509402959.26 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-jail-after-attack-homeless-person-decoy-downtown-las-vegas-1509402961.87 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/las-vegas-man-indicted-in-connection-with-killings-of-2-homeless-men-1509402965.06 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/broken-water-main-closes-downtown-las-vegas-street-1509402968.47 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/paul-harasim/free-las-vegas-medical-clinic-knows-importance-of-dental-care-1509402971.93 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/dinner-for-las-vegas-homeless-honors-slain-man-photos-1509402975.33 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/murder-charge-stands-in-las-vegas-tourists-1-punch-death-1509402978.7 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/robbery-leads-to-11-year-sentence-for-las-vegas-man-1509402982.04 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/4-1509402985.02 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/forum-focuses-on-homicide-investigations-in-las-vegas-1509402988.04 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-city-council-quickly-oks-sex-store-expansion-1509402991.1 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-city-council-wants-to-improve-area-by-letting-sex-stores-grow-1509402993.81 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/neonopolis-owners-make-payment-to-las-vegas-200k-still-owed-1509402997.14 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/walking-dead-attraction-opens-in-downtown-las-vegas-1509403000.27 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/downtown-car-show-celebrates-beatles-influence-on-las-vegas-1509403003.44 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/vacant-house-catches-fire-twice-in-downtown-las-vegas-1509403006.71 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/11-8m-megabucks-jackpot-hit-in-downtown-las-vegas-1509403009.41 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/fans-celebrate-50-years-of-sgt-pepper-on-las-vegas-strip-1509403012.46 | 1.0
+ADDED:https://www.reviewjournal.com/news/education/las-vegas-academy-of-the-arts-celebrates-25-years-photos-1509403015.76 | 1.0
+ADDED:https://www.reviewjournal.com/crime/threat-prompts-evacuation-of-state-building-in-downtown-las-vegas-1509403018.97 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/stretch-of-downtown-las-vegas-road-being-converted-to-one-way-1509403022.02 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/5-1509403024.95 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-police-search-for-suspect-in-june-road-rage-shooting-1509403027.96 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/2-injured-in-shooting-near-downtown-las-vegas-1509403031.04 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/city-of-las-vegas-wants-270k-of-back-pay-from-neonopolis-1509403034.11 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/crash-severs-gas-line-in-downtown-las-vegas-1509403037.43 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/man-found-unconscious-with-head-injury-in-downtown-las-vegas-1509403040.56 | 1.0
+ADDED:https://www.reviewjournal.com/sports/dignitaries-to-make-announcement-about-las-vegas-soccer-team-1509403043.74 | 1.0
+ADDED:https://www.reviewjournal.com/business/downtown-las-vegas-customer-a-winner-for-buying-1-millionth-coney-1509403046.87 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/6-1509403049.87 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/police-trying-to-identify-vehicle-suspects-in-downtown-las-vegas-shooting-1509403052.89 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/palm-tree-fire-ignites-2-las-vegas-houses-1509403056.15 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/67-year-old-man-missing-endangered-near-downtown-las-vegas-1509403059.23 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/smoke-from-building-fire-blankets-area-near-downtown-las-vegas-1509403062.27 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/carson-kitchen-preparing-to-expand-in-downtown-las-vegas-1509403065.46 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/7-1509403071.19 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/police-arrest-suspect-in-shooting-north-of-downtown-las-vegas-1509403074.19 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-convention-authority-transfers-cashman-center-to-city-1509403077.22 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-working-with-soccer-team-to-use-cashman-field-1509403080.49 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/forum-tackles-residential-development-in-downtown-las-vegas-1509403083.6 | 1.0
+ADDED:https://www.reviewjournal.com/business/developer-strives-to-make-las-vegas-arts-district-cool-again-1509403086.82 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/8-1509403089.82 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/1-hurt-10-displaced-in-downtown-las-vegas-fire-1509403092.83 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-council-oks-homeless-campus-plan-despite-criticism-1509403095.95 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-city-council-wants-community-input-before-homeless-campus-vote-1509403099.43 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/las-vegas-officials-plan-corridor-of-hope-for-homeless-1509403102.51 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/possible-campus-of-homeless-services-considered-for-downtown-las-vegas-1509403106.1 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/a-splash-of-pink-and-free-rides-coming-to-downtown-las-vegas-1509403109.4 | 1.0
+ADDED:https://www.reviewjournal.com/crime/man-who-barricaded-himself-near-downtown-las-vegas-in-custody-1509403112.54 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/1-dead-in-likely-gang-related-shooting-near-downtown-las-vegas-1509403115.16 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/9-1509403118.4 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-celebrates-western-roots-with-helldorado-days-parade-1509403121.39 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/man-commits-suicide-in-public-in-downtown-las-vegas-1509403124.53 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/arts-culture/lindsey-webster-kicks-off-2017-jazz-in-the-park-in-las-vegas-1509403127.57 | 1.0
+ADDED:https://www.reviewjournal.com/life/moms-have-their-moment-at-container-park-in-las-vegas-photos-1509403130.82 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-locals-use-facebook-to-offer-help-after-mass-shooting-1509403133.85 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/donors-overwhelm-blood-banks-after-las-vegas-strip-massacre-1509403137.39 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-area-hospitals-like-war-zones-after-strip-massacre-1509403140.82 | 1.0
+ADDED:https://www.reviewjournal.com/crime/robberies/las-vegas-police-looking-for-man-who-robbed-downtown-adult-bookstore-1509403143.93 | 1.0
+ADDED:https://www.reviewjournal.com/business/la-developer-buys-mission-linen-building-in-downtown-las-vegas-1509403147.04 | 1.0
+ADDED:https://www.reviewjournal.com/news/2017-legislature/senate-committee-studies-bill-to-help-establish-las-vegas-art-museum-1509403150.1 | 1.0
+ADDED:https://www.reviewjournal.com/news/education/las-vegas-high-school-testing-new-learning-xperience-1509403153.18 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/10-1509403156.54 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-police-say-injured-toddler-was-not-abandoned-1509403159.54 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/white-castle-sliding-into-downtown-las-vegas-1509403162.59 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/fire-damages-vacant-downtown-las-vegas-motel-1509403165.73 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/us-95-lane-near-downtown-las-vegas-reopens-after-crash-1509403168.82 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/dome-theater-opens-at-container-park-in-downtown-las-vegas-1509403171.44 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/groups-wants-school-district-to-save-historic-las-vegas-high-school-1509403174.66 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/alumni-urge-preservation-of-old-las-vegas-high-school-buildings-1509403177.99 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/jane-ann-morrison/alumni-of-old-las-vegas-high-ask-who-will-help-preserve-history-1509403181.15 | 1.0
+ADDED:https://www.reviewjournal.com/crime/injured-abandoned-child-found-in-downtown-las-vegas-1509403184.33 | 1.0
+ADDED:https://www.reviewjournal.com/news/news-columns/jane-ann-morrison/developer-calls-las-vegas-councilman-anti-semitic-1509403187.38 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/11-1509403190.43 | 1.0
+ADDED:https://www.reviewjournal.com/news/politics-and-government/las-vegas/safety-in-las-vegas-parks-a-concern-for-city-council-1509403193.42 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/las-rageous-makes-strong-debut-in-downtown-las-vegas-1509403198.06 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/five-small-fires-strike-downtown-las-vegas-1509403201.54 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/motel-once-a-haven-now-a-crime-ridden-jungle-in-downtown-las-vegas-1509403204.76 | 1.0
+ADDED:https://www.reviewjournal.com/local/man-arrested-after-barricade-situation-in-downtown-las-vegas-1509403208.47 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/las-rageous-organizer-sees-downtown-vegas-perfect-for-festival-1509403211.48 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/your-guide-to-the-best-of-las-rageous-in-downtown-vegas-playlist-1509403214.75 | 1.0
+ADDED:https://www.reviewjournal.com/news/science-and-technology/hundreds-turn-out-for-march-for-science-in-downtown-las-vegas-1509403217.96 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/12-1509403221.11 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/pair-convicted-in-downtown-las-vegas-shooting-that-injured-4-1509403224.27 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/iconic-blue-angel-taking-time-off-from-watching-over-downtown-las-vegas-1509403227.47 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/downtown-las-vegas-first-friday-postponed-a-week-1509403230.64 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/police-looking-for-suspects-in-shooting-that-injured-4-people-near-downtown-hotel-1509403233.97 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-bicycle-sharing-program-draws-8269-rentals-in-first-6-months-1509403237.26 | 1.0
+ADDED:https://www.reviewjournal.com/local/pedestrian-hit-killed-in-downtown-las-vegas-identified-1509403240.64 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/1-dead-after-being-struck-car-near-downtown-las-vegas-1509403243.24 | 1.0
+ADDED:https://www.reviewjournal.com/business/tourism/nerd-nightclub-opens-at-neonopolis-in-downtown-las-vegas-photos-1509403246.3 | 1.0
+ADDED:https://www.reviewjournal.com/business/tourism/passengers-at-mccarran-airport-in-las-vegas-unusually-quiet-1509403249.46 | 1.0
+ADDED:https://www.reviewjournal.com/business/tourism/las-vegas-airport-logs-another-4-million-passenger-month-1509403252.79 | 1.0
+ADDED:https://www.reviewjournal.com/local/the-strip/allegiant-offers-free-flights-to-family-of-las-vegas-shooting-victims-1509403257.04 | 2.0
+ADDED:https://www.reviewjournal.com/business/tourism/experts-see-no-long-term-damage-to-las-vegas-tourism-economy-1509403261.96 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/13-1509403265.3 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-man-who-turned-gun-on-himself-identified-1509403268.26 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/las-vegas-drivers-getting-through-day-1-of-big-squeeze-time-lapse-1509403271.37 | 1.0
+ADDED:https://www.reviewjournal.com/life/martins-mart-has-been-vital-outlet-to-needy-in-las-vegas-for-46-years-1509403274.85 | 1.0
+ADDED:https://www.reviewjournal.com/crime/courts/man-charged-with-attempted-murder-in-attack-on-police-decoy-in-downtown-las-vegas-1509403278.3 | 1.0
+ADDED:https://www.reviewjournal.com/business/housing/owners-of-juhl-in-downtown-las-vegas-to-begin-selling-units-1509403281.49 | 1.0
+ADDED:https://www.reviewjournal.com/business/tourism/lvcva-to-turn-over-cashman-center-to-city-of-las-vegas-early-1509403284.63 | 1.0
+ADDED:https://www.reviewjournal.com/business/tourism/oversight-panel-hears-details-14b-las-vegas-convention-center-expansion-1509403287.64 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/entertainment-columns/kats/a-golden-opportunity-for-frankie-moreno-in-downtown-las-vegas-1509403290.73 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/14-1509403293.88 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/argument-preceded-shooting-in-downtown-las-vegas-apartment-1509403296.87 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/1-person-critical-after-shooting-central-las-vegas-valley-1509403299.47 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/8-units-destroyed-in-apartment-fire-near-downtown-las-vegas-1509403302.58 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown-las-vegas-apartment-fire-displaces-3-adults-3-kids-1509403306.14 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/medical-district-a-major-new-frontier-for-las-vegas-1509403309.5 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/crews-widening-narrow-sidewalks-that-las-vegas-councilman-called-safety-concern-1509403312.82 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/car-found-engulfed-in-flames-in-downtown-las-vegas-parking-garage-1509403315.94 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/arts-culture/heres-the-smith-centers-2017-18-broadway-las-vegas-lineup-1509403318.99 | 1.0
+ADDED:https://www.reviewjournal.com/crime/stabbings/police-find-man-stabbed-on-a-downtown-las-vegas-sidewalk-1509403322.41 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-police-investigating-downtown-crash-that-sent-motorcyclist-to-hospital-1509403326.56 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/innovation-district-could-make-downtown-las-vegas-a-tech-hub-1509403329.67 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/downtown-las-vegas-bicycle-sharing-program-prices-cut-for-valentines-day-promotion-1509403332.79 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/16-1509403335.77 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-shot-in-the-jaw-in-downtown-las-vegas-1509403338.78 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/new-hard-rockmetal-fest-las-rageous-coming-to-downtown-las-vegas-1509403342.24 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/psycho-las-vegas-announces-first-acts-2017-festival-1509403345.41 | 1.0
+ADDED:https://www.reviewjournal.com/neon/sounds/psycho-las-vegas-feels-far-out-family-gathering-photos-1509403348.54 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/man-held-on-murder-charge-in-november-shooting-death-near-downtown-las-vegas-1509403352.41 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/police-believe-fatal-shooting-near-downtown-las-vegas-was-drug-related-1509403355.65 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/17-1509403358.72 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-arrested-in-monday-shooting-in-downtown-las-vegas-1509403361.89 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-shot-near-downtown-las-vegas-parking-garage-1509403364.97 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/dr-martin-luther-king-jr-day-parade-ready-to-march-in-downtown-las-vegas-1509403368.35 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/erratic-driver-is-arrested-after-crashing-into-3-vehicles-light-pole-in-downtown-las-vegas-1509403373.81 | 1.0
+ADDED:https://www.reviewjournal.com/local/check-out-the-businesses-and-agencies-closed-mlk-holiday-las-vegas-valley-1509403376.6 | 1.0
+ADDED:https://www.reviewjournal.com/business/driverless-electric-shuttle-being-tested-in-downtown-las-vegas-1509403380.59 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/man-killed-near-downtown-las-vegas-identified-1509403384.32 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/man-found-dead-near-downtown-las-vegas-had-head-trauma-1509403387.5 | 1.0
+ADDED:https://www.reviewjournal.com/life/downtown-las-vegas-event-raises-awareness-of-human-trafficking-1509403390.61 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/18-1509403393.54 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/what-stood-out-to-you-most-in-downtown-las-vegas-in-2016-poll-1509403396.4 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-hospitalized-after-he-was-shot-in-central-las-vegas-1509403399.28 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/man-dies-after-crash-on-charleston-in-downtown-las-vegas-1509403402.25 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/19-1509403405.56 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-studies-deal-for-senior-living-complex-in-symphony-park-1509403408.8 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-officials-favor-senior-living-proposal-for-symphony-park-1509403412.03 | 1.0
+ADDED:https://www.reviewjournal.com/local/las-vegas/las-vegas-studies-deal-senior-living-complex-symphony-park-1509403414.93 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-city-officials-visualize-a-diverse-downtown-makeover-1509403418.12 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/fire-guts-vacant-las-vegas-arts-district-apartment-building-during-first-friday-1509403421.08 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/arts-culture/las-vegas-students-uncover-hidden-talents-in-sculptors-classes-1509403424.27 | 1.0
+ADDED:https://www.reviewjournal.com/business/las-vegas-city-councilman-innovative-vehicle-has-a-futuristic-cartoon-feel-1509403427.65 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/police-arrest-one-of-2-suspects-in-double-homicide-near-downtown-las-vegas-1509403430.88 | 1.0
+ADDED:https://www.reviewjournal.com/crime/homicides/woman-killed-double-homicide-was-las-vegas-resident-1509403433.54 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/power-outage-shuts-down-traffic-signals-in-downtown-las-vegas-1509403436.72 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/arts-culture/parkour-demonstrations-join-first-friday-las-vegas-march-lineup-1509403439.92 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/food/du-pars-at-golden-gate-in-downtown-las-vegas-closes-1509403443.22 | 1.0
+ADDED:https://www.reviewjournal.com/entertainment/music/downtown-las-vegas-neon-reverb-festival-announces-first-acts-1509403446.19 | 1.0
+ADDED:https://www.reviewjournal.com/opinion/columns-blogs/viva-live-vegas/neon-reverb-truly-downtown-las-vegas-festival-photos-1509403449.37 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/20-1509403452.62 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/western-avenue-extension-set-to-open-friday-in-downtown-las-vegas-1509403455.62 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/service-to-remember-road-crash-victims-set-for-sunday-in-downtown-las-vegas-1509403459.86 | 1.0
+ADDED:https://www.reviewjournal.com/news/military/parade-in-downtown-las-vegas-honors-veterans-1509403462.78 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/las-vegas-world-war-ii-veteran-honored-on-100th-birthday-photos-1509403465.99 | 1.0
+ADDED:https://www.reviewjournal.com/business/casinos-gaming/el-cortez-in-downtown-las-vegas-celebrates-75-years-1509403469.03 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/21-1509403473.22 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/las-vegas-police-looking-for-suspect-in-downtown-shooting-1509403476.13 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/man-injured-in-shooting-near-downtown-las-vegas-apartment-complex-1509403479.37 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-students-build-and-fly-drones-for-national-youth-science-day-1509403482.38 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-judge-says-protection-orders-can-help-in-some-domestic-violence-situations-but-escalate-others-1509403485.52 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/navigating-the-legal-labyrinth-often-next-hurdle-for-those-fleeing-domestic-violence-in-las-vegas-1509403488.53 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/southwestern-city-leaders-share-downtown-successes-with-las-vegas-counterparts-1509403491.65 | 1.0
+ADDED:https://www.reviewjournal.com/crime/shootings/wounded-man-tells-las-vegas-police-he-was-shot-during-drug-deal-1509403494.94 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/vegas-valley-comic-book-festival-has-something-for-everyone-1509403498.17 | 1.0
+ADDED:https://www.reviewjournal.com/traffic/electric-shuttle-buses-would-offer-free-rides-in-downtown-las-vegas-by-2017-1509403501.25 | 1.0
+ADDED:https://www.reviewjournal.com/./local/local-las-vegas/downtown/page/22-1509403504.21 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/hawaiian-spirit-prevalent-in-las-vegas-at-island-sushi-1509403507.23 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-book-briefs-for-oct-27-nov-2-2016-1509403510.4 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/6-adoptable-pets-in-the-las-vegas-valley-oct-27-2016-photos-1509403513.78 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-freshman-rising-to-the-top-in-national-taekwondo-tournaments-1509403516.92 | 1.0
+ADDED:https://www.reviewjournal.com/local/local-las-vegas/downtown/las-vegas-students-seek-solace-in-online-schools-after-being-bullied-1509403519.99 | 1.0
+*********
+Some(2.0)
+466
+Some(0.0)
+0
+Some(1.0)
+332
+637
+161
+Histogram begin
+1	0
+2	0
+3	0
+4	0
+5	0
+6	0
+7	0
+8	0
+9	0
+10	0
+11	0
+12	0
+13	0
+14	0
+15	0
+16	0
+17	0
+18	0
+19	0
+20	0
+21	0
+22	0
+23	0
+24	0
+25	0
+26	0
+27	0
+28	0
+29	0
+30	0
+31	0
+32	0
+33	0
+34	0
+35	0
+36	0
+37	0
+38	0
+39	0
+40	0
+41	0
+42	0
+43	0
+44	0
+45	0
+46	0
+47	0
+48	0
+49	0
+50	0
+51	0
+52	0
+53	0
+54	0
+55	0
+56	0
+57	0
+58	0
+59	0
+60	0
+61	0
+62	0
+63	0
+64	0
+65	0
+66	0
+67	0
+68	0
+69	0
+70	0
+71	0
+72	0
+73	0
+74	0
+75	0
+76	0
+77	0
+78	0
+79	0
+80	0
+81	0
+82	0
+83	0
+84	0
+85	0
+86	0
+87	0
+88	0
+89	0
+90	0
+91	0
+92	0
+93	0
+94	0
+95	0
+96	0
+97	0
+98	0
+99	0
+100	0
+101	0
+102	0
+103	0
+104	0
+105	0
+106	0
+107	0
+108	0
+109	0
+110	0
+111	0
+112	0
+113	0
+114	0
+115	0
+116	0
+117	0
+118	0
+119	0
+120	0
+121	0
+122	0
+123	0
+124	0
+125	0
+126	0
+127	0
+128	0
+129	0
+130	0
+131	0
+132	0
+133	0
+134	0
+135	0
+136	0
+137	0
+138	0
+139	0
+140	0
+141	0
+142	0
+143	0
+144	0
+145	0
+146	0
+147	0
+148	0
+149	0
+150	0
+151	0
+152	0
+153	0
+154	0
+155	0
+156	0
+157	0
+158	0
+159	0
+160	0
+161	0
+162	0
+163	0
+164	0
+165	0
+166	0
+167	0
+168	0
+169	0
+170	0
+171	0
+172	0
+173	0
+174	0
+175	0
+176	0
+177	0
+178	0
+179	0
+180	0
+181	0
+182	0
+183	0
+184	0
+185	0
+186	0
+187	0
+188	0
+189	0
+190	0
+191	0
+192	0
+193	0
+194	0
+195	0
+196	0
+197	0
+198	0
+199	0
+200	0
+201	0
+202	0
+203	0
+204	0
+205	0
+206	0
+207	0
+208	0
+209	0
+210	0
+211	0
+212	0
+213	0
+214	0
+215	0
+216	0
+217	0
+218	0
+219	0
+220	0
+221	0
+222	0
+223	0
+224	0
+225	0
+226	0
+227	0
+228	0
+229	0
+230	0
+231	0
+232	0
+233	0
+234	0
+235	0
+236	0
+237	0
+238	0
+239	0
+240	0
+241	0
+242	0
+243	0
+244	0
+245	0
+246	0
+247	0
+248	0
+249	0
+250	0
+251	0
+252	0
+253	0
+254	0
+255	0
+256	0
+257	0
+258	0
+259	0
+260	0
+261	0
+262	0
+263	0
+264	0
+265	0
+266	0
+267	0
+268	0
+269	0
+270	0
+271	0
+272	0
+273	0
+274	0
+275	0
+276	0
+277	0
+278	0
+279	0
+280	0
+281	0
+282	0
+283	0
+284	0
+285	0
+286	0
+287	0
+288	0
+289	0
+290	0
+291	0
+292	0
+293	0
+294	0
+295	0
+296	0
+297	0
+298	0
+299	0
+300	0
+301	0
+302	0
+303	0
+304	0
+305	0
+306	0
+307	0
+308	0
+309	0
+310	0
+311	0
+312	0
+313	0
+314	0
+315	0
+316	0
+317	0
+318	0
+319	0
+320	0
+321	0
+322	0
+323	0
+324	0
+325	0
+326	0
+327	0
+328	0
+329	0
+330	0
+331	0
+332	1
+333	0
+334	0
+335	0
+336	0
+337	0
+338	0
+339	0
+340	0
+341	0
+342	0
+343	0
+344	0
+345	0
+346	0
+347	0
+348	0
+349	0
+350	0
+351	0
+352	0
+353	0
+354	0
+355	0
+356	0
+357	0
+358	0
+359	0
+360	0
+361	0
+362	0
+363	0
+364	0
+365	0
+366	0
+367	0
+368	0
+369	0
+370	0
+371	0
+372	0
+373	0
+374	0
+375	0
+376	0
+377	0
+378	0
+379	0
+380	0
+381	0
+382	0
+383	0
+384	0
+385	0
+386	0
+387	0
+388	0
+389	0
+390	0
+391	0
+392	0
+393	0
+394	0
+395	0
+396	0
+397	0
+398	0
+399	0
+400	0
+401	0
+402	0
+403	0
+404	0
+405	0
+406	0
+407	0
+408	0
+409	0
+410	0
+411	0
+412	0
+413	0
+414	0
+415	0
+416	0
+417	0
+418	0
+419	0
+420	0
+421	0
+422	0
+423	0
+424	0
+425	0
+426	0
+427	0
+428	0
+429	0
+430	0
+431	0
+432	0
+433	0
+434	0
+435	0
+436	0
+437	0
+438	0
+439	0
+440	0
+441	0
+442	0
+443	0
+444	0
+445	0
+446	0
+447	0
+448	0
+449	0
+450	0
+451	0
+452	0
+453	0
+454	0
+455	0
+456	0
+457	0
+458	0
+459	0
+460	0
+461	0
+462	0
+463	0
+464	0
+465	0
+466	1
+the stats have been generated
+String Learning and evaluating models
+3
+3
+#########
+3
+Took 8.598 seconds for the training.
+<---- done
+Took 0.007 seconds for Prediction.
+
+***********   Class:1.0   *************
+F1 Score:0.9253731343283582
+True Positive:0.9253731343283582
+False Positive:0.05319148936170213
+Precision:0.9253731343283582
+Recall:0.9253731343283582
+
+***********   Class:2.0   *************
+F1 Score:0.9468085106382979
+True Positive:0.9468085106382979
+False Positive:0.07462686567164178
+Precision:0.9468085106382979
+Recall:0.9468085106382979
+
+Confusion Matrix 
+62.0  5.0   
+5.0   89.0  
+
+***********   Classifier Results for LRW2VClassifier   *************
+Weighted F1-Measure = 0.9378881987577641
+Weighted Precision = 0.9378881987577641
+Weighted Recall = 0.9378881987577641
+Macro F1 = 0.936090822483328
+Micro F1 = 0.937888198757764
+
+***********   End of Classifier Results for LRW2VClassifier   *************
+Took 2.539 seconds for the prediction.
+Took 33.758 seconds for the whole process.

@@ -1,0 +1,24 @@
+building the project
+running the script on tweet solar eclipsed collection with block size hardcoded
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.008 seconds for Prediction.
+Filter: Keeping Collection Name == Eclipse2017
+Filter: Keeping Doc Type == webpage
+Filter: Keeping Clean Text != ''
+Caching Info:1000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:722
+*********** Predicting the webpages now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the webpages now. *****************
+The amount of webpages to be written is 722
+Took 30.998 seconds for This Batch.
+This batch had 722 webpages. We have processed 722 webpages overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:722
+Took 42.573 seconds for the whole process.

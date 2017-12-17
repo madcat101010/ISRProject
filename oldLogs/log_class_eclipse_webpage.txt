@@ -1,0 +1,99 @@
+building the project
+running the script on tweet solar eclipsed collection with block size hardcoded
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.005 seconds for Prediction.
+Filter: Keeping Collection Name == Eclipse2017
+Filter: Keeping Doc Type == webpage
+Filter: Keeping Clean Text != ''
+Caching Info:1000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:722
+*********** Predicting the webpages now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the webpages now. *****************
+The amount of webpages to be written is 722
+Took 35.6 seconds for This Batch.
+This batch had 722 webpages. We have processed 722 webpages overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:722
+Took 54.551 seconds for the whole process.
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.005 seconds for Prediction.
+Filter: Keeping Collection Name == #August21
+Filter: Keeping Doc Type == webpage
+Filter: Keeping Clean Text != ''
+Caching Info:1000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:470
+*********** Predicting the webpages now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the webpages now. *****************
+The amount of webpages to be written is 470
+Took 26.277 seconds for This Batch.
+This batch had 470 webpages. We have processed 470 webpages overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:470
+Took 46.262 seconds for the whole process.
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.006 seconds for Prediction.
+Filter: Keeping Collection Name == #eclipseglasses
+Filter: Keeping Doc Type == webpage
+Filter: Keeping Clean Text != ''
+Caching Info:1000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+Result Length:1000
+*********** Predicting the webpages now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the webpages now. *****************
+The amount of webpages to be written is 1000
+Took 35.42 seconds for This Batch.
+This batch had 1000 webpages. We have processed 1000 webpages overall
+Getting next batch of results now.
+Result Length:1000
+*********** Predicting the webpages now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the webpages now. *****************
+The amount of webpages to be written is 1000
+Took 13.437 seconds for This Batch.
+This batch had 1000 webpages. We have processed 2000 webpages overall
+Getting next batch of results now.
+Result Length:262
+*********** Predicting the webpages now. *****************
+<---- done
+Took 0.002 seconds for Prediction.
+*********** Persisting the webpages now. *****************
+The amount of webpages to be written is 262
+Took 9.332 seconds for This Batch.
+This batch had 262 webpages. We have processed 2262 webpages overall
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:2262
+Took 79.494 seconds for the whole process.
+Number of classes is: 3
+Classifier Model file found:Broadcast(1). Loading model.
+<---- done
+Took 0.005 seconds for Prediction.
+Filter: Keeping Collection Name == oreclipse
+Filter: Keeping Doc Type == webpage
+Filter: Keeping Clean Text != ''
+Caching Info:1000 Batch Info: -1
+Scanning results now.
+Getting next batch of results now.
+No more results from scan. Finishing...
+Total record count:0
+Took 31.63 seconds for the whole process.

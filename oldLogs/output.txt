@@ -1,0 +1,910 @@
+building the project
+running the script on tweet solar eclipsed collection with block size hardcoded
+Number of classes is: 3
+Training website models using tweet methodology
+Training models
+ADDED:http://abcnews.go.com/US/best-us-cities-watch-2017-total-solar-eclipse/story?id=48908409-1509392048.17 | 2.0
+ADDED:http://abcnews.go.com/US/total-solar-eclipse-2017-upcoming-celestial-event/story?id=48859509-1509392055.12 | 2.0
+ADDED:http://www.ajc.com/news/local/how-georgians-can-watch-the-rare-total-solar-eclipse-this-monday/STaiNn15FfYM3Xoo1eO2tM/-1509392067.62 | 2.0
+ADDED:https://philly.curbed.com/2017/8/4/16091074/solar-eclipse-2017-philadelphia-view-1509392074.81 | 2.0
+ADDED:https://www.nps.gov/subjects/naturalphenomena/2017eclipse.htm-1509392081.19 | 2.0
+ADDED:https://www.space.com/33797-total-solar-eclipse-2017-guide.html-1509392084.01 | 2.0
+ADDED:https://www.space.com/35555-total-solar-eclipse-safety-tips.html-1509392086.92 | 2.0
+ADDED:https://www.space.com/36471-how-to-survive-total-solar-eclipse-2017.html-1509392089.91 | 2.0
+ADDED:https://www.space.com/35495-where-to-see-2017-total-solar-eclipse.html-1509392092.36 | 2.0
+ADDED:https://www.space.com/35080-total-solar-eclipse-2017-path-maps.html-1509392095.03 | 2.0
+ADDED:https://www.space.com/36388-total-solar-eclipse-2017-duration.html-1509392097.84 | 2.0
+ADDED:https://www.space.com/15613-solar-eclipses-observing-guide-infographic.html-1509392101.28 | 2.0
+ADDED:https://www.space.com/39-total-solar-eclipse-2010.html-1509392103.45 | 1.0
+ADDED:https://www.space.com/37848-solar-eclipse-2017-time.html-1509392106.59 | 2.0
+ADDED:https://www.space.com/37845-kronos-quartet-serenades-total-solar-eclipse.html-1509392109.66 | 2.0
+ADDED:https://www.space.com/36383-solar-eclipse-2017-balloon-livestream.html-1509392112.01 | 2.0
+ADDED:https://www.space.com/37772-solar-eclipse-2017-maps.html-1509392114.41 | 2.0
+ADDED:https://www.space.com/37262-solar-eclipse-gear.html-1509392117.34 | 1.0
+ADDED:https://www.space.com/37199-solar-eclipse-blindness.html-1509392119.66 | 2.0
+ADDED:https://www.space.com/36941-solar-eclipse-eye-protection-guide.html-1509392122.21 | 2.0
+ADDED:https://www.space.com/36637-what-you-will-see-during-a-total-solar-eclipse.html-1509392124.66 | 2.0
+ADDED:https://www.space.com/32214-total-solar-eclipse-airline-flight-video.html-1509392127.2 | 1.0
+ADDED:https://www.space.com/35762-solar-eclipse-viewing-parties.html-1509392137.53 | 2.0
+ADDED:https://www.space.com/32206-total-solar-eclipse-2016-amazing-photos.html-1509392140.28 | 1.0
+ADDED:https://www.space.com/32198-total-solar-eclipse-2016-pictures.html-1509392142.96 | 1.0
+ADDED:https://www.space.com/27483-partial-solar-eclipse-how-to-view-it-video.html-1509392146.24 | 1.0
+ADDED:https://www.space.com/30343-great-american-total-solar-eclipse-2017.html-1509392148.79 | 2.0
+ADDED:https://www.space.com/37124-teaching-kids-about-solar-eclipses.html-1509392151.55 | 2.0
+ADDED:https://www.space.com/36978-most-amazing-solar-eclipse-photos-worldwide.html-1509392154.01 | 2.0
+ADDED:https://www.space.com/36721-stars-planets-visible-during-solar-eclipse.html-1509392156.48 | 2.0
+ADDED:https://www.space.com/32203-solar-prominence-photobombs-eclipse-totality-video.html-1509392159.12 | 1.0
+ADDED:https://www.space.com/37223-how-to-photograph-solar-eclipse.html-1509392161.65 | 2.0
+ADDED:http://www.space.com/35555-total-solar-eclipse-safety-tips.html-1509392164.33 | 2.0
+ADDED:http://www.space.com/topics/solar-eclipse-1509392167.08 | 2.0
+ADDED:http://www.space.com/33797-total-solar-eclipse-2017-guide.html-1509392169.38 | 2.0
+ADDED:https://www.space.com/37898-total-eclipse-in-casper-wyoming-fred-espenak.html-1509392171.98 | 2.0
+ADDED:https://www.space.com/37877-total-solar-eclipse-returns-to-us-in-2024.html-1509392174.32 | 1.0
+ADDED:https://www.space.com/37906-total-solar-eclipse-2017-alaska-airlines-flight.html-1509392177.05 | 2.0
+ADDED:https://www.washingtonpost.com/solar-eclipse-2017/-1509392181.75 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/20/the-eclipse-capital-of-the-united-states-is-giddy-for-mondays-total-solar-eclipse-1509392185.46 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/08/heres-what-youll-see-when-the-sun-disappears-during-the-total-solar-eclipse-1509392187.93 | 1.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/19/on-the-road-to-the-path-of-totality-for-the-solar-eclipse-1509392190.14 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/18/crossword-puzzle-test-your-eclipse-knowledge-1509392193.59 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/17/the-solar-eclipse-path-of-totality-includes-some-of-the-nations-more-unique-landmarks-1509392196.73 | 2.0
+ADDED:https://www.washingtonpost.com/news/going-out-guide/wp/2017/08/17/where-to-watch-the-solar-eclipse-in-washington-1509392199.64 | 2.0
+ADDED:http://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/15/the-worst-things-that-could-go-wrong-during-the-total-solar-eclipse-and-how-to-be-prepared-1509392204.4 | 1.0
+ADDED:https://www.washingtonpost.com/news/dr-gridlock/wp/2017/08/18/tips-for-driving-during-the-solar-eclipse-1509392207.35 | 2.0
+ADDED:https://www.washingtonpost.com/national/health-science/qanda-do-you-have-a-question-about-the-total-solar-eclipse-coming-in-august/2017/08/01/a81e1908-708c-11e7-8c17-533c52b2f014_livediscussion.html-1509392210.03 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/16/mondays-eclipse-is-part-of-a-family-heres-what-that-means-1509392212.81 | 2.0
+ADDED:http://www.washingtonpost.com/sf/national/2017/08/04/how-to-use-your-smartphone-to-photograph-the-solar-eclipse-1509392215.76 | 2.0
+ADDED:https://www.washingtonpost.com/news/wonk/wp/2017/08/01/the-path-of-the-solar-eclipse-is-already-altering-real-world-behavior-1509392218.9 | 2.0
+ADDED:https://www.washingtonpost.com/news/animalia/wp/2017/08/18/during-the-solar-eclipse-animals-will-be-extremely-confused-1509392221.72 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/14/temperatures-may-plunge-more-than-ten-degrees-during-total-solar-eclipse-1509392226.43 | 2.0
+ADDED:https://www.washingtonpost.com/lifestyle/kidspost/solar-eclipse-maps-are-not-exact-scientists-say-path-of-totality-isnt-quite-70-miles/2017/08/11/d140fd5e-7eac-11e7-9d08-b79f191668ed_story.html-1509392229.2 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/10/a-guide-to-watching-the-solar-eclipse-in-the-washington-d-c-area-1509392231.55 | 2.0
+ADDED:https://www.washingtonpost.com/solar-eclipse-2017-1509392234.01 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/21/total-solar-eclipse-weather-forecast-as-of-aug-21-1509392238.0 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/16/total-eclipse-play-by-play-exactly-what-youll-see-on-the-big-day-in-the-path-of-totality-1509392241.08 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/09/total-solar-eclipse-weather-forecast-as-of-aug-9-2017-1509392244.14 | 2.0
+ADDED:https://www.washingtonpost.com/news/retropolis/wp/2017/08/15/the-solar-eclipse-that-made-einstein-famous-1509392246.91 | 1.0
+ADDED:https://www.washingtonpost.com/news/answer-sheet/wp/2017/08/08/solar-eclipse-dilemma-for-schools-stay-open-or-close-1509392249.82 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/09/parents-the-solar-eclipse-is-nothing-to-fear-heres-how-to-watch-it-with-your-kids-1509392252.96 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/07/an-early-total-solar-eclipse-weather-forecast-as-of-aug-7-2017-1509392256.13 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/01/a-way-too-early-look-at-the-cloud-forecast-for-the-total-solar-eclipse-1509392259.11 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/11/total-solar-eclipse-weather-forecast-as-of-aug-11-1509392262.07 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/14/total-solar-eclipse-weather-forecast-as-of-aug-14-1509392265.14 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/16/total-solar-eclipse-weather-forecast-as-of-aug-16-1509392268.22 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/17/total-solar-eclipse-weather-forecast-as-of-aug-17-1509392270.65 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/07/25/no-firm-travel-plans-for-the-solar-eclipse-heres-what-to-expect-if-you-wing-it-1509392273.64 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/02/august-total-solar-eclipse-gives-scientists-rare-chance-to-study-suns-corona-1509392276.72 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/09/airfares-to-solar-eclipse-destinations-soar-to-astronomical-levels-1509392279.06 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/18/total-solar-eclipse-weather-forecast-as-of-aug-18-1509392282.25 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/19/total-solar-eclipse-weather-forecast-as-of-aug-19-1509392285.22 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/20/total-solar-eclipse-weather-forecast-as-of-aug-20-1509392288.29 | 2.0
+ADDED:https://www.washingtonpost.com/news/early-lead/wp/2017/08/17/titans-to-pause-practice-on-monday-to-watch-total-eclipse-as-a-team-1509392291.26 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/01/an-omen-of-doom-and-source-of-awe-a-glimpse-into-the-history-of-solar-eclipses-1509392295.15 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/17/we-built-a-spotify-playlist-for-the-solar-eclipse-what-songs-would-you-suggest-1509392299.32 | 1.0
+ADDED:https://www.washingtonpost.com/news/inspired-life/wp/2017/07/26/how-the-coming-solar-eclipse-has-brought-hope-to-my-struggling-kentucky-hometown-1509392302.32 | 1.0
+ADDED:https://www.washingtonpost.com/national/health-science/to-prepare-for-the-aug-21-solar-eclipse-check-out-these-amazing-paintings/2017/08/04/194749a4-76ed-11e7-8f39-eeb7d3a2d304_story.html-1509392305.6 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/07/its-the-last-full-moon-before-the-solar-eclipse-use-it-to-practice-your-photography-skillz-1509392307.82 | 1.0
+ADDED:https://www.washingtonpost.com/national/anticipation-builds-in-the-us-for-the-solar-eclipse/2017/08/19/165fd7a6-851b-11e7-b359-15a3617c767b_gallery.html-1509392310.31 | 1.0
+ADDED:https://www.washingtonpost.com/video/local/weather/flashback-how-tv-news-covered-the-last-total-eclipse-to-cross-the-us-mainland/2017/08/18/901a76f6-843e-11e7-9e7a-20fa8d7a0db6_video.html-1509392312.91 | 1.0
+ADDED:https://www.washingtonpost.com/news/acts-of-faith/wp/2017/08/17/purifying-the-house-praying-for-the-sun-religious-tradition-has-a-lot-to-say-about-solar-eclipses-1509392316.86 | 1.0
+ADDED:https://www.washingtonpost.com/news/early-lead/wp/2017/08/09/the-little-league-world-series-isnt-going-to-let-a-little-thing-like-a-historic-solar-eclipse-stop-it-1509392320.04 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/07/20/witnessing-the-indescribable-why-ive-chased-solar-eclipses-all-over-the-world-1509392323.02 | 2.0
+ADDED:https://www.washingtonpost.com/local/skywatch-solar-eclipse-will-be-the-talk-of-many-towns-across-the-us/2017/07/29/2499a1fa-73a3-11e7-8f39-eeb7d3a2d304_story.html-1509392325.98 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/11/your-dog-doesnt-need-glasses-and-other-eclipse-myths-busted-1509392329.42 | 2.0
+ADDED:https://www.washingtonpost.com/video/local/weather/this-is-why-you-need-special-sunglasses-to-view-the-total-eclipse/2017/08/09/fafcccd8-7d0b-11e7-b2b1-aeba62854dfa_video.html-1509392331.66 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/07/12/a-massive-atmospheric-experiment-is-planned-for-august-solar-eclipse-1509392334.69 | 2.0
+ADDED:https://www.washingtonpost.com/national/health-science/in-totalitys-path-eclipse-mania-overshadows-fears-of-eclipsemageddon--for-now/2017/08/19/40493044-8426-11e7-b359-15a3617c767b_story.html-1509392337.56 | 2.0
+ADDED:http://abcnews.go.com/topics/news/solar-eclipse.htm-1509392340.2 | 2.0
+ADDED:http://abcnews.go.com/Lifestyle/video/woman-experiences-total-solar-eclipse-dying-father-49385202-1509392342.55 | 2.0
+ADDED:http://abcnews.go.com/WNN/video/friday-rewind-solar-eclipse-49417050-1509392344.96 | 2.0
+ADDED:https://www.washingtonpost.com/news/wonk/wp/2017/08/18/the-best-places-to-watch-the-eclipse-with-a-goat-1509392348.41 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/21/how-to-watch-todays-solar-eclipse-in-washington-va-and-md-1509392350.77 | 2.0
+ADDED:https://www.washingtonpost.com/news/dr-gridlock/wp/2017/08/10/one-way-to-prolong-the-joy-of-eclipse-2017-a-ticket-on-a-jet-plane-1509392353.73 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/21/20-seconds-of-burning-friends-partially-blinded-after-watching-solar-eclipse-warn-of-dangers-1509392356.76 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/03/a-way-too-early-solar-eclipse-weather-forecast-as-of-aug-3-2017-1509392359.98 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/17/still-need-a-pair-of-solar-eclipse-glasses-heres-where-to-find-them-maybe-1509392362.44 | 2.0
+ADDED:https://www.washingtonpost.com/news/business/wp/2017/08/09/the-eclipse-is-coming-and-companies-are-looking-to-cash-in-with-chocolate-doughnuts-and-more-1509392368.79 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/07/21/a-total-solar-eclipse-is-happening-aug-21-and-heres-what-you-need-to-know-1509392371.46 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/07/19/seeking-clear-skies-for-the-solar-eclipse-use-this-map-as-a-guide-1509392374.57 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/19/cant-find-the-protective-glasses-to-watch-the-solar-eclipse-go-old-school-1509392377.52 | 2.0
+ADDED:https://www.washingtonpost.com/news/the-switch/wp/2017/08/03/rural-towns-in-the-eclipses-path-brace-for-a-flood-of-smartphone-toting-visitors-1509392380.77 | 2.0
+ADDED:http://www.ajc.com/news/national/don-ruin-your-eclipse-experience-what-not-the-day-and-during-the-total-solar-eclipse/yIdyyLwA2rPdN3XEiWX0gL-1509392384.23 | 2.0
+ADDED:http://www.ajc.com/news/national/the-ultimate-guide-the-once-lifetime-total-solar-eclipse-this-august/YXMemfAXPfceuGBLrUeBgP-1509392389.55 | 2.0
+ADDED:http://www.ajc.com/entertainment/bonnie-tyler-sing-total-eclipse-the-heart-cruise-during-solar-eclipse/2K5s0bFtuX9IXJvxAy1sON-1509392394.03 | 2.0
+ADDED:http://www.ajc.com/news/national/things-know-about-the-rare-total-solar-eclipse-crossing-the-nation-this-august/UcKkzhrRCpprFai8RvA4GK-1509392398.4 | 2.0
+ADDED:http://www.ajc.com/news/national/solar-eclipse-2017-your-eyes-will-fry-under-normal-sunglasses-during-2017-eclipse-here-why/85UgBSLAhg6OQisXazbfCL-1509392403.83 | 2.0
+ADDED:http://www.ajc.com/news/national/solar-eclipse-can-blind-you-here-how-stay-safe-during-august-great-american-eclipse/1jzP8xhqACMgVLJr28fKgJ-1509392411.11 | 2.0
+ADDED:http://www.ajc.com/news/local/get-your-free-eclipse-glasses-these-metro-atlanta-libraries-time-for-august-rare-total-solar-eclipse/3h1A7j0YxPjZ1vFFUiS32N-1509392416.24 | 2.0
+ADDED:http://www.ajc.com/news/local/how-georgians-can-watch-the-rare-total-solar-eclipse-this-summer/STaiNn15FfYM3Xoo1eO2tM-1509392421.65 | 2.0
+ADDED:http://www.ajc.com/news/local/fulton-hospital-host-watch-party-for-total-solar-eclipse/IV2g7BDjU396wUycoHaVuO-1509392426.23 | 2.0
+ADDED:http://www.ajc.com/news/national/what-will-the-sky-look-like-your-city-during-august-rare-total-solar-eclipse/vemirHclNEHKKenWfwjgRM-1509392430.87 | 2.0
+ADDED:http://www.ajc.com/news/local/this-map-shows-exactly-where-and-when-the-total-solar-eclipse-will-cross-georgia-this-august/qW46BdOMEqNB0kk8wof7mO-1509392434.86 | 2.0
+ADDED:http://www.ajc.com/news/national/krispy-kreme-goes-dark-for-solar-eclipse-2017/W0gXhFzpKkF8uApwtUJALN-1509392438.76 | 2.0
+ADDED:http://www.ajc.com/events/pets--animals/how-will-your-pets-react-the-solar-eclipse/YaSNIjqnqgkro0vzW7XPsM-1509392442.49 | 2.0
+ADDED:http://www.ajc.com/news/local/total-solar-eclipse-will-end-life-this-planet-know-georgia-sheriff-says/0LSkAnMgNneS0somwqimPK-1509392446.47 | 2.0
+ADDED:http://www.ajc.com/news/national/solar-eclipse-checklist-everything-you-need-pack-bring-with-you-eclipse-day/iKwlY17Ml914lGoSMAP9NN-1509392452.89 | 2.0
+ADDED:http://www.ajc.com/weather/uga-host-solar-eclipse-viewing-sanford-stadium/P5xFm69lFDLH7ytHliLAVJ-1509392459.04 | 2.0
+ADDED:http://www.ajc.com/lifestyles/suwanee-artist-creates-foot-solar-eclipse-sculpture/LXPkMNd2eGX7QgPliXRnKK-1509392465.59 | 2.0
+ADDED:http://www.ajc.com/news/local/gwinnett-schools-will-delay-dismissal-hour-during-solar-eclipse/9E6wDNRQzpCuJCeFwOrlMI-1509392469.38 | 2.0
+ADDED:http://www.ajc.com/news/local/marietta-extending-school-minutes-during-solar-eclipse-for-safety/uBOW9jjNz6guk6FkASq0WO-1509392472.86 | 2.0
+ADDED:http://www.ajc.com/news/national/safe-take-selfie-with-the-solar-eclipse-how-the-right-way/gtUghLhBHf30jlc6eGCuzO-1509392477.12 | 2.0
+ADDED:http://www.ajc.com/news/national/sun-eating-demons-bizarre-but-brilliant-myths-and-superstitions-about-solar-eclipses/QTAmVLA9m1z4KVCUIeTVuI-1509392480.02 | 2.0
+ADDED:http://www.ajc.com/news/local/check-out-how-cobb-schools-are-using-solar-eclipse-teaching-moment/mi1Al5TG8AzvzNfCKPTATL-1509392483.92 | 2.0
+ADDED:http://www.ajc.com/news/local/cobb-extending-school-minutes-during-solar-eclipse-for-child-safety/QAnhUwzeMi9LYoEzigaOOM-1509392488.22 | 1.0
+ADDED:http://www.ajc.com/news/local/dekalb-schools-keeping-students-extra-hour-for-solar-eclipse/YjGwhrA9IqFKL7ZvBwVkEP-1509392493.45 | 2.0
+ADDED:http://www.ajc.com/news/local/solar-eclipse-forecast-iffy-for-atlanta-but-that-can-change-two-weeks/KYriBLgKFpDpC1h5KH75ZK-1509392498.36 | 2.0
+ADDED:http://www.ajc.com/news/local/will-you-see-the-total-solar-eclipse-from-metro-atlanta-see-how-far-you-may-need-travel/QqOUNKLPwREzm6aTKgx7oL-1509392503.95 | 2.0
+ADDED:http://www.ajc.com/news/local/for-the-solar-eclipse-these-schools-near-atlanta-will-delay-dismissal/wbRXcz4jFJDMzy4tT36QvL-1509392507.8 | 2.0
+ADDED:http://www.ajc.com/news/national/photographing-the-eclipse-time-prepare-now/kupJyVopt0BVdKstldMG1M-1509392511.89 | 2.0
+ADDED:http://www.ajc.com/news/national/don-let-clouds-ruin-your-solar-eclipse-view-use-these-two-maps-find-clear-skies-near-you/erhhIljQY8p1Derwp9flQN-1509392516.8 | 2.0
+ADDED:http://www.ajc.com/news/national/uga-professor-creates-map-waffle-house-restaurants-watch-the-solar-eclipse-from-seriously/YFoTfByZTxZRd9jL9HYgOK-1509392521.0 | 2.0
+ADDED:http://www.ajc.com/news/national/how-photograph-the-solar-eclipse/kupJyVopt0BVdKstldMG1M-1509392523.87 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/04/26/dont-let-clouds-ruin-your-solar-eclipse-heres-where-its-most-likely-to-be-clear-1509392527.43 | 2.0
+ADDED:http://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/18/the-eclipses-really-early-birds-1509392530.51 | 1.0
+ADDED:https://www.washingtonpost.com/business/get-there/dont-be-blindsided-during-the-eclipse/2017/08/01/437348b2-76d0-11e7-8f39-eeb7d3a2d304_story.html-1509392533.68 | 2.0
+ADDED:https://www.washingtonpost.com/news/post-nation/wp/2017/08/10/begin-panicking-sheriff-jokes-that-solar-eclipse-is-the-end-of-life-on-this-planet-as-we-know-it-1509392539.92 | 2.0
+ADDED:https://www.washingtonpost.com/national/health-science/the-great-american-eclipse-is-finally-here/2017/08/20/5d243c32-8506-11e7-ab27-1a21a8e006ab_story.html-1509392542.9 | 2.0
+ADDED:https://philly.curbed.com/maps/total-solar-eclipse-2017-philadelphia-best-views-1509392545.39 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/04/vendors-may-be-selling-fake-solar-eclipse-glasses-heres-how-to-make-sure-yours-are-real-1509392547.83 | 1.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/15/a-pop-culture-guide-to-preparing-for-the-eclipse-starring-homer-simpson-and-bugs-bunny-1509392551.09 | 1.0
+ADDED:http://www.ajc.com/news/local/you-can-drive-kennesaw-mountain-for-the-eclipse-here-the-deal/Ok8YfCqypW8XtF2O6eDuTL-1509392554.28 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/04/27/the-u-s-postal-service-designed-this-awesome-stamp-to-celebrate-the-eclipse-1509392557.81 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/08/18/these-visual-aides-show-you-exactly-what-the-eclipse-will-look-like-in-your-location-1509392560.82 | 2.0
+ADDED:http://www.ajc.com/news/national/want-see-the-solar-eclipse-head-these-places-for-best-views/O2Vot3MoZLNfj7Lk9f1tnL-1509392569.54 | 2.0
+ADDED:https://www.washingtonpost.com/graphics/2017/national/total-solar-eclipse-2017-faq-1509392573.01 | 1.0
+ADDED:https://www.washingtonpost.com/news/wonk/wp/2017/08/18/this-5000-year-old-stone-carving-may-be-the-worlds-first-drawing-of-an-eclipse-1509392580.3 | 1.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/06/28/youll-need-special-glasses-to-see-the-solar-eclipse-heres-where-to-get-them-for-free-1509392590.81 | 2.0
+ADDED:https://www.washingtonpost.com/local/trafficandcommuting/the-eclipse-could-bring-the-worst-traffic-jam-in-us-history-heres-how-states-are-trying-to-keep-that-from-happening/2017/08/18/a1bb07ea-8119-11e7-902a-2a9f2d808496_story.html-1509392593.6 | 1.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/20/anyone-wanna-bungee-jump-during-the-eclipse-1509392596.56 | 2.0
+ADDED:https://philly.curbed.com/2017/8/17/16161376/solar-eclipse-2017-time-philadelphia-1509392599.55 | 2.0
+ADDED:http://www.ajc.com/news/local/cloudy-skies-could-ruin-your-solar-eclipse-plans-use-this-map-see-how-cloudy-your-georgia-city-will/w68xw6tkRp0lCGT2D8LO3N-1509392603.44 | 2.0
+ADDED:https://www.washingtonpost.com/lifestyle/travel/want-to-see-this-summers-solar-eclipse-here-are-some-viewing-options-across-the-us/2017/06/29/9bf4d650-5c17-11e7-a9f6-7c3296387341_story.html-1509392607.11 | 2.0
+ADDED:https://philly.curbed.com/2017/8/21/16180162/solar-eclipse-2017-photos-philadelphia-1509392610.42 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/06/02/scientists-are-gearing-up-to-take-the-longest-ever-video-of-a-solar-eclipse-1509392612.89 | 2.0
+ADDED:https://www.washingtonpost.com/national/2017/live-updates/weather/2017-solar-eclipse-live-updates-weather-photos-traffic-and-more-1509392615.82 | 2.0
+ADDED:https://www.washingtonpost.com/news/on-small-business/wp/2017/08/18/sales-of-eclipse-glasses-are-shining-bright-1509392618.66 | 2.0
+ADDED:http://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/20/the-eclipse-capital-of-the-united-states-is-giddy-for-mondays-total-solar-eclipse-1509392620.85 | 2.0
+ADDED:http://www.ajc.com/news/solar-eclipse-2017-lyft-discounts-rides-percent-prime-viewing-spots-monday/wp2gnVqhE1bLLfpZujb2OL-1509392624.95 | 2.0
+ADDED:https://www.washingtonpost.com/news/parenting/wp/2017/06/29/how-to-get-kids-ready-for-and-excited-about-the-great-american-eclipse-1509392627.69 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/06/30/what-happens-if-you-try-to-watch-the-august-solar-eclipse-without-special-glasses-nothing-good-1509392630.88 | 2.0
+ADDED:http://www.ajc.com/lifestyles/camping-out-for-solar-eclipse-2017-better-hurry-spots-are-going-fast/PrB9pn8LAIclmiclK6UjYO-1509392634.99 | 2.0
+ADDED:https://www.washingtonpost.com/news/answer-sheet/wp/2017/07/31/so-the-eclipse-is-coming-and-you-suddenly-want-to-be-an-astronomer-heres-what-they-actually-do-1509392639.14 | 2.0
+ADDED:http://www.ajc.com/lifestyles/north-georgia-towns-brace-for-huge-crowds-for-solar-eclipse/1CNySlBBpxuN9VQKXAzTlJ-1509392642.97 | 2.0
+ADDED:https://www.washingtonpost.com/graphics/national/eclipse-1509392649.81 | 2.0
+ADDED:http://www.byui.edu/eclipse-2017-1509392652.89 | 1.0
+ADDED:http://www.ajc.com/news/national/new-color-changing-eclipsestamps-honor-2017-total-solar-eclipse-magically-transform-into-moon/c86v0R8hxvahe2weT84NsJ-1509392657.77 | 1.0
+ADDED:http://www.ajc.com/news/local/don-get-scammed-safe-nasa-approved-eclipse-glasses-and-where-snag-pair/et08PO6YlaljKy6YfZbdGP-1509392671.96 | 2.0
+ADDED:https://www.washingtonpost.com/lifestyle/home/everyones-freaking-out-about-the-eclipse-but-gardeners-know-the-suns-true-wonder/2017/08/15/b612286e-7d44-11e7-9d08-b79f191668ed_story.html-1509392675.48 | 1.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/07/03/that-time-a-city-scared-itself-silly-over-a-total-solar-eclipse-1509392678.7 | 2.0
+ADDED:https://www.washingtonpost.com/news/capital-weather-gang/wp/2017/06/16/how-to-avoid-clouds-that-could-spoil-the-great-american-eclipse-1509392681.06 | 2.0
+ADDED:http://www.ajc.com/news/local/can-find-eclipse-glasses-anywhere-make-these-diy-pinhole-cameras-projectors-instead/E9XwC4saAV7RtduUlqa5hP-1509392686.08 | 2.0
+ADDED:https://www.nytimes.com/2017/08/21/science/solar-eclipse.html-1509392690.7 | 2.0
+ADDED:https://www.nytimes.com/2017/08/21/science/total-solar-eclipse-day.html-1509392695.29 | 2.0
+ADDED:https://www.nytimes.com/news-event/solar-eclipse-2017-1509392700.52 | 2.0
+ADDED:https://www.nytimes.com/2017/08/20/science/solar-eclipse.html-1509392706.98 | 2.0
+ADDED:https://www.nytimes.com/interactive/2017/science/space/science-eclipse.html-1509392711.88 | 2.0
+ADDED:https://www.nytimes.com/2017/08/20/us/preparing-for-solar-eclipse.html-1509392714.55 | 2.0
+ADDED:https://www.nytimes.com/2017/08/16/science/eclipse-food-menu.html-1509392719.14 | 2.0
+ADDED:https://www.nytimes.com/2017/08/22/science/eclipse-eyes-sun.html-1509392722.75 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/why-is-the-eclipse-longer-in-some-places-than-in-others.html-1509392726.65 | 2.0
+ADDED:https://www.nytimes.com/2017/06/30/science/total-solar-eclipse-2017-carbondale-illinois.html-1509392730.93 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/smarter-living/solar-eclipse-watch-time-location.html-1509392738.46 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/music-playlist-solar-eclipse.html-1509392742.83 | 1.0
+ADDED:https://www.nytimes.com/2017/08/18/magazine/how-to-stay-sane-during-a-solar-eclipse.html-1509392752.16 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/eclipse-comic.html-1509392761.35 | 2.0
+ADDED:https://www.nytimes.com/interactive/2017/08/17/science/total-eclipse-where-are-you-watching.html-1509392767.47 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/watching-eclipse-august-21.html-1509392771.61 | 2.0
+ADDED:https://www.nytimes.com/2017/08/21/science/can-you-look-at-sun-eclipse.html-1509392776.1 | 2.0
+ADDED:https://www.nytimes.com/guides/science/how-to-watch-a-solar-eclipse-1509392779.68 | 2.0
+ADDED:https://www.nytimes.com/2017/08/18/climate/eclipse-to-test-solar-power-grid.html-1509392782.77 | 2.0
+ADDED:https://www.nytimes.com/2017/08/18/climate/should-you-trust-climate-science-maybe-the-eclipse-is-a-clue.html-1509392787.38 | 2.0
+ADDED:https://www.nytimes.com/video/science/100000005343495/solar-eclipse-2017.html-1509392792.2 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/why-some-say-the-eclipse-is-best-experienced-in-a-massive-crowd.html-1509392796.49 | 1.0
+ADDED:https://www.nytimes.com/2017/04/27/science/ap-us-sci-eclipse-stamp.html-1509392799.27 | 1.0
+ADDED:https://www.nytimes.com/2017/07/19/science/what-a-total-solar-eclipse-looks-like-from-space.html-1509392802.84 | 2.0
+ADDED:https://www.nytimes.com/2016/03/10/science/total-solar-eclipse-photos-video-timelapse.html-1509392807.27 | 2.0
+ADDED:http://www.nytimes.com/2016/03/08/science/total-solar-eclipse-will-end-the-day-before-it-begins.html-1509392810.81 | 2.0
+ADDED:http://www.nytimes.com/2016/03/09/science/how-to-watch-the-solar-eclipse.html-1509392815.22 | 2.0
+ADDED:https://www.timeanddate.com/eclipse/list.html-1509393634.8 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/eclipse-discoveries-science.html-1509393638.37 | 2.0
+ADDED:https://www.nytimes.com/2017/07/31/science/eclipse-einstein-general-relativity.html-1509393643.55 | 2.0
+ADDED:https://www.nytimes.com/2015/03/20/science/a-rare-total-solar-eclipse.html-1509393649.35 | 2.0
+ADDED:https://www.nytimes.com/2017/08/14/science/eclipse-planes-flights-ionosphere.html-1509393653.63 | 2.0
+ADDED:https://www.nytimes.com/2017/04/27/travel/where-to-celebrate-the-solar-eclipse-syzygy.html-1509393658.45 | 2.0
+ADDED:https://www.nytimes.com/2016/03/09/science/how-to-watch-the-solar-eclipse.html-1509393662.49 | 1.0
+ADDED:https://www.nytimes.com/2017/07/10/travel/where-to-see-the-total-eclipse-astronomy.html-1509393666.11 | 1.0
+ADDED:https://www.nytimes.com/2016/03/10/world/asia/total-solar-eclipse-indonesia.html-1509393672.28 | 1.0
+ADDED:https://www.nytimes.com/2016/03/08/science/total-solar-eclipse-will-end-the-day-before-it-begins.html-1509393676.26 | 1.0
+ADDED:https://www.nytimes.com/interactive/2017/science/astronomy-space-calendar.html-1509393680.2 | 1.0
+ADDED:https://www.nytimes.com/2013/11/02/science/space/sunday-morning-surprise-a-solar-eclipse.html-1509393683.16 | 1.0
+ADDED:https://www.nytimes.com/video/science/100000003583902/solar-eclipse-videos-across-the-globe.html-1509393689.97 | 2.0
+ADDED:http://www.ajc.com/news/local-education/atlanta-fulton-school-systems-extend-school-day-for-eclipse/OXfzyIk6Wzd9l1XZNUsQfI-1509393694.91 | 2.0
+ADDED:https://www.nps.gov/grsm/planyourvisit/2017-solar-eclipse.htm-1509393704.4 | 2.0
+ADDED:http://abcnews.go.com/US/wireStory/south-carolina-couple-sues-amazon-eclipse-glasses-49563512-1509393707.37 | 2.0
+ADDED:http://wapo.st/eclipse-1509393710.81 | 2.0
+ADDED:http://wapo.st/2tQHD4u-1509393714.13 | 2.0
+ADDED:https://www.washingtonpost.com/business/economy/scientists-warn-fake-eclipse-glasses-can-literally-cook-your-retina/2017/08/18/7172989a-8381-11e7-b359-15a3617c767b_story.html-1509393723.37 | 2.0
+ADDED:https://www.omsi.edu/eclipse-2017-1509393727.16 | 1.0
+ADDED:http://scmuseum.org/eclipse-1509393732.83 | 1.0
+ADDED:http://scmuseum.org/solar-eclipse-2017-1509393737.06 | 1.0
+ADDED:http://scmuseum.org/category/solar-eclipse-2017-1509393742.0 | 2.0
+ADDED:http://scmuseum.org/eclipse/solar-eclipse-faq-1509393748.73 | 2.0
+ADDED:http://scmuseum.org/eclipse/eclipse-day-tickets-1509393753.28 | 2.0
+ADDED:http://scmuseum.org/eclipse/eclipse-day-event-info-1509393757.54 | 2.0
+ADDED:http://scmuseum.org/eclipse/education-1509393761.88 | 2.0
+ADDED:http://scmuseum.org/eclipse/shop-1509393766.14 | 1.0
+ADDED:http://scmuseum.org/eclipse/show-schedule-1509393772.25 | 2.0
+ADDED:http://scmuseum.org/eclipse/vip-experience-1509393780.53 | 1.0
+ADDED:http://scmuseum.org/eclipse/eclipse-day-tickets/eclipse-day-group-interest-form-1509393787.17 | 2.0
+ADDED:http://scmuseum.org/eclipse/solar-science-saturdays-1509393791.52 | 2.0
+ADDED:http://scmuseum.org/explore/exhibits/changing-exhibits/eclipsing-50-state-art-collection-1967-2017-1509393796.6 | 2.0
+ADDED:http://scmuseum.org/eclipse/weekend-tickets/pre-eclipse-weekend-group-interest-form-1509393800.77 | 1.0
+ADDED:http://scmuseum.org/eclipse/press-1509393804.88 | 1.0
+ADDED:http://scmuseum.org/2017/08/01/enjoy-total-solar-eclipse-fun-state-museum-august-1509393808.9 | 2.0
+ADDED:http://scmuseum.org/2017/07/31/receive-eclipse-viewing-glasses-museum-general-admission-august-1509393814.66 | 2.0
+ADDED:http://scmuseum.org/2017/08/28/donate-solar-eclipse-glasses-1509393818.86 | 2.0
+ADDED:http://scmuseum.org/2017/08/02/make-sure-solar-eclipse-viewing-glasses-safe-1509393823.07 | 2.0
+ADDED:http://scmuseum.org/2017/08/11/solar-eclipses-funny-way-messing-head-1509393827.17 | 1.0
+ADDED:http://scmuseum.org/category/solar-eclipse-2017/page/2-1509393831.57 | 2.0
+ADDED:http://scmuseum.org/2017/07/28/experience-shadows-space-planetarium-2017-solar-eclipse-1509393838.35 | 2.0
+ADDED:https://eclipse2017.nasa.gov/sites/default/files/2017_solar_eclipse_SME_s_map.html-1509393840.87 | 2.0
+ADDED:https://eclipse2017.nasa.gov/sites/default/files/2017_solar_eclipse_SME_training.html-1509393842.94 | 2.0
+ADDED:https://eclipse2017.nasa.gov/sites/default/files/2017_solar_eclipse_SME_form.html-1509393845.05 | 1.0
+ADDED:http://www.ajc.com/lifestyles/this-what-solar-eclipse-looks-like-from-space/2e4aw1Y6QYZxkUPRB3QG7H-1509393848.14 | 2.0
+ADDED:http://www.cbc.ca/news/technology/2017-summer-solar-eclipse-chaser-bob-mcdonald-1.4173908-1509393852.64 | 2.0
+ADDED:http://www.cbc.ca/news/technology/solar-eclipse-global-1.3482752-1509393858.38 | 2.0
+ADDED:http://www.ctvnews.ca/sci-tech/wyoming-prepares-for-total-solar-eclipse-in-2017-1.3035823-1509393861.59 | 2.0
+ADDED:http://www.ajc.com/news/science/rare-total-solar-eclipse-visible-from-america-august/R9GWpvMzW3zs0qEvm6FeYJ-1509393867.63 | 2.0
+ADDED:http://www.washingtonpost.com/graphics/national/eclipse-1509393873.81 | 2.0
+ADDED:http://www.nytimes.com/topic/subject/eclipses-1509393877.54 | 2.0
+ADDED:https://www.nytimes.com/video/science/100000005381016/perspectives-on-the-eclipse.html-1509393881.92 | 1.0
+ADDED:https://www.nytimes.com/video/us/100000005380536/solar-eclipse-live-us-2017.html-1509393884.55 | 2.0
+ADDED:https://www.nytimes.com/video/science/space/100000005367835/experience-eclipse-totality.html-1509393888.07 | 2.0
+ADDED:https://www.nytimes.com/2017/08/25/insider/solar-eclipse-carbondale.html-1509393890.5 | 2.0
+ADDED:https://www.nytimes.com/2017/08/21/sports/ncaafootball/football-practice-or-the-eclipse-it-depends-on-the-coach.html-1509393896.17 | 1.0
+ADDED:https://www.nytimes.com/2017/08/26/us/georgia-school-eclipse-glasses.html-1509393899.74 | 1.0
+ADDED:https://www.nytimes.com/2017/08/22/opinion/seeing-unity-and-enlightenment-in-solar-show.html-1509393904.39 | 1.0
+ADDED:http://variety.com/2017/tv/news/solar-eclipse-where-to-watch-tv-coverage-1202531157-1509393908.82 | 2.0
+ADDED:http://variety.com/t/solar-eclipse-1509393912.26 | 2.0
+ADDED:http://variety.com/2017/music/news/bonnie-tyler-total-eclipse-of-the-heart-solar-eclipse-streams-1202534641-1509393915.53 | 1.0
+ADDED:http://variety.com/2017/tv/news/solar-eclipse-moon-path-of-totality-abc-news-1202533686-1509393919.0 | 2.0
+ADDED:http://variety.com/2017/music/news/solar-eclipse-music-festivals-oregon-eclipse-moonfest-moonstock-1202523862-1509393922.71 | 2.0
+ADDED:http://variety.com/2017/digital/news/watch-solar-eclipse-live-stream-1202533229-1509393926.3 | 2.0
+ADDED:http://variety.com/2017/tv/news/solar-eclipse-cable-news-ratings-1202535782-1509393929.98 | 1.0
+ADDED:http://variety.com/2017/tv/news/solar-eclipse-mitsubishi-abc-news-tv-advertising-1202529254-1509393933.54 | 1.0
+ADDED:http://variety.com/2017/biz/news/solar-eclipse-bill-nye-the-science-guy-cosmos-questions-1202533704-1509393937.62 | 2.0
+ADDED:http://variety.com/t/eclipse-map-1509393941.01 | 1.0
+ADDED:http://variety.com/2017/tv/news/eclipse-august-21-science-channel-path-of-totali-1202507166-1509393944.66 | 2.0
+ADDED:https://www.washingtonpost.com/news/acts-of-faith/wp/2017/08/18/anybody-could-be-president-we-could-be-obliterated-by-nuclear-war-the-eclipse-would-still-come-1509393948.47 | 1.0
+ADDED:https://philly.curbed.com/2017/8/17/16160934/solar-eclipse-glasses-philadelphia-1509393951.23 | 2.0
+ADDED:http://www.athenschamber.org/a/total-eclipse-park-1509393963.69 | 1.0
+ADDED:https://www.nytimes.com/2017/08/30/well/family/parenting-lessons-from-a-partial-eclipse.html-1509393967.76 | 2.0
+ADDED:http://wapo.st/2lJFx5f-1509393976.33 | 2.0
+ADDED:https://informal.jpl.nasa.gov/museum/content/omsi-total-solar-eclipse-viewing-salem-oregon-august-21-2017-1509393982.85 | 2.0
+ADDED:https://www.washingtonpost.com/news/answer-sheet/wp/2017/08/09/facts-about-our-sun-and-moon-that-youre-embarrassed-to-admit-you-dont-know-1509393985.26 | 2.0
+ADDED:https://www.nytimes.com/video/science/100000004260754/asia-views-a-total-solar-eclipse.html-1509393988.51 | 1.0
+ADDED:http://www.washingtonpost.com/national/health-science/the-great-american-eclipse-is-finally-here/2017/08/20/5d243c32-8506-11e7-ab27-1a21a8e006ab_story.html-1509393990.81 | 1.0
+ADDED:https://weather.com/news/news/great-american-total-solar-eclipse-2017-traffic-problems-1509393995.49 | 1.0
+ADDED:https://twitter.com/intent/tweet-1509393999.91 | 1.0
+ADDED:http://www.cbc.ca/news/technology/north-america-s-first-total-solar-eclipse-since-2008-and-more-cool-science-for-2017-1.3887520-1509394002.71 | 2.0
+ADDED:http://www.wyomingstargazing.org/2017-solar-eclipse-1509394009.43 | 2.0
+ADDED:http://www.wyomingstargazing.org/100-days-totality-blog-78-days-left-first-recorded-solar-eclipse-1509394014.19 | 1.0
+ADDED:http://www.wyomingstargazing.org/100-days-totality-blog-launch-1509394018.39 | 1.0
+ADDED:http://main.slooh.com/event/total-solar-eclipse-1509394022.86 | 1.0
+ADDED:http://www.astroadventures.net/2017/USA/eclipse2.html-1509394025.81 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-retinopathy-eye-damage-sun-2017-8-1509394028.17 | 1.0
+ADDED:http://www.businessinsider.com/category/total-solar-eclipse-1509394030.78 | 1.0
+ADDED:http://www.businessinsider.com/why-total-solar-eclipses-will-end-2017-6-1509394033.67 | 1.0
+ADDED:http://www.businessinsider.com/category/2017-solar-eclipse-1509394036.23 | 1.0
+ADDED:http://www.businessinsider.com/when-is-next-solar-eclipse-when-was-last-solar-eclipse-2017-8-1509394038.93 | 2.0
+ADDED:http://www.businessinsider.com/safety-tips-watching-partial-solar-eclipse-2017-8-1509394041.94 | 2.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-2017-1509394044.67 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-when-are-the-next-solar-eclipses-2017-8-1509394047.61 | 2.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-1509394050.24 | 1.0
+ADDED:http://www.businessinsider.com/where-in-the-us-you-can-see-a-total-solar-eclipse-august-21-2017-8-1509394053.52 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-when-where-how-to-watch-2017-8-1509394056.11 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-how-to-know-if-solar-eclipse-glasses-are-safe-2017-8-1509394058.87 | 1.0
+ADDED:http://www.businessinsider.com/what-time-is-the-solar-eclipse-2017-8-1509394061.56 | 2.0
+ADDED:http://www.businessinsider.com/what-is-a-solar-eclipse-2017-8-1509394063.98 | 2.0
+ADDED:http://www.businessinsider.com/what-the-solar-eclipse-will-look-like-across-us-2017-8-1509394066.48 | 2.0
+ADDED:http://www.businessinsider.com/category/eclipse-1509394069.02 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-diagram-2017-8-1509394071.86 | 1.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-diagram-1509394074.77 | 1.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-graphic-1509394077.02 | 1.0
+ADDED:http://www.businessinsider.com/every-total-solar-eclipse-until-2040-video-2017-8-1509394079.32 | 1.0
+ADDED:http://www.businessinsider.com/what-the-total-solar-eclipse-looks-like-photos-2017-8-1509394081.59 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-how-to-watch-without-eclipse-glasses-2017-8-1509394084.13 | 1.0
+ADDED:http://www.businessinsider.com/how-ancient-cultures-explained-total-solar-eclipses-2017-8-1509394086.79 | 1.0
+ADDED:http://www.businessinsider.com/netflix-viewership-dropped-10-percent-during-total-solar-eclipse-2017-8-1509394089.59 | 1.0
+ADDED:http://www.businessinsider.com/how-to-tell-solar-eclipse-ruined-vision-permanent-damage-2017-8-1509394092.27 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-cloudy-weather-2017-8-1509394094.56 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-how-stocks-have-done-historically-2017-8-1509394097.03 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-elon-musk-watches-eclipse-in-model-s-with-sunglasses-2017-8-1509394099.67 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-mcdonalds-workers-three-minute-eclipse-break-2017-8-1509394102.22 | 2.0
+ADDED:http://www.businessinsider.com/2-nasa-planes-are-chasing-the-solar-eclipse-heres-how-and-where-2017-8-1509394104.75 | 2.0
+ADDED:http://www.businessinsider.com/where-can-i-see-the-solar-eclipse-2017-7-1509394107.94 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-photographing-photos-2017-8-1509394110.91 | 1.0
+ADDED:http://www.businessinsider.com/free-eclipse-sunglasses-libraries-nasa-events-2017-8-1509394113.72 | 1.0
+ADDED:http://www.businessinsider.com/eyes-hurt-after-solar-eclipse-solar-retinopathy-2017-8-1509394116.44 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-power-grid-electricity-2017-8-1509394119.14 | 2.0
+ADDED:http://www.businessinsider.com/what-the-solar-eclipse-looks-like-nyc-la-chicago-nashville-2017-8-1509394121.96 | 2.0
+ADDED:http://www.businessinsider.com/early-retiree-chases-eclipses-all-over-the-world-2017-8-1509394124.56 | 1.0
+ADDED:http://www.businessinsider.com/category/2017-eclipse-1509394127.0 | 2.0
+ADDED:http://www.businessinsider.com/eclipse-2017-instagram-best-photos-2017-8-1509394129.56 | 2.0
+ADDED:http://www.businessinsider.com/trump-eclipse-meme-tweet-2017-8-1509394132.66 | 1.0
+ADDED:http://www.businessinsider.com/can-you-watch-the-solar-eclipse-with-your-iphone-camera-2017-8-1509394135.27 | 2.0
+ADDED:http://www.businessinsider.com/how-to-watch-solar-eclipse-without-special-glasses-tips-tricks-2017-8-1509394137.75 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-glasses-recall-dutch-bros-2017-8-1509394140.21 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-totality-corona-simulated-pictures-2017-8-1509394142.73 | 2.0
+ADDED:http://www.businessinsider.com/goldman-sachs-ceo-lloyd-blankfein-tweet-solar-eclipse-2017-8-1509394145.24 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-photos-blue-crescents-lens-flare-2017-8-1509394147.64 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-how-to-take-photos-of-the-eclipse-2017-8-1509394149.99 | 2.0
+ADDED:http://www.businessinsider.com/snapchat-uses-solar-eclipse-to-show-off-snap-map-feature-2017-8-1509394152.79 | 1.0
+ADDED:http://www.businessinsider.com/celebrity-eclipse-photos-2017-8-1509394155.16 | 2.0
+ADDED:http://www.businessinsider.com/photos-of-2017-total-solar-eclipse-gatherings-across-the-us-2017-8-1509394157.75 | 2.0
+ADDED:http://www.businessinsider.com/category/eclipse-time-1509394160.37 | 1.0
+ADDED:http://www.businessinsider.com/how-to-watch-solar-eclipse-livestream-youtube-nasa-2017-8-1509394162.78 | 2.0
+ADDED:http://www.businessinsider.com/total-solar-eclipse-demand-for-marijuana-2017-8-1509394165.38 | 2.0
+ADDED:http://www.businessinsider.com/how-to-tell-if-eclipse-glasses-are-safe-2017-8-1509394167.96 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-photos-2017-8-1509394170.44 | 2.0
+ADDED:http://www.businessinsider.com/category/next-solar-eclipses-1509394172.8 | 1.0
+ADDED:http://www.businessinsider.com/steve-mnuchin-louise-linton-instagram-kentucky-eclipse-2017-8-1509394175.05 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-map-best-views-2017-8-1509394177.5 | 2.0
+ADDED:http://www.businessinsider.com/nasa-solar-eclipse-youtube-webcast-2017-8-1509394179.84 | 2.0
+ADDED:http://www.businessinsider.com/stunning-footage-highlights-2017-total-solar-eclipse-2017-8-1509394182.48 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-strange-effects-to-look-for-2017-8-1509394184.84 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-pinhole-camera-viewer-instructions-2017-8-1509394187.35 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-wear-sunscreen-to-protect-against-skin-damage-2017-8-1509394189.91 | 2.0
+ADDED:http://www.businessinsider.com/tennessee-titans-share-time-lapse-of-training-facility-during-eclipse-2017-8-1509394192.34 | 2.0
+ADDED:http://www.businessinsider.com/odell-beckham-jr-looked-directly-at-the-eclipse-for-far-too-long-2017-8-1509394194.85 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-oregon-traffic-conditions-video-2017-8-1509394198.49 | 2.0
+ADDED:http://www.businessinsider.com/oregon-eclipse-2017-burning-man-festival-for-eclipse-watchers-2017-8-1509394201.16 | 2.0
+ADDED:http://www.businessinsider.com/new-york-times-square-solar-eclipse-2017-8-1509394203.84 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-glasses-pizza-hut-box-2017-8-1509394206.31 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-space-station-nasa-photos-video-2017-8-1509394208.54 | 2.0
+ADDED:http://www.businessinsider.com/can-i-take-a-selfie-of-the-solar-eclipse-2017-8-1509394211.26 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-glasses-politicians-2017-8-1509394214.26 | 2.0
+ADDED:http://www.businessinsider.com/how-animals-reacted-to-the-solar-eclipse-2017-8-1509394217.4 | 2.0
+ADDED:http://www.businessinsider.com/trump-solar-eclipse-without-glasses-new-york-daily-news-cover-2017-8-1509394220.0 | 2.0
+ADDED:http://www.businessinsider.com/trump-watching-solar-eclipse-20017-photos-2017-8-1509394222.92 | 2.0
+ADDED:http://www.businessinsider.com/category/solar-eclipses-1509394225.93 | 1.0
+ADDED:http://www.businessinsider.com/category/next-solar-eclipse-1509394229.27 | 1.0
+ADDED:http://www.businessinsider.com/where-you-can-see-america-rare-solar-eclipse-2017-7-1509394231.97 | 2.0
+ADDED:http://www.businessinsider.com/tucker-carlson-trump-eclipse-joke-2017-8-1509394234.5 | 2.0
+ADDED:http://www.businessinsider.com/southwest-had-eclipse-viewing-flights-and-i-was-on-one-2017-8-1509394237.17 | 2.0
+ADDED:http://www.businessinsider.com/r-treasury-watchdog-reviews-mnuchins-eclipse-trip-2017-9-1509394239.91 | 1.0
+ADDED:http://www.businessinsider.com/tucker-carlson-eclipse-joke-trump-glasses-2017-8-1509394242.5 | 2.0
+ADDED:http://www.businessinsider.com/2017-solar-eclipse-fun-experiment-2017-5-1509394245.27 | 2.0
+ADDED:http://www.businessinsider.com/r-americas-total-eclipse-floods-market-with-fake-sunglasses-2017-8-1509394247.9 | 2.0
+ADDED:http://www.businessinsider.com/nasa-approved-eclipse-glasses-brands-2017-8-1509394250.92 | 1.0
+ADDED:http://www.businessinsider.com/google-trends-eclipse-vision-searches-2017-8-1509394253.83 | 1.0
+ADDED:http://www.businessinsider.com/trump-rabbi-white-nationalists-eclipse-2017-8-1509394257.03 | 1.0
+ADDED:http://www.businessinsider.com/category/eclipse-history-1509394259.49 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-car-traffic-travel-delay-maps-2017-8-1509394262.07 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-most-shared-data-history-prediction-2017-8-1509394264.78 | 2.0
+ADDED:https://www.businessinsider.com/solar-eclipse-2017-free-warby-parker-eclipse-glasses-2017-8-1509394267.86 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-brightness-map-2017-8-1509394270.37 | 2.0
+ADDED:http://www.businessinsider.com/nasa-approved-solar-eclipse-glasses-2017-8-1509394273.31 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-maps-time-weather-traffic-brightness-2017-8-1509394276.1 | 2.0
+ADDED:http://www.businessinsider.com/solar-eclipse-flight-nashville-how-much-2017-8-1509394279.8 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-live-video-nasa-facebook-2017-8-1509394282.26 | 2.0
+ADDED:http://www.businessinsider.com/how-to-watch-perseid-meteor-shower-total-solar-eclipse-august-2017-8-1509394285.14 | 2.0
+ADDED:http://www.businessinsider.com/category/eclipse-map-1509394287.64 | 1.0
+ADDED:http://www.businessinsider.com/category/eclipse-photos-1509394290.16 | 1.0
+ADDED:http://www.businessinsider.com/category/eclipse-2017-1509394292.79 | 1.0
+ADDED:http://www.businessinsider.com/mcdonalds-solar-eclipse-glasses-oregon-2017-8-1509394295.41 | 2.0
+ADDED:http://www.businessinsider.com/2017-solar-eclipse-fun-experiment-2017-7-1509394299.19 | 2.0
+ADDED:http://www.businessinsider.com/category/eclipse-chasers-1509394302.45 | 1.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-2017-map-1509394304.88 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-questions-answered-by-an-astronomer-2017-8-1509394307.94 | 2.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-pictures-1509394310.56 | 1.0
+ADDED:http://www.businessinsider.com/photos-videos-total-solar-eclipse-nasa-2016-3-1509394313.39 | 1.0
+ADDED:http://www.businessinsider.com/exactly-where-you-can-see-this-years-solar-eclipse-2017-1-1509394316.44 | 2.0
+ADDED:http://www.businessinsider.com/category/solar-eclipse-photos-1509394318.99 | 1.0
+ADDED:http://www.businessinsider.com/watch-solar-eclipse-nasa-slooh-video-webcasts-2016-3-1509394321.79 | 1.0
+ADDED:http://www.businessinsider.com/total-solar-eclipse-alaska-air-video-2016-3-1509394324.35 | 1.0
+ADDED:http://www.businessinsider.com/category/eclipse-glasses-1509394326.74 | 1.0
+ADDED:http://www.businessinsider.com/hotel-bookings-for-total-solar-eclipse-in-the-us-occurring-on-august-17-2017-2016-8-1509394329.22 | 2.0
+ADDED:http://www.businessinsider.com/great-american-eclipse-hotels-booked-solar-sun-moon-2016-4-1509394331.62 | 2.0
+ADDED:http://www.businessinsider.com/parker-solar-probe-plus-how-it-works-2017-5-1509394334.12 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-nashville-tennessee-2017-8-1509394336.77 | 2.0
+ADDED:http://www.businessinsider.com/category/solar-power-1509394339.57 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-what-was-it-like-on-the-ground-2017-8-1509394342.18 | 2.0
+ADDED:http://www.businessinsider.com/celebrities-watching-solar-eclipse-2017-8-1509394345.0 | 2.0
+ADDED:http://www.businessinsider.com/category/2017-1509394347.62 | 1.0
+ADDED:http://time.com/tag/eclipse-1509394355.83 | 1.0
+ADDED:https://www.timeanddate.com/eclipse-1509394359.06 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-2017-free-warby-parker-eclipse-glasses-2017-8-1509394363.64 | 1.0
+ADDED:http://www.businessinsider.com/solar-eclipse-nasa-space-moon-sun-2016-3-1509394366.28 | 1.0
+ADDED:http://www.businessinsider.com/jump-height-duration-across-solar-system-2017-1-1509394368.91 | 1.0
+ADDED:http://www.businessinsider.com/time-lapse-video-arctic-total-solar-eclipse-2015-3-1509394372.64 | 1.0
+ADDED:https://eclipse2017.nasa.gov/sites/default/files/interactive_map/index.html-1509394375.3 | 1.0
+ADDED:https://eclipse.aas.org/resources/solar-filters-1509394378.92 | 1.0
+ADDED:https://eclipse.aas.org/eye-safety/iso-certification-1509394382.11 | 1.0
+ADDED:https://www.nytimes.com/2017/08/21/opinion/a-ring-of-fire.html-1509394385.57 | 2.0
+ADDED:https://www.timeanddate.com/eclipse/umbra-shadow.html-1509394389.62 | 1.0
+ADDED:https://www.washingtonpost.com/lifestyle/kidspost/ever-wondered-why-you-shouldnt-look-at-the-sun/2017/08/07/9c68843c-7856-11e7-8839-ec48ec4cae25_story.html-1509394393.05 | 2.0
+ADDED:http://wapo.st/2tv5M3d-1509394395.73 | 2.0
+ADDED:https://www.washingtonpost.com/news/speaking-of-science/wp/2017/08/15/the-worst-things-that-could-go-wrong-during-the-total-solar-eclipse-and-how-to-be-prepared-1509394398.52 | 2.0
+ADDED:http://www.cnn.com/specials/vr/total-solar-eclipse-2017-1509394401.18 | 1.0
+ADDED:http://www.cnn.com/interactive/2017/08/us/eclipse-photos/index.html-1509394403.46 | 2.0
+ADDED:http://www.ajc.com/news/national/this-the-most-accurate-map-the-great-american-eclipse-path-totality-date/lNAuJ7xaKCliwHGCI4UIOP-1509394407.6 | 1.0
+ADDED:http://xjubier.free.fr/en/site_pages/solar_eclipses/TSE_2017_GoogleMapFull.html-1509394411.17 | 1.0
+ADDED:https://www.washingtonpost.com/video/local/weather/is-the-total-solar-eclipse-worth-all-the-hype/2017/07/31/6566f502-73c6-11e7-8c17-533c52b2f014_video.html-1509394413.89 | 1.0
+ADDED:http://www.eclipseville.com/event/jefferson-davis-solar-eclipse-festival-1509394424.87 | 1.0
+ADDED:http://www.eclipseville.com/solar-eclipse-tips-1509394430.85 | 2.0
+ADDED:http://www.eclipseville.com/eclipse-fun/how-to-photograph-the-eclipse-1509394437.13 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-events-1509394442.58 | 1.0
+ADDED:http://www.eclipseville.com/scientific-information-eclipse-1509394447.44 | 2.0
+ADDED:http://www.eclipseville.com/eclipse-fun/how-to-throw-an-eclipse-party-1509394452.69 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-con-1509394458.36 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-links-1509394465.87 | 1.0
+ADDED:http://www.eclipseville.com/protect-your-eyes-1509394470.5 | 1.0
+ADDED:http://www.eclipseville.com/vendor-information/how-to-be-an-eclipse-vendor-1509394478.57 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-con-vendor-application-1509394484.28 | 1.0
+ADDED:http://www.eclipseville.com/documents/solar-eclipse-foodbeverage-vendor-form-1509394489.24 | 1.0
+ADDED:http://www.eclipseville.com/documents-1509394494.24 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-events/submit-your-event-1509394499.24 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-con/celebrity-roster-1509394504.72 | 1.0
+ADDED:http://www.eclipseville.com/documents/eclipse-con-vendor-floor-plan-1509394510.07 | 1.0
+ADDED:http://www.eclipseville.com/eclipse-merchandise/local-vendor-merchandise-1509394514.78 | 1.0
+ADDED:http://www.eclipseville.com/documents/eclipse-con-vendor-application-1509394519.44 | 1.0
+ADDED:https://eclipse2017.nasa.gov/sites/default/files/2017_solar_eclipse_nasa_official_viewing_locations.html-1509394521.87 | 1.0
+ADDED:https://eclipse.gsfc.nasa.gov/eclipse.html-1509394525.24 | 1.0
+ADDED:http://eclipse.gsfc.nasa.gov/eclipse.html-1509394528.35 | 1.0
+ADDED:http://www.washingtonpost.com/pb/lifestyle/kidspost/solar-eclipse-maps-are-not-exact-scientists-say-path-of-totality-isnt-quite-70-miles/2017/08/11/d140fd5e-7eac-11e7-9d08-b79f191668ed_story.html-1509394530.76 | 1.0
+ADDED:https://www.nytimes.com/2015/03/20/world/europe/solar-eclipse-and-supermoon-have-europe-energy-providers-watchful.html-1509394533.37 | 1.0
+ADDED:https://www.vox.com/science-and-health/2017/8/10/16114762/total-solar-eclipse-chasers-2017-1509394538.5 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/8/15/16125720/solar-eclipse-2017-how-to-watch-1509394541.15 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/8/22/16180702/winners-and-losers-solar-eclipse-1509394544.39 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/8/21/16178956/when-is-next-total-solar-eclipse-1509394547.03 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/7/25/16019892/solar-eclipse-2017-interactive-map-1509394549.88 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/8/17/16156764/solar-eclipse-2017-safety-glasses-1509394552.51 | 2.0
+ADDED:https://www.vox.com/culture/2017/8/21/16180550/total-eclipse-of-the-heart-number-one-song-1509394555.41 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/6/15/15804336/2017-solar-eclipse-map-united-states-nasa-1509394559.07 | 2.0
+ADDED:https://www.timeanddate.com/eclipse/solar-eclipse-myths.html-1509394561.53 | 1.0
+ADDED:https://www.vox.com/science-and-health/2017/8/21/16171826/solar-eclipse-2017-photos-1509394565.48 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/8/18/16156760/solar-eclipse-2017-science-experiments-1509394568.02 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/7/17/15965422/solar-eclipse-2017-august-totality-awesome-1509394570.47 | 2.0
+ADDED:https://www.vox.com/policy-and-politics/2017/8/21/16180444/trump-eclipse-no-protective-glasses-1509394573.46 | 2.0
+ADDED:https://www.vox.com/energy-and-environment/2017/8/9/16089636/solar-eclipse-2017-solar-energy-1509394575.82 | 2.0
+ADDED:https://www.vox.com/2017/8/17/16102984/national-parks-eclipse-chasers-1509394579.08 | 2.0
+ADDED:https://www.vox.com/videos/2017/7/20/16004092/solar-eclipse-big-deal-1509394581.54 | 2.0
+ADDED:https://www.vox.com/science-and-health/2017/7/14/15882210/solar-eclipse-2017-us-posters-1509394584.68 | 2.0
+ADDED:https://www.vox.com/policy-and-politics/2017/8/21/16179792/solar-eclipse-2017-racist-1509394587.31 | 2.0
+ADDED:https://www.vox.com/2016/4/29/11527892/eclipses-mapped-nasa-1509394589.89 | 2.0
+ADDED:https://www.vox.com/culture/2017/8/21/16180012/2017-solar-eclipse-branding-social-media-1509394592.96 | 2.0
+ADDED:https://www.vox.com/identities/2017/8/21/16178848/eclipse-asheville-witches-1509394595.52 | 2.0
+ADDED:https://www.vox.com/2016/3/9/11185262/awesome-total-solar-eclipse-photo-1509394599.23 | 2.0
+ADDED:https://www.timeanddate.com/eclipse/box-pinhole-projector.html-1509394605.16 | 2.0
+ADDED:https://www.vox.com/2015/3/5/8154763/solar-eclipse-europe-electricity-1509394608.73 | 1.0
+ADDED:http://www.oregonlive.com/eclipse/2017/07/2017_total_solar_eclipse_the_v.html-1509394611.95 | 2.0
+ADDED:https://eclipse.gsfc.nasa.gov/SEsaros/SEperiodicity.html-1509394616.26 | 1.0
+ADDED:https://eclipse.aas.org/about-us-1509394620.62 | 1.0
+ADDED:http://www.cnn.com/2017/08/19/politics/eclipse-poll-travel-plans/index.html-1509394623.56 | 2.0
+ADDED:http://www.cnn.com/travel/article/last-minute-guide-2017-solar-eclipse/index.html-1509394627.56 | 2.0
+ADDED:https://eclipse.gsfc.nasa.gov/SEhelp/safety2.html-1509394632.33 | 1.0
+ADDED:http://eclipse.gsfc.nasa.gov/SEsearch/SEsearchmap.php-1509394634.93 | 1.0
+ADDED:http://explorerabun.com/total-eclipse-1509394640.44 | 1.0
+ADDED:http://explorerabun.com/total-solar-eclipse-simple-explanation-1509394645.87 | 1.0
+ADDED:http://explorerabun.com/total-solar-eclipse-t-shirts-1509394650.88 | 1.0
+ADDED:http://explorerabun.com/parking-outasight-total-solar-eclipse-viewing-party-1509394656.1 | 1.0
+ADDED:http://explorerabun.com/events-happening-total-solar-eclipse-rabun-county-georgia-1509394661.46 | 1.0
+ADDED:http://explorerabun.com/total-solar-eclipse-viewing-party-rabun-gap-nacoochee-school-1509394667.86 | 1.0
+ADDED:http://explorerabun.com/informational-websites-2017-total-eclipse-across-america-1509394672.97 | 1.0
+ADDED:http://eclipse.gsfc.nasa.gov/SEhelp/safety2.html-1509394675.5 | 2.0
+ADDED:http://explorerabun.com/eclipse-lecture-information-session-eclipse-experts-rearden-theater-1509394681.13 | 1.0
+ADDED:http://www.ajc.com/news/photos-supermoon-eclipse-around-the-world/X6bZHtDPy4nFOYD6MaGBdN-1509394683.72 | 1.0
+ADDED:https://www.livescience.com/60207-how-animals-responded-to-the-eclipse.html-1509394686.9 | 2.0
+ADDED:http://w2.weather.gov/pqr/eclipse-1509394696.89 | 2.0
+ADDED:http://eclipse.gsfc.nasa.gov/solar.html-1509394699.42 | 1.0
+ADDED:http://www.apsu.edu/eclipse/events-1509394702.28 | 2.0
+ADDED:https://www.fi.edu/summer-of-space/eclipse-1509394706.34 | 2.0
+ADDED:http://eclipse.gsfc.nasa.gov/SEhelp/safety.html-1509394708.7 | 1.0
+ADDED:https://www.fi.edu/all-about-solar-eclipses-with-derrick-pitts-1509394711.07 | 2.0
+ADDED:https://www.fi.edu/eclipse-1509394713.86 | 1.0
+ADDED:https://www.fi.edu/websites-on-2017-solar-eclipse-1509394716.46 | 2.0
+ADDED:http://www.fi.edu/eclipse-1509394719.04 | 1.0
+ADDED:https://www.fi.edu/summer-of-space/eclipse/pinhole-camera-1509394721.51 | 2.0
+ADDED:https://www.timeanddate.com/eclipse/in/usa/bend-1509394727.96 | 1.0
+ADDED:https://www.timeanddate.com/eclipse/in/usa/charleston-sc-1509394730.59 | 1.0
+ADDED:https://www.timeanddate.com/eclipse/in/usa/st-louis-1509394733.02 | 1.0
+ADDED:https://www.timeanddate.com/eclipse/in/usa/new-york-1509394735.68 | 1.0
+ADDED:https://www.timeanddate.com/eclipse/in/usa/nashville-1509394738.16 | 1.0
+ADDED:https://eclipse.gsfc.nasa.gov/SEhelp/SEglossary.html-1509394744.64 | 1.0
+ADDED:https://eclipse.gsfc.nasa.gov/SEsaros/SEperiodtab4.html-1509394747.11 | 1.0
+ADDED:https://explorestlouis.com/discover/2017-total-solar-eclipse-1509394754.22 | 2.0
+ADDED:https://www.eclipse-chasers.com/php/tseAssist.php-1509394762.87 | 1.0
+ADDED:https://www.eclipse-chasers.com/php/tsePast.php-1509394765.62 | 1.0
+ADDED:https://www.eclipse-chasers.com/php/overlayEclipses.php-1509394769.41 | 1.0
+ADDED:https://www.eclipse-chasers.com/html/tseFuture.shtml-1509394772.7 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/papers/SolarSystemEclipses.shtml-1509394776.33 | 1.0
+ADDED:https://www.eclipse-chasers.com/totality/totality.shtml-1509394779.15 | 1.0
+ADDED:https://www.eclipse-chasers.com/Map.html-1509394781.61 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/beginner/tseAbout.shtml-1509394784.01 | 1.0
+ADDED:http://eclipse.gsfc.nasa.gov/SEsaros/SEperiodicity.html-1509394786.67 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/beginner/tseChase.shtml-1509394790.17 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/papers/tseSAFE.shtml-1509394793.08 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/papers/tlePhoto.shtml-1509394796.08 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/papers/tseBlackOut.shtml-1509394798.97 | 1.0
+ADDED:https://www.eclipse-chasers.com/html/cartoons.shtml-1509394801.63 | 1.0
+ADDED:https://www.eclipse-chasers.com/store/eGear.shtml-1509394804.11 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/beginner/tseFilters.shtml-1509394806.55 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/beginner/tseProjection.shtml-1509394809.1 | 1.0
+ADDED:https://www.eclipse-chasers.com/article/papers/tseWeatherX1.shtml-1509394811.68 | 1.0
+ADDED:https://www.eclipse-chasers.com/php/tseContact.php-1509394814.2 | 1.0
+ADDED:https://www.eclipse-chasers.com/php/showSeveralEclipses.php-1509394817.48 | 1.0
+ADDED:https://www.eclipse-chasers.com/eclipseNuts/index.php-1509394820.26 | 1.0
+ADDED:https://www.eclipse-chasers.com/photo/Photo13.shtml-1509394822.98 | 1.0
+ADDED:https://www.eclipse-chasers.com/php/tseChaserMapGroup.php-1509394829.36 | 1.0
+ADDED:https://www.eclipse-chasers.com/html/UsageTerms.shtml-1509394831.89 | 1.0
+*********
+Some(2.0)
+211
+Some(0.0)
+0
+Some(1.0)
+323
+266
+268
+Histogram begin
+1	0
+2	0
+3	0
+4	0
+5	0
+6	0
+7	0
+8	0
+9	0
+10	0
+11	0
+12	0
+13	0
+14	0
+15	0
+16	0
+17	0
+18	0
+19	0
+20	0
+21	0
+22	0
+23	0
+24	0
+25	0
+26	0
+27	0
+28	0
+29	0
+30	0
+31	0
+32	0
+33	0
+34	0
+35	0
+36	0
+37	0
+38	0
+39	0
+40	0
+41	0
+42	0
+43	0
+44	0
+45	0
+46	0
+47	0
+48	0
+49	0
+50	0
+51	0
+52	0
+53	0
+54	0
+55	0
+56	0
+57	0
+58	0
+59	0
+60	0
+61	0
+62	0
+63	0
+64	0
+65	0
+66	0
+67	0
+68	0
+69	0
+70	0
+71	0
+72	0
+73	0
+74	0
+75	0
+76	0
+77	0
+78	0
+79	0
+80	0
+81	0
+82	0
+83	0
+84	0
+85	0
+86	0
+87	0
+88	0
+89	0
+90	0
+91	0
+92	0
+93	0
+94	0
+95	0
+96	0
+97	0
+98	0
+99	0
+100	0
+101	0
+102	0
+103	0
+104	0
+105	0
+106	0
+107	0
+108	0
+109	0
+110	0
+111	0
+112	0
+113	0
+114	0
+115	0
+116	0
+117	0
+118	0
+119	0
+120	0
+121	0
+122	0
+123	0
+124	0
+125	0
+126	0
+127	0
+128	0
+129	0
+130	0
+131	0
+132	0
+133	0
+134	0
+135	0
+136	0
+137	0
+138	0
+139	0
+140	0
+141	0
+142	0
+143	0
+144	0
+145	0
+146	0
+147	0
+148	0
+149	0
+150	0
+151	0
+152	0
+153	0
+154	0
+155	0
+156	0
+157	0
+158	0
+159	0
+160	0
+161	0
+162	0
+163	0
+164	0
+165	0
+166	0
+167	0
+168	0
+169	0
+170	0
+171	0
+172	0
+173	0
+174	0
+175	0
+176	0
+177	0
+178	0
+179	0
+180	0
+181	0
+182	0
+183	0
+184	0
+185	0
+186	0
+187	0
+188	0
+189	0
+190	0
+191	0
+192	0
+193	0
+194	0
+195	0
+196	0
+197	0
+198	0
+199	0
+200	0
+201	0
+202	0
+203	0
+204	0
+205	0
+206	0
+207	0
+208	0
+209	0
+210	0
+211	1
+212	0
+213	0
+214	0
+215	0
+216	0
+217	0
+218	0
+219	0
+220	0
+221	0
+222	0
+223	0
+224	0
+225	0
+226	0
+227	0
+228	0
+229	0
+230	0
+231	0
+232	0
+233	0
+234	0
+235	0
+236	0
+237	0
+238	0
+239	0
+240	0
+241	0
+242	0
+243	0
+244	0
+245	0
+246	0
+247	0
+248	0
+249	0
+250	0
+251	0
+252	0
+253	0
+254	0
+255	0
+256	0
+257	0
+258	0
+259	0
+260	0
+261	0
+262	0
+263	0
+264	0
+265	0
+266	0
+267	0
+268	0
+269	0
+270	0
+271	0
+272	0
+273	0
+274	0
+275	0
+276	0
+277	0
+278	0
+279	0
+280	0
+281	0
+282	0
+283	0
+284	0
+285	0
+286	0
+287	0
+288	0
+289	0
+290	0
+291	0
+292	0
+293	0
+294	0
+295	0
+296	0
+297	0
+298	0
+299	0
+300	0
+301	0
+302	0
+303	0
+304	0
+305	0
+306	0
+307	0
+308	0
+309	0
+310	0
+311	0
+312	0
+313	0
+314	0
+315	0
+316	0
+317	0
+318	0
+319	0
+320	0
+321	0
+322	0
+323	1
+the stats have been generated
+String Learning and evaluating models
+3
+3
+#########
+3
+Took 16.326 seconds for the training.
+<---- done
+Took 0.006 seconds for Prediction.
+
+***********   Class:1.0   *************
+F1 Score:0.783625730994152
+True Positive:0.8271604938271605
+False Positive:0.4339622641509434
+Precision:0.7444444444444445
+Recall:0.8271604938271605
+
+***********   Class:2.0   *************
+F1 Score:0.6185567010309277
+True Positive:0.5660377358490566
+False Positive:0.1728395061728395
+Precision:0.6818181818181818
+Recall:0.5660377358490566
+
+Confusion Matrix 
+134.0  28.0  
+46.0   60.0  
+
+***********   Classifier Results for LRW2VClassifier   *************
+Weighted F1-Measure = 0.7183372340683991
+Weighted Precision = 0.7196743554952509
+Weighted Recall = 0.7238805970149254
+Macro F1 = 0.7010912160125399
+Micro F1 = 0.7238805970149254
+
+***********   End of Classifier Results for LRW2VClassifier   *************
+Took 1.94 seconds for the prediction.
+Took 28.197 seconds for the whole process.
